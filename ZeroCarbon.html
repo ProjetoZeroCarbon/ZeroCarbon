@@ -1,0 +1,989 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ZeroCarbon — Desktop</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --forest-950:#0A1F16;
+    --forest-800:#123526;
+    --forest-700:#1B4433;
+    --mint:#1AAE9F;
+    --mint-light:#6FDBC7;
+    --mint-dim:#0F7A6E;
+    --paper:#EFF3EC;
+    --card:#FFFFFF;
+    --ink:#12211B;
+    --slate:#4B5C6B;
+    --gray:#788896;
+    --line:#DAE3DB;
+    --blue:#2C88D9;
+    --orange:#E8833A;
+    --pink:#BD34D1;
+    --yellow:#EFB429;
+    --red:#D3455B;
+    --mint-text:#0F7A6E;
+    --radius-s:10px;
+    --radius-m:16px;
+    --radius-l:28px;
+    --shadow:0 2px 4px rgba(18,33,27,.04), 0 12px 32px -12px rgba(18,33,27,.14);
+    color-scheme:light;
+  }
+  html[data-theme="dark"]{
+    --paper:#0B1410;
+    --card:#141F19;
+    --ink:#EDF3EE;
+    --slate:#9FB6A8;
+    --gray:#66897A;
+    --line:#22322A;
+    --mint-text:#4FE3C9;
+    --shadow:0 2px 4px rgba(0,0,0,.25), 0 20px 44px -16px rgba(0,0,0,.6);
+    color-scheme:dark;
+  }
+  html[data-theme="dark"] .feature-icon,
+  html[data-theme="dark"] .achieve .ic{filter:saturate(1.15);}
+  html[data-theme="dark"] .float-chip,
+  html[data-theme="dark"] .card,
+  html[data-theme="dark"] .feature-card,
+  html[data-theme="dark"] .hist-stat{border-color:var(--line);}
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Inter',sans-serif;
+    background:var(--paper);
+    color:var(--ink);
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,h4,.display{font-family:'Space Grotesk',sans-serif; letter-spacing:-0.01em;}
+  .mono{font-family:'IBM Plex Mono',monospace;}
+  a{color:inherit; text-decoration:none;}
+  ul{list-style:none;}
+  button{font-family:inherit; cursor:pointer;}
+  img{max-width:100%; display:block;}
+  :focus-visible{outline:2px solid var(--mint); outline-offset:2px;}
+ 
+  /* ---------- proto switcher (demo-only, not part of product UI) ---------- */
+  .proto-bar{
+    position:fixed; top:0; left:0; right:0; z-index:999;
+    display:flex; align-items:center; gap:6px;
+    background:var(--forest-950); color:#DDEAE4;
+    padding:10px 18px; font-size:12.5px; font-family:'IBM Plex Mono',monospace;
+    overflow-x:auto; white-space:nowrap;
+  }
+  .proto-bar span.lbl{color:#7FA396; margin-right:8px; flex-shrink:0;}
+  .proto-bar button{
+    background:transparent; border:1px solid rgba(255,255,255,.18); color:#CFE3DB;
+    padding:6px 12px; border-radius:100px; font-size:12px; flex-shrink:0;
+    transition:.15s;
+  }
+  .proto-bar button:hover{border-color:var(--mint-light); color:#fff;}
+  .proto-bar button.active{background:var(--mint); border-color:var(--mint); color:#08211A; font-weight:600;}
+  .theme-toggle{
+    margin-left:auto; display:flex; align-items:center; gap:8px; flex-shrink:0;
+    background:transparent; border:1px solid rgba(255,255,255,.18); color:#CFE3DB;
+    padding:6px 12px; border-radius:100px; font-size:12px; font-family:'IBM Plex Mono',monospace;
+  }
+  .theme-toggle:hover{border-color:var(--mint-light);}
+  .app-offset{padding-top:42px;}
+ 
+  /* ---------- page visibility ---------- */
+  .page{display:none;}
+  .page.active{display:block;}
+ 
+  /* ================= MARKETING NAV ================= */
+  .site-nav{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:22px 56px; max-width:1360px; margin:0 auto;
+  }
+  .logo{display:flex; align-items:center; gap:10px; font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:19px;}
+  .logo-mark{width:30px; height:30px; border-radius:9px; background:var(--forest-950); display:flex; align-items:center; justify-content:center;}
+  .logo-mark svg{width:16px; height:16px;}
+  .nav-links{display:flex; gap:34px; font-size:14.5px; color:var(--slate); font-weight:500;}
+  .nav-links a:hover{color:var(--ink);}
+  .nav-cta{display:flex; gap:12px; align-items:center;}
+  .btn{
+    display:inline-flex; align-items:center; justify-content:center; gap:8px;
+    padding:12px 22px; border-radius:100px; font-weight:600; font-size:14.5px;
+    border:1px solid transparent; transition:.18s ease;
+  }
+  .btn-primary{background:var(--forest-950); color:#fff;}
+  .btn-primary:hover{background:var(--mint-dim);}
+  .btn-mint{background:var(--mint); color:#08211A;}
+  .btn-mint:hover{background:var(--mint-light);}
+  .btn-ghost{background:transparent; color:var(--ink); border-color:var(--line);}
+  .btn-ghost:hover{border-color:var(--ink);}
+  .btn-block{width:100%;}
+  .btn-lg{padding:15px 30px; font-size:15.5px;}
+ 
+  /* ================= LANDING ================= */
+  .hero{
+    max-width:1360px; margin:0 auto; padding:64px 56px 88px;
+    display:grid; grid-template-columns:1.05fr 0.95fr; gap:64px; align-items:center;
+  }
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:8px;
+    font-family:'IBM Plex Mono',monospace; font-size:12.5px; letter-spacing:.04em;
+    color:var(--mint-text); background:rgba(26,174,159,.1); border:1px solid rgba(26,174,159,.25);
+    padding:7px 14px; border-radius:100px; margin-bottom:22px;
+  }
+  .eyebrow .dot{width:6px; height:6px; border-radius:50%; background:var(--mint);}
+  .hero h1{font-size:56px; line-height:1.05; font-weight:700; color:var(--ink); max-width:620px;}
+  .hero h1 em{font-style:normal; color:var(--mint-text);}
+  .hero p.lead{margin-top:22px; font-size:17px; line-height:1.65; color:var(--slate); max-width:480px;}
+  .hero-actions{display:flex; gap:14px; margin-top:34px;}
+  .hero-stats{display:flex; gap:32px; margin-top:44px; padding-top:28px; border-top:1px solid var(--line); max-width:480px;}
+  .hero-stats .stat b{display:block; font-family:'Space Grotesk',sans-serif; font-size:24px; color:var(--ink);}
+  .hero-stats .stat span{font-size:12.5px; color:var(--gray);}
+ 
+  .hero-visual{position:relative; display:flex; align-items:center; justify-content:center;}
+  .ring-rig{position:relative; width:400px; height:400px;}
+  .ring-rig svg{width:100%; height:100%;}
+  .ring-center{
+    position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center;
+  }
+  .ring-center .num{font-family:'Space Grotesk',sans-serif; font-size:44px; font-weight:700; color:var(--ink);}
+  .ring-center .unit{font-family:'IBM Plex Mono',monospace; font-size:13px; color:var(--gray); margin-top:2px;}
+  .ring-center .cap{font-size:12px; color:var(--mint-text); margin-top:10px; font-weight:600; letter-spacing:.03em;}
+  .float-chip{
+    position:absolute; background:var(--card); border:1px solid var(--line); border-radius:var(--radius-s);
+    padding:10px 14px; box-shadow:var(--shadow); font-size:12.5px; display:flex; align-items:center; gap:8px;
+  }
+  .float-chip b{font-family:'IBM Plex Mono',monospace; color:var(--ink);}
+  .chip-1{top:6px; left:-18px;}
+  .chip-2{bottom:22px; right:-24px;}
+ 
+  .marquee{border-top:1px solid var(--line); border-bottom:1px solid var(--line); padding:20px 0; margin-top:56px;}
+  .marquee-track{display:flex; gap:64px; justify-content:center; font-family:'IBM Plex Mono',monospace; font-size:12.5px; color:var(--gray); max-width:1360px; margin:0 auto; padding:0 56px; flex-wrap:wrap;}
+ 
+  .section{max-width:1360px; margin:0 auto; padding:110px 56px;}
+  .section-head{max-width:620px; margin-bottom:56px;}
+  .section-head .eyebrow{margin-bottom:16px;}
+  .section-head h2{font-size:36px; color:var(--ink); font-weight:700;}
+  .section-head p{margin-top:14px; color:var(--slate); font-size:16px; line-height:1.6;}
+ 
+  .feature-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:24px;}
+  .feature-card{
+    background:var(--card); border:1px solid var(--line); border-radius:var(--radius-l); padding:32px;
+    transition:.2s; position:relative; overflow:hidden;
+  }
+  .feature-card:hover{transform:translateY(-4px); box-shadow:var(--shadow);}
+  .feature-icon{
+    width:48px; height:48px; border-radius:14px; display:flex; align-items:center; justify-content:center; margin-bottom:22px;
+  }
+  .feature-card h3{font-size:19px; margin-bottom:10px; color:var(--ink);}
+  .feature-card p{font-size:14.5px; color:var(--slate); line-height:1.6;}
+ 
+  .how-section{background:var(--forest-950); color:#fff; border-radius:var(--radius-l); max-width:1360px; margin:0 auto 110px; padding:80px 64px;}
+  .how-section .section-head h2, .how-section .section-head p{color:#fff;}
+  .how-section .section-head p{color:#AFC7BC;}
+  .how-steps{display:grid; grid-template-columns:repeat(3,1fr); gap:40px; margin-top:20px;}
+  .how-step .idx{font-family:'IBM Plex Mono',monospace; font-size:13px; color:var(--mint-light); margin-bottom:18px;}
+  .how-step h4{font-size:19px; margin-bottom:10px;}
+  .how-step p{font-size:14.5px; color:#AFC7BC; line-height:1.6;}
+  .how-step{border-top:1px solid rgba(255,255,255,.15); padding-top:22px;}
+ 
+  .cta-band{
+    max-width:1360px; margin:0 auto 100px; padding:64px; border-radius:var(--radius-l);
+    background:linear-gradient(135deg, var(--mint) 0%, var(--mint-dim) 100%);
+    display:flex; align-items:center; justify-content:space-between; gap:40px; color:#08211A;
+  }
+  .cta-band h3{font-size:30px; max-width:460px;}
+  .cta-band .btn-primary{background:#08211A;}
+ 
+  .site-footer{border-top:1px solid var(--line); padding:48px 56px; max-width:1360px; margin:0 auto; display:flex; justify-content:space-between; color:var(--gray); font-size:13px;}
+ 
+  /* ================= AUTH (login / cadastro) ================= */
+  .auth-shell{display:grid; grid-template-columns:0.85fr 1.15fr; min-height:100vh;}
+  .auth-brand{
+    background:var(--forest-950); color:#fff; padding:56px; display:flex; flex-direction:column; justify-content:space-between;
+    position:relative; overflow:hidden;
+  }
+  .auth-brand .logo{color:#fff;}
+  .auth-brand .logo .logo-mark{background:var(--mint);}
+  .auth-brand-mid{max-width:380px;}
+  .auth-brand-mid h2{font-size:34px; line-height:1.15; margin-bottom:16px;}
+  .auth-brand-mid p{color:#AFC7BC; font-size:15px; line-height:1.6;}
+  .auth-rings{position:absolute; right:-120px; bottom:-120px; width:460px; height:460px; opacity:.5;}
+  .auth-quote{font-size:13px; color:#AFC7BC; border-top:1px solid rgba(255,255,255,.15); padding-top:20px;}
+  .auth-quote b{color:#fff; display:block; margin-bottom:6px; font-family:'Space Grotesk',sans-serif;}
+ 
+  .auth-form-wrap{display:flex; align-items:center; justify-content:center; padding:56px;}
+  .auth-form{width:100%; max-width:420px;}
+  .auth-form h2{font-size:28px; margin-bottom:8px;}
+  .auth-form>p{color:var(--slate); font-size:14.5px; margin-bottom:34px;}
+  .field{margin-bottom:18px;}
+  .field label{display:block; font-size:13px; font-weight:600; color:var(--ink); margin-bottom:8px;}
+  .field-row{display:grid; grid-template-columns:1fr 1fr; gap:14px;}
+  .input, select.input{
+    width:100%; padding:13px 16px; border:1px solid var(--line); border-radius:var(--radius-s);
+    font-size:14.5px; font-family:'Inter',sans-serif; background:var(--card); color:var(--ink);
+    transition:.15s;
+  }
+  .input:focus, select.input:focus{border-color:var(--mint); box-shadow:0 0 0 3px rgba(26,174,159,.14);}
+  .input::placeholder{color:var(--gray);}
+  .field-note{font-size:12px; color:var(--gray); margin-top:6px;}
+  .form-meta{display:flex; justify-content:space-between; align-items:center; margin:20px 0 26px; font-size:13.5px;}
+  .form-meta a{color:var(--mint-text); font-weight:600;}
+  .form-switch{margin-top:26px; text-align:center; font-size:14px; color:var(--slate);}
+  .form-switch a{color:var(--mint-text); font-weight:600;}
+  .divider-or{display:flex; align-items:center; gap:14px; margin:26px 0; color:var(--gray); font-size:12.5px;}
+  .divider-or::before,.divider-or::after{content:''; flex:1; height:1px; background:var(--line);}
+ 
+  /* ================= APP SHELL (dashboard/calc/history/profile) ================= */
+  .app-shell{display:grid; grid-template-columns:264px 1fr; min-height:100vh; background:var(--paper);}
+  .app-side{
+    background:var(--forest-950); color:#fff; padding:28px 20px; display:flex; flex-direction:column; position:sticky; top:0; height:100vh;
+  }
+  .app-side .logo{color:#fff; padding:0 10px; margin-bottom:40px;}
+  .app-side .logo .logo-mark{background:var(--mint);}
+  .side-nav{display:flex; flex-direction:column; gap:4px; flex:1;}
+  .side-link{
+    display:flex; align-items:center; gap:12px; padding:12px 14px; border-radius:var(--radius-s);
+    color:#AFC7BC; font-size:14.5px; font-weight:500; transition:.15s;
+  }
+  .side-link svg{width:18px; height:18px; flex-shrink:0;}
+  .side-link:hover{background:rgba(255,255,255,.06); color:#fff;}
+  .side-link.active{background:var(--mint); color:#08211A; font-weight:600;}
+  .side-goal{
+    margin-top:auto; background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.1);
+    border-radius:var(--radius-m); padding:18px;
+  }
+  .side-goal .lbl{font-size:11.5px; color:#8FB0A2; text-transform:uppercase; letter-spacing:.05em; margin-bottom:8px;}
+  .side-goal .val{font-family:'Space Grotesk',sans-serif; font-size:20px; margin-bottom:10px;}
+  .side-bar{height:6px; border-radius:100px; background:rgba(255,255,255,.15); overflow:hidden;}
+  .side-bar i{display:block; height:100%; background:var(--mint); border-radius:100px;}
+  .side-user{display:flex; align-items:center; gap:10px; margin-top:20px; padding-top:20px; border-top:1px solid rgba(255,255,255,.1);}
+  .avatar{width:36px; height:36px; border-radius:50%; background:var(--mint-light); flex-shrink:0;}
+  .side-user .who{font-size:13.5px; font-weight:600;}
+  .side-user .sub{font-size:11.5px; color:#8FB0A2;}
+ 
+  .app-main{padding:36px 48px 60px; max-width:1180px;}
+  .app-topbar{display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:34px;}
+  .app-topbar h1{font-size:28px; color:var(--ink);}
+  .app-topbar .sub{color:var(--slate); font-size:14.5px; margin-top:6px;}
+  .icon-btn{
+    width:42px; height:42px; border-radius:50%; background:var(--card); border:1px solid var(--line);
+    display:flex; align-items:center; justify-content:center;
+  }
+ 
+  .card{background:var(--card); border:1px solid var(--line); border-radius:var(--radius-l); padding:28px;}
+  .card-title{display:flex; justify-content:space-between; align-items:center; margin-bottom:22px;}
+  .card-title h3{font-size:16px; color:var(--ink);}
+  .card-title .tag{font-size:12px; color:var(--gray); font-family:'IBM Plex Mono',monospace;}
+ 
+  /* dashboard grid */
+  .dash-grid{display:grid; grid-template-columns:1.15fr 0.85fr; gap:24px; margin-bottom:24px;}
+  .hero-stat-card{
+    background:linear-gradient(135deg,var(--forest-950),var(--forest-800));
+    color:#fff; border-radius:var(--radius-l); padding:32px; display:flex; align-items:center; gap:36px;
+  }
+  .hero-stat-card .txt .lbl{font-size:12.5px; color:#8FB0A2; text-transform:uppercase; letter-spacing:.05em; margin-bottom:10px;}
+  .hero-stat-card .txt .num{font-family:'Space Grotesk',sans-serif; font-size:46px; line-height:1;}
+  .hero-stat-card .txt .num span{font-size:18px; color:#8FB0A2; font-weight:400; font-family:'IBM Plex Mono',monospace;}
+  .hero-stat-card .txt .delta{display:inline-flex; align-items:center; gap:6px; margin-top:14px; font-size:13px; background:rgba(26,174,159,.18); color:var(--mint-light); padding:6px 12px; border-radius:100px;}
+  .mini-ring{position:relative; width:120px; height:120px; flex-shrink:0;}
+  .mini-ring svg{width:100%; height:100%;}
+  .mini-ring .pct{position:absolute; inset:0; display:flex; align-items:center; justify-content:center; font-family:'Space Grotesk',sans-serif; font-size:19px;}
+ 
+  .cat-list{display:flex; flex-direction:column; gap:14px;}
+  .cat-row{display:flex; align-items:center; gap:14px;}
+  .cat-ic{width:40px; height:40px; border-radius:11px; display:flex; align-items:center; justify-content:center; flex-shrink:0;}
+  .cat-row .txt{flex:1;}
+  .cat-row .txt .n{font-size:13.5px; font-weight:600; color:var(--ink);}
+  .cat-row .txt .b{height:5px; background:var(--paper); border-radius:100px; margin-top:6px; overflow:hidden;}
+  .cat-row .txt .b i{display:block; height:100%; border-radius:100px;}
+  .cat-row .v{font-family:'IBM Plex Mono',monospace; font-size:13px; color:var(--slate);}
+ 
+  .bar-chart{display:flex; align-items:flex-end; gap:16px; height:180px; padding-top:10px;}
+  .bar-chart .col{flex:1; display:flex; flex-direction:column; align-items:center; gap:10px; height:100%; justify-content:flex-end;}
+  .bar-chart .col .b{width:100%; max-width:34px; border-radius:8px 8px 3px 3px; background:var(--line); position:relative; transition:.3s;}
+  .bar-chart .col .b.now{background:var(--mint);}
+  .bar-chart .col .m{font-size:11px; color:var(--gray); font-family:'IBM Plex Mono',monospace;}
+ 
+  .tip-card{background:rgba(26,174,159,.08); border:1px solid rgba(26,174,159,.2); border-radius:var(--radius-m); padding:20px; margin-top:20px;}
+  .tip-card .lbl{font-size:11.5px; color:var(--mint-text); font-weight:700; letter-spacing:.04em; margin-bottom:8px;}
+  .tip-card p{font-size:13.5px; color:var(--ink); line-height:1.55;}
+ 
+  /* calculator */
+  .calc-grid{display:grid; grid-template-columns:1.2fr 0.8fr; gap:24px; align-items:start;}
+  .calc-section{margin-bottom:26px;}
+  .calc-section:last-child{margin-bottom:0;}
+  .calc-section .head{display:flex; align-items:center; gap:12px; margin-bottom:16px;}
+  .calc-section .head .ic{width:36px; height:36px; border-radius:10px; display:flex; align-items:center; justify-content:center;}
+  .calc-section .head h4{font-size:15px; color:var(--ink);}
+  .radio-group{display:flex; gap:10px; margin-bottom:14px;}
+  .radio-opt{
+    flex:1; border:1px solid var(--line); border-radius:var(--radius-s); padding:12px; text-align:center;
+    font-size:13.5px; font-weight:500; color:var(--slate); cursor:pointer; transition:.15s;
+  }
+  .radio-opt input{display:none;}
+  .radio-opt.checked{border-color:var(--mint); background:rgba(26,174,159,.08); color:var(--mint-text); font-weight:600;}
+ 
+  .calc-preview{position:sticky; top:36px;}
+  .calc-total{text-align:center; padding:26px 0 10px;}
+  .calc-total .num{font-family:'Space Grotesk',sans-serif; font-size:40px; color:var(--ink);}
+  .calc-total .num span{font-size:16px; color:var(--gray); font-family:'IBM Plex Mono',monospace;}
+  .calc-total .lbl{font-size:12.5px; color:var(--gray); margin-top:4px;}
+  .calc-breakdown{display:flex; flex-direction:column; gap:10px; margin-top:18px;}
+  .calc-breakdown .row{display:flex; justify-content:space-between; font-size:13.5px; padding:10px 0; border-top:1px solid var(--line);}
+  .calc-breakdown .row .k{display:flex; align-items:center; gap:8px; color:var(--slate);}
+  .calc-breakdown .row .dot{width:8px; height:8px; border-radius:2px;}
+  .calc-breakdown .row .v{font-family:'IBM Plex Mono',monospace; color:var(--ink);}
+ 
+  /* history */
+  .hist-grid{display:grid; grid-template-columns:1.3fr 0.7fr; gap:24px;}
+  .hist-stats{display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-bottom:24px;}
+  .hist-stat{background:var(--card); border:1px solid var(--line); border-radius:var(--radius-m); padding:20px;}
+  .hist-stat .lbl{font-size:12px; color:var(--gray); margin-bottom:8px;}
+  .hist-stat .num{font-family:'Space Grotesk',sans-serif; font-size:24px; color:var(--ink);}
+  .hist-stat .num.good{color:var(--mint-text);}
+  .hist-list{display:flex; flex-direction:column;}
+  .hist-row{display:flex; align-items:center; justify-content:space-between; padding:16px 0; border-top:1px solid var(--line);}
+  .hist-row:first-child{border-top:none;}
+  .hist-row .m .n{font-size:14.5px; font-weight:600; color:var(--ink);}
+  .hist-row .m .d{font-size:12.5px; color:var(--gray); margin-top:2px;}
+  .badge{font-size:12px; font-weight:700; padding:5px 10px; border-radius:100px; font-family:'IBM Plex Mono',monospace;}
+  .badge.down{background:rgba(26,174,159,.12); color:var(--mint-text);}
+  .badge.up{background:rgba(211,69,91,.1); color:var(--red);}
+  .line-chart{margin-top:6px;}
+ 
+  /* profile */
+  .profile-grid{display:grid; grid-template-columns:0.85fr 1.15fr; gap:24px; align-items:start;}
+  .profile-card{text-align:center; padding:36px 28px;}
+  .profile-card .avatar-lg{width:88px; height:88px; border-radius:50%; background:var(--mint-light); margin:0 auto 18px;}
+  .profile-card h3{font-size:19px; color:var(--ink);}
+  .profile-card .loc{font-size:13px; color:var(--gray); margin-top:4px;}
+  .profile-card .btn{margin-top:20px;}
+  .badge-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-top:26px; text-align:left;}
+  .achieve{background:var(--paper); border-radius:var(--radius-s); padding:14px; text-align:center;}
+  .achieve .ic{width:34px; height:34px; border-radius:9px; background:var(--yellow); margin:0 auto 8px; display:flex; align-items:center; justify-content:center;}
+  .achieve span{font-size:11px; color:var(--slate); font-weight:600;}
+  .goal-row{display:flex; justify-content:space-between; align-items:center; padding:16px 0; border-top:1px solid var(--line);}
+  .goal-row:first-child{border-top:none;}
+  .settings-row{display:flex; justify-content:space-between; align-items:center; padding:16px 0; border-top:1px solid var(--line);}
+  .settings-row:first-child{border-top:none;}
+  .settings-row .k{font-size:14px; color:var(--ink); font-weight:500;}
+  .settings-row .v{font-size:13px; color:var(--gray);}
+ 
+  @media (max-width:1100px){
+    .hero,.auth-shell,.app-shell,.dash-grid,.calc-grid,.hist-grid,.profile-grid,.feature-grid,.how-steps{grid-template-columns:1fr;}
+    .app-side{position:relative; height:auto;}
+  }
+</style>
+</head>
+<body>
+ 
+<!-- demo-only page switcher -->
+<nav class="proto-bar" id="protoBar">
+  <span class="lbl">ZeroCarbon · desktop —</span>
+  <button data-target="page-landing" class="active">Landing</button>
+  <button data-target="page-login">Login</button>
+  <button data-target="page-signup">Cadastro</button>
+  <button data-target="page-dashboard">Dashboard</button>
+  <button data-target="page-calc">Calculadora</button>
+  <button data-target="page-history">Histórico</button>
+  <button data-target="page-profile">Perfil</button>
+  <button class="theme-toggle" id="themeToggle">🌙 Escuro</button>
+</nav>
+ 
+<div class="app-offset">
+ 
+<!-- ============================================================= -->
+<!-- LANDING PAGE                                                   -->
+<!-- ============================================================= -->
+<section class="page active" id="page-landing">
+ 
+  <nav class="site-nav">
+    <div class="logo">
+      <span class="logo-mark">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M4 20C4 12 9 4 20 4C20 15 12 20 4 20Z" stroke="#6FDBC7" stroke-width="1.8" stroke-linejoin="round"/></svg>
+      </span>
+      ZeroCarbon
+    </div>
+    <div class="nav-links">
+      <a href="#howworks">Como funciona</a>
+      <a href="#recursos">Recursos</a>
+      <a href="#sobre">Sobre</a>
+    </div>
+    <div class="nav-cta">
+      <button class="btn btn-ghost" data-goto="page-login">Entrar</button>
+      <button class="btn btn-primary" data-goto="page-signup">Criar conta</button>
+    </div>
+  </nav>
+ 
+  <div class="hero">
+    <div>
+      <span class="eyebrow"><span class="dot"></span> monitoramento ambiental pessoal</span>
+      <h1>Sua pegada de carbono, <em>medida com precisão</em>, mês a mês.</h1>
+      <p class="lead">ZeroCarbon transforma energia, transporte e consumo em números claros — para você entender seu impacto real e reduzi-lo de forma consistente.</p>
+      <div class="hero-actions">
+        <button class="btn btn-mint btn-lg" data-goto="page-signup">Criar conta grátis</button>
+        <button class="btn btn-ghost btn-lg" data-goto="page-login">Já tenho conta</button>
+      </div>
+      <div class="hero-stats">
+        <div class="stat"><b>2.4 t</b><span>média mensal por usuário</span></div>
+        <div class="stat"><b>-18%</b><span>redução média em 6 meses</span></div>
+        <div class="stat"><b>12k+</b><span>cálculos registrados</span></div>
+      </div>
+    </div>
+ 
+    <div class="hero-visual">
+      <div class="ring-rig">
+        <svg viewBox="0 0 200 200">
+          <circle cx="100" cy="100" r="90" fill="none" stroke="var(--line)" stroke-width="2"/>
+          <circle cx="100" cy="100" r="90" fill="none" stroke="#1AAE9F" stroke-width="2" stroke-dasharray="565.5" stroke-dashoffset="240" stroke-linecap="round" transform="rotate(-90 100 100)"/>
+          <circle cx="100" cy="100" r="70" fill="none" stroke="var(--line)" stroke-width="2"/>
+          <circle cx="100" cy="100" r="70" fill="none" stroke="#6FDBC7" stroke-width="2" stroke-dasharray="440" stroke-dashoffset="110" stroke-linecap="round" transform="rotate(-90 100 100)"/>
+          <circle cx="100" cy="100" r="50" fill="none" stroke="var(--line)" stroke-width="2"/>
+          <circle cx="100" cy="100" r="50" fill="none" stroke="var(--mint-text)" stroke-width="2" stroke-dasharray="314" stroke-dashoffset="200" stroke-linecap="round" transform="rotate(-90 100 100)"/>
+        </svg>
+        <div class="ring-center">
+          <div class="num">2.4</div>
+          <div class="unit">tCO₂ este mês</div>
+          <div class="cap">48% da meta</div>
+        </div>
+      </div>
+      <div class="float-chip chip-1">🚗 <span>Transporte <b>0.9t</b></span></div>
+      <div class="float-chip chip-2">⚡ <span>Energia <b>-12%</b></span></div>
+    </div>
+  </div>
+ 
+  <div class="marquee">
+    <div class="marquee-track">
+      <span>ENERGIA ELÉTRICA</span><span>GÁS DE COZINHA</span><span>TRANSPORTE</span><span>ALIMENTAÇÃO</span><span>METAS MENSAIS</span><span>HISTÓRICO ANUAL</span>
+    </div>
+  </div>
+ 
+  <section class="section" id="recursos">
+    <div class="section-head">
+      <span class="eyebrow"><span class="dot"></span> recursos</span>
+      <h2>Tudo que você precisa para acompanhar seu impacto</h2>
+      <p>Três pilares simples: calcular, entender e evoluir — sem planilhas, sem complicação.</p>
+    </div>
+    <div class="feature-grid">
+      <div class="feature-card">
+        <div class="feature-icon" style="background:rgba(26,174,159,.12);">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 3C7 8 4 12 4 15.5C4 19 7.5 21 12 21C16.5 21 20 19 20 15.5C20 12 17 8 12 3Z" stroke="var(--mint-text)" stroke-width="1.7"/></svg>
+        </div>
+        <h3>Pegada de Carbono</h3>
+        <p>Calcule seu impacto ambiental em CO₂ equivalente a partir de energia, gás e transporte reais do seu mês.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon" style="background:rgba(232,131,58,.12);">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M4 20L10 12L14 16L20 6" stroke="#E8833A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <h3>Ambiente Sustentável</h3>
+        <p>Receba dicas contextuais e metas realistas para construir hábitos mais leves para o planeta.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon" style="background:rgba(44,136,217,.12);">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M4 19V5M4 19H20M8 15V11M12 15V7M16 15V13" stroke="#2C88D9" stroke-width="1.8" stroke-linecap="round"/></svg>
+        </div>
+        <h3>Acompanhe seu progresso</h3>
+        <p>Histórico e gráficos de evolução mensal mostram exatamente onde sua pegada está subindo ou caindo.</p>
+      </div>
+    </div>
+  </section>
+ 
+  <div class="how-section" id="howworks">
+    <div class="section-head">
+      <span class="eyebrow" style="background:rgba(111,219,199,.12); border-color:rgba(111,219,199,.3); color:#6FDBC7;"><span class="dot" style="background:#6FDBC7;"></span> como funciona</span>
+      <h2>Três passos, todo mês</h2>
+      <p>Um fluxo curto o suficiente para virar hábito.</p>
+    </div>
+    <div class="how-steps">
+      <div class="how-step">
+        <div class="idx">01</div>
+        <h4>Cadastre-se</h4>
+        <p>Crie sua conta em menos de um minuto e defina sua cidade e metas iniciais.</p>
+      </div>
+      <div class="how-step">
+        <div class="idx">02</div>
+        <h4>Registre seus hábitos</h4>
+        <p>Informe consumo de energia, gás e transporte do mês na calculadora.</p>
+      </div>
+      <div class="how-step">
+        <div class="idx">03</div>
+        <h4>Acompanhe sua evolução</h4>
+        <p>Veja seu painel, compare meses e ajuste rota rumo à sua meta anual.</p>
+      </div>
+    </div>
+  </div>
+ 
+  <div class="cta-band" id="sobre">
+    <h3>Comece a medir seu impacto hoje — leva menos de 2 minutos.</h3>
+    <button class="btn btn-primary btn-lg" data-goto="page-signup">Criar conta grátis</button>
+  </div>
+ 
+  <footer class="site-footer">
+    <span>© 2026 ZeroCarbon</span>
+    <span>Projeto acadêmico — Engenharia de Software</span>
+  </footer>
+</section>
+ 
+<!-- ============================================================= -->
+<!-- LOGIN                                                          -->
+<!-- ============================================================= -->
+<section class="page" id="page-login">
+  <div class="auth-shell">
+    <div class="auth-brand">
+      <div class="logo">
+        <span class="logo-mark"><svg viewBox="0 0 24 24" fill="none"><path d="M4 20C4 12 9 4 20 4C20 15 12 20 4 20Z" stroke="#08211A" stroke-width="1.8" stroke-linejoin="round"/></svg></span>
+        ZeroCarbon
+      </div>
+      <div class="auth-brand-mid">
+        <h2>Bem-vindo de volta.</h2>
+        <p>Entre para ver seu painel ambiental, seu histórico mensal e o quanto falta para bater sua meta.</p>
+      </div>
+      <div class="auth-quote">
+        <b>"Reduzi 18% da minha pegada em 4 meses."</b>
+        Usuária ZeroCarbon desde Maio 2025
+      </div>
+      <svg class="auth-rings" viewBox="0 0 200 200">
+        <circle cx="100" cy="100" r="95" fill="none" stroke="#1AAE9F" stroke-width="1"/>
+        <circle cx="100" cy="100" r="75" fill="none" stroke="#1AAE9F" stroke-width="1"/>
+        <circle cx="100" cy="100" r="55" fill="none" stroke="#1AAE9F" stroke-width="1"/>
+      </svg>
+    </div>
+    <div class="auth-form-wrap">
+      <div class="auth-form">
+        <h2>Entrar</h2>
+        <p>Informe seus dados para acessar sua conta.</p>
+        <div class="field">
+          <label for="l-user">Nome do usuário</label>
+          <input class="input" id="l-user" placeholder="Digite seu usuário">
+        </div>
+        <div class="field">
+          <label for="l-pass">Senha</label>
+          <input class="input" id="l-pass" type="password" placeholder="••••••••">
+        </div>
+        <div class="form-meta">
+          <label style="display:flex; align-items:center; gap:8px; color:var(--slate);"><input type="checkbox"> Lembrar de mim</label>
+          <a href="#">Esqueceu a senha?</a>
+        </div>
+        <button class="btn btn-mint btn-block btn-lg" data-goto="page-dashboard">Entrar</button>
+        <p class="form-switch">Não tem uma conta? <a data-goto="page-signup">Cadastre-se</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+ 
+<!-- ============================================================= -->
+<!-- CADASTRO                                                       -->
+<!-- ============================================================= -->
+<section class="page" id="page-signup">
+  <div class="auth-shell">
+    <div class="auth-brand">
+      <div class="logo">
+        <span class="logo-mark"><svg viewBox="0 0 24 24" fill="none"><path d="M4 20C4 12 9 4 20 4C20 15 12 20 4 20Z" stroke="#08211A" stroke-width="1.8" stroke-linejoin="round"/></svg></span>
+        ZeroCarbon
+      </div>
+      <div class="auth-brand-mid">
+        <h2>Monitore e reduza sua pegada de carbono.</h2>
+        <p>Crie sua conta e comece a transformar hábitos do dia a dia em decisões mais conscientes.</p>
+      </div>
+      <div class="auth-quote">
+        <b>Leva menos de 2 minutos</b>
+        Você já pode calcular sua primeira pegada logo em seguida.
+      </div>
+      <svg class="auth-rings" viewBox="0 0 200 200">
+        <circle cx="100" cy="100" r="95" fill="none" stroke="#1AAE9F" stroke-width="1"/>
+        <circle cx="100" cy="100" r="75" fill="none" stroke="#1AAE9F" stroke-width="1"/>
+        <circle cx="100" cy="100" r="55" fill="none" stroke="#1AAE9F" stroke-width="1"/>
+      </svg>
+    </div>
+    <div class="auth-form-wrap">
+      <div class="auth-form" style="max-width:460px;">
+        <h2>Criar conta</h2>
+        <p>Preencha seus dados para começar.</p>
+        <div class="field field-row">
+          <div>
+            <label for="s-nome">Nome</label>
+            <input class="input" id="s-nome" placeholder="Ex: João">
+          </div>
+          <div>
+            <label for="s-sobrenome">Sobrenome</label>
+            <input class="input" id="s-sobrenome" placeholder="Ex: Silva">
+          </div>
+        </div>
+        <div class="field field-row">
+          <div>
+            <label for="s-nasc">Data de nascimento</label>
+            <input class="input" id="s-nasc" placeholder="DD/MM/AAAA">
+          </div>
+          <div>
+            <label for="s-estado">Estado / Cidade</label>
+            <select class="input" id="s-estado"><option>Selecione seu estado</option><option>Goiás</option><option>São Paulo</option></select>
+          </div>
+        </div>
+        <div class="field">
+          <label for="s-email">E-mail</label>
+          <input class="input" id="s-email" type="email" placeholder="seu@email.com">
+        </div>
+        <div class="field field-row">
+          <div>
+            <label for="s-senha">Senha</label>
+            <input class="input" id="s-senha" type="password" placeholder="Mínimo 8 caracteres">
+          </div>
+          <div>
+            <label for="s-id">ID de usuário (opcional)</label>
+            <input class="input" id="s-id" placeholder="Ex: joao_silva">
+          </div>
+        </div>
+        <button class="btn btn-mint btn-block btn-lg" style="margin-top:8px;" data-goto="page-dashboard">Cadastrar</button>
+        <p class="form-switch">Já tem conta? <a data-goto="page-login">Entrar</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+ 
+<!-- ============================================================= -->
+<!-- APP SHELL SHARED PARTIAL (repeated per authenticated page)     -->
+<!-- ============================================================= -->
+ 
+<!-- DASHBOARD -->
+<section class="page" id="page-dashboard">
+  <div class="app-shell">
+    <aside class="app-side">
+      <div class="logo"><span class="logo-mark"><svg viewBox="0 0 24 24" fill="none"><path d="M4 20C4 12 9 4 20 4C20 15 12 20 4 20Z" stroke="#08211A" stroke-width="1.8" stroke-linejoin="round"/></svg></span>ZeroCarbon</div>
+      <nav class="side-nav">
+        <a class="side-link active" data-goto="page-dashboard"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 12L12 4L20 12M6 10V20H18V10"/></svg>Início</a>
+        <a class="side-link" data-goto="page-calc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="5" y="4" width="14" height="16" rx="2"/><path d="M8 8H16M8 12H8.01M12 12H12.01M16 12H16.01M8 16H8.01M12 16H12.01"/></svg>Calculadora</a>
+        <a class="side-link" data-goto="page-history"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 5V10H9M4.6 15A8 8 0 1 0 6 7.5L4 10"/></svg>Histórico</a>
+        <a class="side-link" data-goto="page-profile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="3.3"/><path d="M5 20C5 16 8 14 12 14C16 14 19 16 19 20"/></svg>Perfil</a>
+      </nav>
+      <div class="side-goal">
+        <div class="lbl">Meta mensal</div>
+        <div class="val">48% concluído</div>
+        <div class="side-bar"><i style="width:48%;"></i></div>
+      </div>
+      <div class="side-user">
+        <div class="avatar"></div>
+        <div><div class="who">João Silva</div><div class="sub">joao_silva</div></div>
+      </div>
+    </aside>
+ 
+    <main class="app-main">
+      <div class="app-topbar">
+        <div>
+          <h1>Olá, João 👋</h1>
+          <div class="sub">Seu painel ambiental — Setembro 2025</div>
+        </div>
+        <button class="icon-btn"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--slate)" stroke-width="1.8"><path d="M18 8A6 6 0 0 0 6 8C6 15 3 17 3 17H21C21 17 18 15 18 8Z"/><path d="M13.7 21A2 2 0 0 1 10.3 21"/></svg></button>
+      </div>
+ 
+      <div class="dash-grid">
+        <div class="hero-stat-card">
+          <div class="mini-ring">
+            <svg viewBox="0 0 120 120">
+              <circle cx="60" cy="60" r="52" fill="none" stroke="rgba(255,255,255,.15)" stroke-width="9"/>
+              <circle cx="60" cy="60" r="52" fill="none" stroke="#1AAE9F" stroke-width="9" stroke-dasharray="327" stroke-dashoffset="170" stroke-linecap="round" transform="rotate(-90 60 60)"/>
+            </svg>
+            <div class="pct">48%</div>
+          </div>
+          <div class="txt">
+            <div class="lbl">Pegada de carbono atual</div>
+            <div class="num">2.4 <span>tCO₂ este mês</span></div>
+            <div class="delta">↓ 8% vs. mês anterior</div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-title"><h3>Gastos por categoria</h3></div>
+          <div class="cat-list">
+            <div class="cat-row">
+              <div class="cat-ic" style="background:rgba(44,136,217,.12);">🚗</div>
+              <div class="txt"><div class="n">Transporte</div><div class="b"><i style="width:60%; background:var(--blue);"></i></div></div>
+              <div class="v">0.9 t</div>
+            </div>
+            <div class="cat-row">
+              <div class="cat-ic" style="background:rgba(232,131,58,.12);">🍽️</div>
+              <div class="txt"><div class="n">Alimentação</div><div class="b"><i style="width:47%; background:var(--orange);"></i></div></div>
+              <div class="v">0.7 t</div>
+            </div>
+            <div class="cat-row">
+              <div class="cat-ic" style="background:rgba(189,52,209,.12);">📦</div>
+              <div class="txt"><div class="n">Outros</div><div class="b"><i style="width:53%; background:var(--pink);"></i></div></div>
+              <div class="v">0.8 t</div>
+            </div>
+          </div>
+        </div>
+      </div>
+ 
+      <div class="dash-grid" style="grid-template-columns:1fr;">
+        <div class="card">
+          <div class="card-title"><h3>Evolução mensal</h3><span class="tag">ÚLTIMOS 6 MESES</span></div>
+          <div class="bar-chart">
+            <div class="col"><div class="b" style="height:78%;"></div><div class="m">Abr</div></div>
+            <div class="col"><div class="b" style="height:70%;"></div><div class="m">Mai</div></div>
+            <div class="col"><div class="b" style="height:74%;"></div><div class="m">Jun</div></div>
+            <div class="col"><div class="b" style="height:64%;"></div><div class="m">Jul</div></div>
+            <div class="col"><div class="b" style="height:58%;"></div><div class="m">Ago</div></div>
+            <div class="col"><div class="b now" style="height:48%;"></div><div class="m">Set</div></div>
+          </div>
+          <div class="tip-card">
+            <div class="lbl">DICA DO MÊS</div>
+            <p>Seu consumo de transporte caiu 8% — trocar 2 viagens de carro por semana por bicicleta pode reduzir mais 0.15 tCO₂ até outubro.</p>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+</section>
+ 
+<!-- CALCULADORA -->
+<section class="page" id="page-calc">
+  <div class="app-shell">
+    <aside class="app-side">
+      <div class="logo"><span class="logo-mark"><svg viewBox="0 0 24 24" fill="none"><path d="M4 20C4 12 9 4 20 4C20 15 12 20 4 20Z" stroke="#08211A" stroke-width="1.8" stroke-linejoin="round"/></svg></span>ZeroCarbon</div>
+      <nav class="side-nav">
+        <a class="side-link" data-goto="page-dashboard"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 12L12 4L20 12M6 10V20H18V10"/></svg>Início</a>
+        <a class="side-link active" data-goto="page-calc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="5" y="4" width="14" height="16" rx="2"/><path d="M8 8H16M8 12H8.01M12 12H12.01M16 12H16.01M8 16H8.01M12 16H12.01"/></svg>Calculadora</a>
+        <a class="side-link" data-goto="page-history"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 5V10H9M4.6 15A8 8 0 1 0 6 7.5L4 10"/></svg>Histórico</a>
+        <a class="side-link" data-goto="page-profile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="3.3"/><path d="M5 20C5 16 8 14 12 14C16 14 19 16 19 20"/></svg>Perfil</a>
+      </nav>
+      <div class="side-goal">
+        <div class="lbl">Meta mensal</div>
+        <div class="val">48% concluído</div>
+        <div class="side-bar"><i style="width:48%;"></i></div>
+      </div>
+      <div class="side-user"><div class="avatar"></div><div><div class="who">João Silva</div><div class="sub">joao_silva</div></div></div>
+    </aside>
+ 
+    <main class="app-main">
+      <div class="app-topbar">
+        <div><h1>Calculadora de Carbono</h1><div class="sub">Informe seu consumo do mês para estimar sua pegada</div></div>
+      </div>
+ 
+      <div class="calc-grid">
+        <div class="card">
+          <div class="calc-section">
+            <div class="head"><div class="ic" style="background:rgba(240,180,41,.15);">⚡</div><h4>Energia Elétrica</h4></div>
+            <div class="field"><label for="c-kwh">Consumo mensal (kWh)</label><input class="input" id="c-kwh" type="number" placeholder="Ex: 250" value="250"></div>
+          </div>
+          <div class="calc-section">
+            <div class="head"><div class="ic" style="background:rgba(232,131,58,.15);">🔥</div><h4>Consumo de Gás</h4></div>
+            <div class="field"><label for="c-gas">Consumo mensal (m³)</label><input class="input" id="c-gas" type="number" placeholder="Ex: 15" value="15"></div>
+          </div>
+          <div class="calc-section">
+            <div class="head"><div class="ic" style="background:rgba(44,136,217,.15);">🚗</div><h4>Transporte</h4></div>
+            <div class="field-note" style="margin-bottom:10px;">Tipo de combustível</div>
+            <div class="radio-group" id="fuelGroup">
+              <label class="radio-opt checked"><input type="radio" name="fuel" value="0.192" checked>Gasolina</label>
+              <label class="radio-opt"><input type="radio" name="fuel" value="0.030">Álcool</label>
+              <label class="radio-opt"><input type="radio" name="fuel" value="0.212">Diesel</label>
+            </div>
+            <div class="field"><label for="c-km">km rodados por mês</label><input class="input" id="c-km" type="number" placeholder="Ex: 800" value="800"></div>
+          </div>
+          <button class="btn btn-mint btn-block btn-lg" id="calcBtn">Calcular minha pegada</button>
+        </div>
+ 
+        <div class="card calc-preview">
+          <div class="card-title"><h3>Sua estimativa</h3><span class="tag">EM TEMPO REAL</span></div>
+          <div class="calc-total">
+            <div class="num" id="calcTotal">1.3 <span>tCO₂/mês</span></div>
+            <div class="lbl">pegada estimada</div>
+          </div>
+          <div class="calc-breakdown">
+            <div class="row"><div class="k"><span class="dot" style="background:var(--yellow);"></span>Energia elétrica</div><div class="v" id="calcElet">0.02 t</div></div>
+            <div class="row"><div class="k"><span class="dot" style="background:var(--orange);"></span>Gás</div><div class="v" id="calcGas">0.03 t</div></div>
+            <div class="row"><div class="k"><span class="dot" style="background:var(--blue);"></span>Transporte</div><div class="v" id="calcTransp">0.15 t</div></div>
+          </div>
+          <div class="tip-card">
+            <div class="lbl">COMPARATIVO</div>
+            <p id="calcCompare">Isso equivale a cerca de 46 tanques de gás de cozinha por ano.</p>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+</section>
+ 
+<!-- HISTÓRICO -->
+<section class="page" id="page-history">
+  <div class="app-shell">
+    <aside class="app-side">
+      <div class="logo"><span class="logo-mark"><svg viewBox="0 0 24 24" fill="none"><path d="M4 20C4 12 9 4 20 4C20 15 12 20 4 20Z" stroke="#08211A" stroke-width="1.8" stroke-linejoin="round"/></svg></span>ZeroCarbon</div>
+      <nav class="side-nav">
+        <a class="side-link" data-goto="page-dashboard"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 12L12 4L20 12M6 10V20H18V10"/></svg>Início</a>
+        <a class="side-link" data-goto="page-calc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="5" y="4" width="14" height="16" rx="2"/><path d="M8 8H16M8 12H8.01M12 12H12.01M16 12H16.01M8 16H8.01M12 16H12.01"/></svg>Calculadora</a>
+        <a class="side-link active" data-goto="page-history"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 5V10H9M4.6 15A8 8 0 1 0 6 7.5L4 10"/></svg>Histórico</a>
+        <a class="side-link" data-goto="page-profile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="3.3"/><path d="M5 20C5 16 8 14 12 14C16 14 19 16 19 20"/></svg>Perfil</a>
+      </nav>
+      <div class="side-goal">
+        <div class="lbl">Meta anual</div>
+        <div class="val">55% concluído</div>
+        <div class="side-bar"><i style="width:55%;"></i></div>
+      </div>
+      <div class="side-user"><div class="avatar"></div><div><div class="who">João Silva</div><div class="sub">joao_silva</div></div></div>
+    </aside>
+ 
+    <main class="app-main">
+      <div class="app-topbar">
+        <div><h1>Histórico</h1><div class="sub">Registros dos últimos meses</div></div>
+      </div>
+ 
+      <div class="hist-stats">
+        <div class="hist-stat"><div class="lbl">Redução acumulada</div><div class="num good">-18%</div></div>
+        <div class="hist-stat"><div class="lbl">Melhor mês</div><div class="num">Ago · 2.2t</div></div>
+        <div class="hist-stat"><div class="lbl">Meta anual</div><div class="num">20 tCO₂</div></div>
+      </div>
+ 
+      <div class="hist-grid">
+        <div class="card">
+          <div class="card-title"><h3>Registros mensais</h3></div>
+          <div class="hist-list">
+            <div class="hist-row"><div class="m"><div class="n">Setembro 2025</div><div class="d">2.4 tCO₂</div></div><span class="badge down">-8%</span></div>
+            <div class="hist-row"><div class="m"><div class="n">Agosto 2025</div><div class="d">2.4 tCO₂</div></div><span class="badge down">-2%</span></div>
+            <div class="hist-row"><div class="m"><div class="n">Julho 2025</div><div class="d">2.6 tCO₂</div></div><span class="badge up">+3%</span></div>
+            <div class="hist-row"><div class="m"><div class="n">Junho 2025</div><div class="d">2.7 tCO₂</div></div><span class="badge up">+3%</span></div>
+            <div class="hist-row"><div class="m"><div class="n">Maio 2025</div><div class="d">2.6 tCO₂</div></div><span class="badge down">-5%</span></div>
+            <div class="hist-row"><div class="m"><div class="n">Abril 2025</div><div class="d">2.4 tCO₂</div></div><span class="badge down">-8%</span></div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-title"><h3>Gráfico anual</h3></div>
+          <svg class="line-chart" viewBox="0 0 240 160" width="100%">
+            <polyline points="10,60 50,40 90,25 130,35 170,110 210,130" fill="none" stroke="#1AAE9F" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="10" cy="60" r="4" fill="#1AAE9F"/><circle cx="50" cy="40" r="4" fill="#1AAE9F"/><circle cx="90" cy="25" r="4" fill="#1AAE9F"/><circle cx="130" cy="35" r="4" fill="#1AAE9F"/><circle cx="170" cy="110" r="4" fill="#1AAE9F"/><circle cx="210" cy="130" r="4" fill="#1AAE9F"/>
+          </svg>
+          <div class="tip-card">
+            <div class="lbl">TENDÊNCIA</div>
+            <p>Sua pegada vem caindo desde junho — mantendo o ritmo, você bate a meta anual em novembro.</p>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+</section>
+ 
+<!-- PERFIL -->
+<section class="page" id="page-profile">
+  <div class="app-shell">
+    <aside class="app-side">
+      <div class="logo"><span class="logo-mark"><svg viewBox="0 0 24 24" fill="none"><path d="M4 20C4 12 9 4 20 4C20 15 12 20 4 20Z" stroke="#08211A" stroke-width="1.8" stroke-linejoin="round"/></svg></span>ZeroCarbon</div>
+      <nav class="side-nav">
+        <a class="side-link" data-goto="page-dashboard"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 12L12 4L20 12M6 10V20H18V10"/></svg>Início</a>
+        <a class="side-link" data-goto="page-calc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="5" y="4" width="14" height="16" rx="2"/><path d="M8 8H16M8 12H8.01M12 12H12.01M16 12H16.01M8 16H8.01M12 16H12.01"/></svg>Calculadora</a>
+        <a class="side-link" data-goto="page-history"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 5V10H9M4.6 15A8 8 0 1 0 6 7.5L4 10"/></svg>Histórico</a>
+        <a class="side-link active" data-goto="page-profile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="3.3"/><path d="M5 20C5 16 8 14 12 14C16 14 19 16 19 20"/></svg>Perfil</a>
+      </nav>
+      <div class="side-goal">
+        <div class="lbl">Meta mensal</div>
+        <div class="val">48% concluído</div>
+        <div class="side-bar"><i style="width:48%;"></i></div>
+      </div>
+      <div class="side-user"><div class="avatar"></div><div><div class="who">João Silva</div><div class="sub">joao_silva</div></div></div>
+    </aside>
+ 
+    <main class="app-main">
+      <div class="app-topbar">
+        <div><h1>Perfil</h1><div class="sub">Gerencie seus dados e acompanhe suas conquistas</div></div>
+      </div>
+ 
+      <div class="profile-grid">
+        <div class="card profile-card">
+          <div class="avatar-lg"></div>
+          <h3>João Silva</h3>
+          <div class="loc">joao_silva · São Paulo, SP</div>
+          <button class="btn btn-ghost btn-block">Alterar foto</button>
+          <div class="badge-grid">
+            <div class="achieve"><div class="ic">🏆</div><span>Meta batida</span></div>
+            <div class="achieve"><div class="ic">🔥</div><span>4 meses seguidos</span></div>
+            <div class="achieve"><div class="ic">🌱</div><span>Em breve...</span></div>
+          </div>
+        </div>
+ 
+        <div style="display:flex; flex-direction:column; gap:24px;">
+          <div class="card">
+            <div class="card-title"><h3>Metas</h3></div>
+            <div class="goal-row">
+              <div><div class="settings-row-k" style="font-size:13.5px; color:var(--slate);">Meta mensal</div><div class="side-bar" style="width:220px; margin-top:8px;"><i style="width:80%;"></i></div></div>
+              <div class="v mono" style="color:var(--mint-text); font-weight:600;">2.0 tCO₂ · 80%</div>
+            </div>
+            <div class="goal-row">
+              <div><div class="settings-row-k" style="font-size:13.5px; color:var(--slate);">Meta anual</div><div class="side-bar" style="width:220px; margin-top:8px;"><i style="width:55%;"></i></div></div>
+              <div class="v mono" style="color:var(--mint-text); font-weight:600;">20 tCO₂ · 55%</div>
+            </div>
+          </div>
+ 
+          <div class="card">
+            <div class="card-title"><h3>Conta</h3></div>
+            <div class="settings-row"><div class="k">E-mail</div><div class="v">joao.silva@email.com</div></div>
+            <div class="settings-row"><div class="k">Senha</div><div class="v">••••••••</div></div>
+            <div class="settings-row"><div class="k">Cidade</div><div class="v">São Paulo, SP</div></div>
+            <div class="settings-row"><div class="k">Notificações</div><div class="v">Ativadas</div></div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+</section>
+ 
+</div>
+ 
+<script>
+  // ---- page switching ----
+  const pages = document.querySelectorAll('.page');
+  const protoBtns = document.querySelectorAll('.proto-bar button');
+ 
+  function showPage(id){
+    pages.forEach(p => p.classList.toggle('active', p.id === id));
+    protoBtns.forEach(b => b.classList.toggle('active', b.dataset.target === id));
+    window.scrollTo({top:0, behavior:'instant'});
+  }
+ 
+  protoBtns.forEach(b => b.addEventListener('click', () => showPage(b.dataset.target)));
+ 
+  // ---- theme toggle ----
+  const themeBtn = document.getElementById('themeToggle');
+  function setTheme(mode){
+    document.documentElement.setAttribute('data-theme', mode);
+    themeBtn.textContent = mode === 'dark' ? '🌙 Escuro' : '☀️ Claro';
+  }
+  themeBtn.addEventListener('click', () => {
+    const current = document.documentElement.getAttribute('data-theme');
+    setTheme(current === 'dark' ? 'light' : 'dark');
+  });
+  document.querySelectorAll('[data-goto]').forEach(el => {
+    el.addEventListener('click', (e) => { e.preventDefault(); showPage(el.dataset.goto); });
+  });
+ 
+  // ---- fuel radio styling ----
+  document.querySelectorAll('#fuelGroup .radio-opt').forEach(opt => {
+    opt.addEventListener('click', () => {
+      document.querySelectorAll('#fuelGroup .radio-opt').forEach(o => o.classList.remove('checked'));
+      opt.classList.add('checked');
+      runCalc();
+    });
+  });
+ 
+  // ---- live carbon calculator ----
+  function runCalc(){
+    const kwh = parseFloat(document.getElementById('c-kwh').value) || 0;
+    const gas = parseFloat(document.getElementById('c-gas').value) || 0;
+    const km = parseFloat(document.getElementById('c-km').value) || 0;
+    const fuelFactor = parseFloat(document.querySelector('#fuelGroup input:checked').value);
+ 
+    const eletKg = kwh * 0.0817;
+    const gasKg = gas * 2.02;
+    const transpKg = km * fuelFactor;
+    const totalT = (eletKg + gasKg + transpKg) / 1000;
+ 
+    document.getElementById('calcElet').textContent = (eletKg/1000).toFixed(2) + ' t';
+    document.getElementById('calcGas').textContent = (gasKg/1000).toFixed(2) + ' t';
+    document.getElementById('calcTransp').textContent = (transpKg/1000).toFixed(2) + ' t';
+    document.getElementById('calcTotal').innerHTML = totalT.toFixed(2) + ' <span>tCO₂/mês</span>';
+ 
+    const tanks = Math.round((totalT * 12) / 0.65);
+    document.getElementById('calcCompare').textContent =
+      'Isso equivale a cerca de ' + tanks + ' tanques de gás de cozinha por ano.';
+  }
+  ['c-kwh','c-gas','c-km'].forEach(id => document.getElementById(id).addEventListener('input', runCalc));
+  runCalc();
+</script>
+</body>
+</html>
+ 
