@@ -39,6 +39,34 @@
 
         h1 {
             font-size: 48px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        main p {
+            font-size: 18px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .acoes {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .acoes button {
+            padding: 12px 20px;
+            border-radius: 8px;
+        }
+
+        .principal {
+            background-color: #2d7d32;
+            color: white;
+        }
+
+        .secundario {
+            border: 2px solid #2d7d32;
         }
         </style>
 
@@ -77,11 +105,11 @@
             Entenda seu impacto ambiental e descubra maneiras de reduzi-lo.
         </p>
 
-        <div>
+        <div class="acoes">
             
-            <button>Criar conta grátis</button>
+            <button class="principal">Criar conta grátis</button>
             
-            <button>Já tenho conta</button>
+            <button class="secundariio">Já tenho conta</button>
         </div>
 
     </main>
