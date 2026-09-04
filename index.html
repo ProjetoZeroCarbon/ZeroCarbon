@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<<<<<<< HEAD
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -9,3 +10,715 @@
     
 </body>
 </html>
+=======
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>ZeroCarbon</title>
+
+    <!-- Fonte Poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <style>
+
+        /* =========================
+           RESET
+        ========================= */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: "Poppins", sans-serif;
+            color: #164c3a;
+
+            /* Fundo inspirado em céu + natureza */
+            background:
+                radial-gradient(
+                    circle at 10% 10%,
+                    rgba(255, 255, 255, 0.9),
+                    transparent 25%
+                ),
+                linear-gradient(
+                    180deg,
+                    #b9f3ff 0%,
+                    #e8fbff 35%,
+                    #f5fff5 65%,
+                    #dff7df 100%
+                );
+
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Bolhas decorativas */
+
+        body::before,
+        body::after {
+            content: "";
+            position: fixed;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        body::before {
+            width: 280px;
+            height: 280px;
+            background: rgba(255, 255, 255, 0.35);
+            top: 15%;
+            left: -100px;
+            filter: blur(2px);
+        }
+
+        body::after {
+            width: 350px;
+            height: 350px;
+            background: rgba(103, 222, 157, 0.18);
+            right: -150px;
+            bottom: 10%;
+            filter: blur(5px);
+        }
+
+
+        /* =========================
+           HEADER / NAVBAR
+        ========================= */
+
+        header {
+            width: min(1200px, 92%);
+            margin: 25px auto 0;
+
+            background: rgba(255, 255, 255, 0.55);
+
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            border-radius: 28px;
+
+            box-shadow:
+                0 15px 40px rgba(25, 111, 81, 0.12),
+                inset 0 1px 0 rgba(255, 255, 255, 0.8);
+
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+
+            position: relative;
+            z-index: 10;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            padding: 15px 22px;
+            gap: 25px;
+        }
+
+
+        /* Logo */
+
+        nav > div:first-child {
+            font-size: 24px;
+            font-weight: 800;
+
+            color: #087d54;
+
+            letter-spacing: -1px;
+
+            text-shadow:
+                0 2px 10px rgba(8, 125, 84, 0.15);
+        }
+
+        nav > div:first-child::before {
+            content: "🌱";
+            margin-right: 8px;
+        }
+
+
+        /* Links */
+
+        .links {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .links a {
+            color: #245d4b;
+            text-decoration: none;
+
+            font-size: 14px;
+            font-weight: 500;
+
+            transition:
+                color 0.25s ease,
+                transform 0.25s ease;
+        }
+
+        .links a:hover {
+            color: #087d54;
+            transform: translateY(-2px);
+        }
+
+
+        /* =========================
+           BOTÕES DO HEADER
+        ========================= */
+
+        .botoes {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        button {
+            font-family: "Poppins", sans-serif;
+            border: none;
+            cursor: pointer;
+
+            transition:
+                transform 0.25s ease,
+                box-shadow 0.25s ease,
+                background 0.25s ease;
+        }
+
+        .botoes button {
+            padding: 10px 17px;
+            border-radius: 14px;
+
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .botoes button:first-child {
+            background: transparent;
+            color: #176247;
+        }
+
+        .botoes button:first-child:hover {
+            background: rgba(255, 255, 255, 0.6);
+        }
+
+        .botoes button:last-child {
+            color: white;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #0e9c67,
+                    #08724f
+                );
+
+            box-shadow:
+                0 7px 18px rgba(8, 125, 84, 0.25);
+        }
+
+        .botoes button:last-child:hover {
+            transform: translateY(-2px);
+
+            box-shadow:
+                0 10px 24px rgba(8, 125, 84, 0.35);
+        }
+
+
+        /* =========================
+           HERO / MAIN
+        ========================= */
+
+        main {
+            width: min(950px, 90%);
+            margin: 100px auto 120px;
+
+            text-align: center;
+
+            position: relative;
+        }
+
+        /* Pequeno detalhe decorativo */
+
+        main::before {
+            content: "";
+            position: absolute;
+
+            width: 90px;
+            height: 90px;
+
+            border-radius: 50%;
+
+            background:
+                radial-gradient(
+                    circle,
+                    rgba(255, 255, 255, 0.9),
+                    rgba(255, 255, 255, 0)
+                );
+
+            top: -50px;
+            right: 5%;
+        }
+
+        h1 {
+            max-width: 850px;
+            margin: 0 auto;
+
+            font-size: clamp(42px, 6vw, 72px);
+            line-height: 1.05;
+
+            letter-spacing: -3px;
+
+            font-weight: 800;
+
+            color: #10523d;
+
+            text-shadow:
+                0 5px 20px rgba(32, 112, 76, 0.12);
+        }
+
+        main p {
+            max-width: 650px;
+            margin: 25px auto 0;
+
+            font-size: 18px;
+            line-height: 1.7;
+
+            font-weight: 400;
+
+            color: #477566;
+        }
+
+
+        /* =========================
+           AÇÕES
+        ========================= */
+
+        .acoes {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            gap: 14px;
+
+            margin-top: 35px;
+        }
+
+        .acoes button {
+            padding: 15px 25px;
+
+            border-radius: 17px;
+
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+
+        /* Botão principal */
+
+        .principal {
+            color: white;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #19b978 0%,
+                    #078257 100%
+                );
+
+            box-shadow:
+                0 12px 25px rgba(8, 130, 87, 0.28);
+
+            position: relative;
+            overflow: hidden;
+        }
+
+        .principal::before {
+            content: "";
+
+            position: absolute;
+
+            width: 80px;
+            height: 200%;
+
+            top: -50%;
+            left: -100px;
+
+            transform: rotate(25deg);
+
+            background: rgba(255, 255, 255, 0.25);
+
+            transition: left 0.5s ease;
+        }
+
+        .principal:hover::before {
+            left: 120%;
+        }
+
+        .principal:hover {
+            transform: translateY(-3px);
+
+            box-shadow:
+                0 17px 32px rgba(8, 130, 87, 0.34);
+        }
+
+
+        /* Botão secundário */
+
+        .secundario {
+            color: #167053;
+
+            background: rgba(255, 255, 255, 0.65);
+
+            border: 2px solid rgba(35, 145, 100, 0.35);
+
+            box-shadow:
+                0 7px 18px rgba(44, 112, 83, 0.08);
+        }
+
+        .secundario:hover {
+            background: rgba(255, 255, 255, 0.9);
+
+            transform: translateY(-3px);
+
+            box-shadow:
+                0 12px 24px rgba(44, 112, 83, 0.15);
+        }
+
+
+        /* =========================
+           SEÇÕES
+        ========================= */
+
+        section {
+            width: min(1100px, 90%);
+            margin: 35px auto;
+
+            padding: 55px 60px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(255, 255, 255, 0.78),
+                    rgba(255, 255, 255, 0.42)
+                );
+
+            border: 1px solid rgba(255, 255, 255, 0.85);
+
+            border-radius: 32px;
+
+            box-shadow:
+                0 20px 45px rgba(34, 117, 82, 0.12),
+                inset 0 1px 0 rgba(255, 255, 255, 0.9);
+
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+
+            scroll-margin-top: 30px;
+
+            position: relative;
+            overflow: hidden;
+        }
+
+        section::after {
+            content: "";
+
+            position: absolute;
+
+            width: 180px;
+            height: 180px;
+
+            border-radius: 50%;
+
+            background:
+                radial-gradient(
+                    circle,
+                    rgba(75, 207, 145, 0.15),
+                    transparent 70%
+                );
+
+            right: -60px;
+            top: -60px;
+
+            pointer-events: none;
+        }
+
+        section h2 {
+            position: relative;
+            z-index: 1;
+
+            font-size: 30px;
+
+            color: #0b704c;
+
+            margin-bottom: 14px;
+
+            font-weight: 700;
+        }
+
+        section p {
+            position: relative;
+            z-index: 1;
+
+            max-width: 750px;
+
+            font-size: 16px;
+            line-height: 1.8;
+
+            color: #52796b;
+        }
+
+
+        /* =========================
+           DETALHES VISUAIS
+        ========================= */
+
+        #como-funciona h2::before {
+            content: "🌎";
+            margin-right: 10px;
+        }
+
+        #recursos h2::before {
+            content: "🍃";
+            margin-right: 10px;
+        }
+
+        #sobre h2::before {
+            content: "💚";
+            margin-right: 10px;
+        }
+
+
+        /* =========================
+           RESPONSIVIDADE
+        ========================= */
+
+        @media (max-width: 800px) {
+
+            header {
+                margin-top: 15px;
+            }
+
+            nav {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            nav > div:first-child {
+                width: 100%;
+                text-align: center;
+            }
+
+            .links {
+                order: 3;
+
+                width: 100%;
+
+                justify-content: center;
+
+                gap: 18px;
+            }
+
+            .botoes {
+                justify-content: center;
+            }
+
+            main {
+                margin-top: 70px;
+                margin-bottom: 80px;
+            }
+
+            h1 {
+                font-size: clamp(38px, 10vw, 58px);
+                letter-spacing: -2px;
+            }
+
+            main p {
+                font-size: 16px;
+            }
+
+            section {
+                padding: 40px 30px;
+            }
+        }
+
+
+        @media (max-width: 550px) {
+
+            header {
+                width: 94%;
+                border-radius: 22px;
+            }
+
+            nav {
+                padding: 16px;
+            }
+
+            .links {
+                gap: 12px;
+            }
+
+            .links a {
+                font-size: 12px;
+            }
+
+            .botoes button {
+                padding: 9px 13px;
+                font-size: 12px;
+            }
+
+            .acoes {
+                flex-direction: column;
+            }
+
+            .acoes button {
+                width: 100%;
+                max-width: 300px;
+            }
+
+            section {
+                width: 94%;
+                padding: 32px 24px;
+                border-radius: 25px;
+            }
+
+            section h2 {
+                font-size: 25px;
+            }
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+    <!-- =========================
+         HEADER
+    ========================== -->
+
+    <header>
+
+        <nav>
+
+            <div>
+                ZeroCarbon
+            </div>
+
+            <div class="links">
+                <a href="#como-funciona">Como funciona</a>
+                <a href="#recursos">Recursos</a>
+                <a href="#sobre">Sobre</a>
+            </div>
+
+            <div class="botoes">
+                <button>Entrar</button>
+                <button>Criar conta</button>
+            </div>
+
+        </nav>
+
+    </header>
+
+
+    <!-- =========================
+         HERO
+    ========================== -->
+
+    <main>
+
+        <h1>
+            Sua pegada de carbono,
+            medida com precisão,
+            mês a mês.
+        </h1>
+
+        <p>
+            Entenda seu impacto ambiental e descubra
+            maneiras de reduzi-lo.
+        </p>
+
+        <div class="acoes">
+
+            <button class="principal">
+                Criar conta grátis
+            </button>
+
+            <button class="secundario">
+                Já tenho conta
+            </button>
+
+        </div>
+
+    </main>
+
+
+    <!-- =========================
+         COMO FUNCIONA
+    ========================== -->
+
+    <section id="como-funciona">
+
+        <h2>
+            Como funciona
+        </h2>
+
+        <p>
+            Informe seus dados de energia, transporte e consumo
+            para calcular sua pegada de carbono.
+        </p>
+
+    </section>
+
+
+    <!-- =========================
+         RECURSOS
+    ========================== -->
+
+    <section id="recursos">
+
+        <h2>
+            Recursos
+        </h2>
+
+        <p>
+            Calcule sua pegada de carbono, acompanhe seu histórico
+            e defina metas para reduzir seu impacto ambiental.
+        </p>
+
+    </section>
+
+
+    <!-- =========================
+         SOBRE
+    ========================== -->
+
+    <section id="sobre">
+
+        <h2>
+            Sobre
+        </h2>
+
+        <p>
+            O ZeroCarbon ajuda você a entender e acompanhar
+            sua pegada de carbono.
+        </p>
+
+    </section>
+
+</body>
+
+</html>
+```
+>>>>>>> da0ecdbffdcb6011e5cb60bf07d049033cb13b07
