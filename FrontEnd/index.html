@@ -734,18 +734,13 @@ html[data-theme="dark"] .site-nav .btn-ghost{
 
 <style id="theme-fix">
 /* =========================================================
-   CORREÇÃO DE TEXTO + MODO CLARO/ESCURO
+   CORREÇÃO FINAL DO TEMA CLARO / ESCURO
+   Este bloco fica por último para sobrescrever conflitos
+   dos estilos anteriores sem alterar o HTML/JavaScript.
    ========================================================= */
-:root{
-  --paper:#f3fbf6;
-  --card:#ffffff;
-  --ink:#17382b;
-  --slate:#386050;
-  --gray:#648071;
-  --line:rgba(19,92,61,.14);
-  --input-bg:rgba(255,255,255,.78);
-}
 
+/* ---------- Variáveis ---------- */
+:root,
 html[data-theme="light"]{
   color-scheme:light;
   --paper:#f3fbf6;
@@ -768,24 +763,45 @@ html[data-theme="dark"]{
   --input-bg:rgba(255,255,255,.06);
 }
 
+/* ---------- Base ---------- */
+html,
+body{
+  min-height:100%;
+}
+
 body{
   color:var(--ink) !important;
   background:
     radial-gradient(circle at 10% 10%,rgba(255,255,255,.9),transparent 25%),
     linear-gradient(180deg,#b9f3ff 0%,#e8fbff 35%,#f5fff5 65%,#dff7df 100%) !important;
-  transition:background .25s ease,color .25s ease;
+  transition:background .3s ease,color .3s ease;
 }
 
+/* Bolhas decorativas não devem clarear o dark mode */
 html[data-theme="dark"] body{
   background:
     radial-gradient(circle at 12% 8%,rgba(38,111,83,.18),transparent 28%),
     linear-gradient(180deg,#08140f 0%,#0b1c14 48%,#10291d 100%) !important;
 }
 
-/* Textos que antes podiam ficar claros demais no modo claro */
-.card,.feature-card,.hist-stat,.tip-card,.calc-section,.calc-preview,
-.profile-card,.auth-form-wrap,.app-main,.hero-stat-card,.how-step,
-.float-chip,.cta-band{
+html[data-theme="dark"] body::before{
+  background:rgba(38,111,83,.10);
+}
+
+html[data-theme="dark"] body::after{
+  background:rgba(79,227,201,.06);
+}
+
+/* ---------- Textos ---------- */
+.card,
+.feature-card,
+.hist-stat,
+.calc-section,
+.calc-preview,
+.profile-card,
+.auth-form-wrap,
+.app-main,
+.float-chip{
   color:var(--ink);
 }
 
@@ -795,58 +811,104 @@ html[data-theme="dark"] body{
 .hero h1,.hero h2,.hero h3,.hero h4,
 .auth-form h1,.auth-form h2,.auth-form h3,.auth-form h4,
 .app-main h1,.app-main h2,.app-main h3,.app-main h4,
-.profile-card h1,.profile-card h2,.profile-card h3,.profile-card h4{
+.profile-card h1,.profile-card h2,.profile-card h3,.profile-card h4,
+.section-head h2{
   color:var(--ink) !important;
 }
 
-.lead,.sub,.field-note,.loc,.settings-row .v,
-.hist-stat .lbl,.hist-row .m .d,.section-head p,
-.nav-links a,.side-link,.settings-row-k{
+.lead,
+.sub,
+.field-note,
+.loc,
+.settings-row .v,
+.hist-stat .lbl,
+.hist-row .m .d,
+.section-head p{
   color:var(--slate) !important;
 }
 
-.input,.field input,.field select,.field textarea,
-input[type="text"],input[type="email"],input[type="password"],
-input[type="number"],input[type="date"],select,textarea{
+/* ---------- Inputs ---------- */
+.input,
+.field input,
+.field select,
+.field textarea,
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="number"],
+input[type="date"],
+select,
+textarea{
   color:var(--ink) !important;
   background:var(--input-bg) !important;
   border-color:var(--line) !important;
 }
 
-.input::placeholder,.field input::placeholder,.field textarea::placeholder,
-input::placeholder,textarea::placeholder{
+.input::placeholder,
+.field input::placeholder,
+.field textarea::placeholder,
+input::placeholder,
+textarea::placeholder{
   color:var(--gray) !important;
   opacity:1;
 }
 
-/* Ícones/elementos que herdavam texto escuro demais no dark */
-html[data-theme="dark"] .achieve,
-html[data-theme="dark"] .app-side,
-html[data-theme="dark"] .card,
-html[data-theme="dark"] .feature-card,
-html[data-theme="dark"] .hist-stat,
-html[data-theme="dark"] .calc-section,
-html[data-theme="dark"] .calc-preview,
-html[data-theme="dark"] .profile-card,
-html[data-theme="dark"] .auth-form-wrap,
-html[data-theme="dark"] .hero-stat-card,
-html[data-theme="dark"] .how-step,
-html[data-theme="dark"] .tip-card{
+.field label,
+.auth-form label{
+  color:var(--ink) !important;
+}
+
+/* ---------- Cards ---------- */
+.card,
+.feature-card,
+.hist-stat,
+.profile-card{
   background:var(--card) !important;
   border-color:var(--line) !important;
   color:var(--ink) !important;
 }
 
-html[data-theme="dark"] .site-nav{
-  background:rgba(12,35,25,.82) !important;
-  color:#effff5 !important;
-  border-color:rgba(190,235,210,.18) !important;
+/* ---------- Botões ---------- */
+.icon-btn{
+  background:var(--card) !important;
+  border-color:var(--line) !important;
+  color:var(--ink) !important;
+}
+
+.btn-ghost{
+  color:var(--ink);
+  border-color:var(--line);
+}
+
+/* =========================================================
+   HEADER / PROTO BAR
+   ========================================================= */
+
+html[data-theme="light"] .proto-bar{
+  background:rgba(255,255,255,.55) !important;
+  color:#245d4b !important;
+  border-color:rgba(255,255,255,.80) !important;
+}
+
+html[data-theme="light"] .proto-bar button{
+  color:#245d4b !important;
+  background:rgba(255,255,255,.38) !important;
+}
+
+html[data-theme="light"] .theme-toggle{
+  color:#245d4b !important;
+  background:rgba(255,255,255,.48) !important;
 }
 
 html[data-theme="dark"] .proto-bar{
   background:rgba(8,29,20,.88) !important;
   color:#effff5 !important;
   border-color:rgba(190,235,210,.18) !important;
+  box-shadow:0 15px 40px rgba(0,0,0,.25);
+}
+
+html[data-theme="dark"] .proto-bar span.lbl{
+  color:#69e59c !important;
 }
 
 html[data-theme="dark"] .proto-bar button{
@@ -855,75 +917,257 @@ html[data-theme="dark"] .proto-bar button{
   border-color:rgba(190,235,210,.18) !important;
 }
 
+html[data-theme="dark"] .proto-bar button:hover{
+  color:#ffffff !important;
+  background:rgba(255,255,255,.12) !important;
+}
+
 html[data-theme="dark"] .proto-bar button.active{
   color:#062116 !important;
   background:linear-gradient(135deg,#5ee6a0,#1aae76) !important;
+  border-color:transparent !important;
 }
 
 html[data-theme="dark"] .theme-toggle{
   color:#d9f3e3 !important;
   background:rgba(255,255,255,.07) !important;
+  border-color:rgba(190,235,210,.18) !important;
 }
 
-html[data-theme="dark"] .site-nav .nav-links a,
-html[data-theme="dark"] .site-nav .btn-ghost{
-  color:#d9f3e3 !important;
+/* Header da landing */
+html[data-theme="dark"] .site-nav{
+  background:rgba(20,48,38,.82) !important;
+  border-color:rgba(190,235,210,.18) !important;
+  box-shadow:0 15px 40px rgba(0,0,0,.25);
+}
+
+html[data-theme="dark"] .site-nav .logo{
+  color:#69e59c !important;
+}
+
+html[data-theme="dark"] .site-nav .nav-links a{
+  color:#c0dfcf !important;
 }
 
 html[data-theme="dark"] .site-nav .nav-links a:hover{
-  color:#72efaa !important;
+  color:#79eaa5 !important;
 }
 
-html[data-theme="dark"] .logo,
-html[data-theme="dark"] .auth-brand,
-html[data-theme="dark"] .auth-brand-mid{
-  color:#72efaa !important;
+html[data-theme="dark"] .site-nav .btn-ghost{
+  color:#c0dfcf !important;
 }
 
-html[data-theme="dark"] .side-link{
-  color:#bcd8c8 !important;
+html[data-theme="dark"] .site-nav .btn-ghost:hover{
+  background:rgba(255,255,255,.08) !important;
+  border-color:rgba(190,235,210,.18) !important;
 }
 
-html[data-theme="dark"] .side-link.active,
-html[data-theme="dark"] .side-link:hover{
-  color:#72efaa !important;
-  background:rgba(92,225,154,.10) !important;
+/* ---------- Logo ---------- */
+html[data-theme="dark"] .site-nav .logo-mark{
+  background:linear-gradient(145deg,#173b2b,#24553e) !important;
 }
 
-html[data-theme="dark"] .settings-row,
-html[data-theme="dark"] .goal-row,
-html[data-theme="dark"] .hist-row,
-html[data-theme="dark"] .calc-breakdown .row{
-  border-color:var(--line) !important;
+/* Não transforma os logos das telas de login em verde */
+.auth-brand,
+.auth-brand .logo,
+.auth-brand-mid{
+  color:#fff !important;
 }
 
-/* Evita que textos inline antigos fiquem invisíveis no dark */
-html[data-theme="dark"] .txt,
-html[data-theme="dark"] .n,
-html[data-theme="dark"] .k,
-html[data-theme="dark"] .v,
-html[data-theme="dark"] .val,
-html[data-theme="dark"] .cap,
-html[data-theme="dark"] .who,
-html[data-theme="dark"] .form-meta,
-html[data-theme="dark"] .settings-row-k{
+/* =========================================================
+   SIDEBAR / APP
+   ========================================================= */
+
+.app-shell{
+  background:var(--paper);
+}
+
+.app-side{
+  background:var(--forest-950) !important;
+  color:#fff !important;
+}
+
+.side-link{
+  color:#AFC7BC;
+}
+
+.side-link:hover{
+  background:rgba(255,255,255,.06);
+  color:#fff;
+}
+
+.side-link.active{
+  background:var(--mint) !important;
+  color:#08211A !important;
+}
+
+/* =========================================================
+   DASHBOARD
+   ========================================================= */
+
+/* O card principal deve continuar com o gradiente verde
+   nos dois temas. */
+.hero-stat-card{
+  background:linear-gradient(
+    135deg,
+    var(--forest-950),
+    var(--forest-800)
+  ) !important;
+  color:#fff !important;
+  border-color:transparent !important;
+}
+
+.hero-stat-card .txt,
+.hero-stat-card .txt .num{
+  color:#fff !important;
+}
+
+.hero-stat-card .txt .lbl,
+.hero-stat-card .txt .num span{
+  color:#8FB0A2 !important;
+}
+
+.hero-stat-card .txt .delta{
+  color:var(--mint-light) !important;
+}
+
+/* Evita que uma regra genérica do dark transforme o card
+   acima em --card. */
+html[data-theme="dark"] .hero-stat-card{
+  background:linear-gradient(
+    135deg,
+    var(--forest-950),
+    var(--forest-800)
+  ) !important;
+  color:#fff !important;
+}
+
+/* ---------- Outros elementos do dashboard ---------- */
+.cat-row .txt .n,
+.calc-total .num,
+.calc-breakdown .row .v,
+.hist-row .m .n,
+.profile-card h3{
   color:var(--ink) !important;
 }
 
-html[data-theme="dark"] .field label,
-html[data-theme="dark"] label{
-  color:#c9e3d3 !important;
+.cat-row .txt .b{
+  background:var(--paper);
 }
 
-html[data-theme="light"] .proto-bar .theme-toggle{
-  color:#245d4b !important;
+.cat-row .v,
+.calc-breakdown .row .k{
+  color:var(--slate) !important;
 }
 
-/* Transição suave entre os modos */
-body,.site-nav,.proto-bar,.card,.feature-card,.hist-stat,.calc-section,
-.calc-preview,.profile-card,.auth-form-wrap,.hero-stat-card,.how-step,
-input,select,textarea,.app-side{
-  transition:background-color .25s ease,border-color .25s ease,color .25s ease,box-shadow .25s ease;
+.tip-card{
+  color:var(--ink) !important;
+}
+
+html[data-theme="dark"] .tip-card{
+  background:rgba(26,174,159,.10) !important;
+  border-color:rgba(79,227,201,.20) !important;
+}
+
+.tip-card .lbl{
+  color:var(--mint-text) !important;
+}
+
+.tip-card p{
+  color:var(--ink) !important;
+}
+
+/* =========================================================
+   CALCULADORA / HISTÓRICO / PERFIL
+   ========================================================= */
+
+.radio-opt{
+  color:var(--slate) !important;
+  border-color:var(--line) !important;
+}
+
+.radio-opt.checked{
+  border-color:var(--mint) !important;
+  background:rgba(26,174,159,.08) !important;
+  color:var(--mint-text) !important;
+}
+
+.hist-row,
+.goal-row,
+.settings-row,
+.calc-breakdown .row{
+  border-color:var(--line) !important;
+}
+
+.achieve{
+  background:var(--paper) !important;
+  color:var(--slate) !important;
+}
+
+.achieve span{
+  color:var(--slate) !important;
+}
+
+.settings-row .k{
+  color:var(--ink) !important;
+}
+
+.settings-row .v{
+  color:var(--gray) !important;
+}
+
+/* =========================================================
+   SEÇÃO "COMO FUNCIONA"
+   ========================================================= */
+
+/* Esta seção é propositalmente escura nos dois temas.
+   Não deve receber --card no dark mode. */
+.how-section{
+  background:var(--forest-950) !important;
+  color:#fff !important;
+}
+
+.how-section .section-head h2,
+.how-section .section-head p{
+  color:#fff !important;
+}
+
+.how-section .section-head p,
+.how-step p{
+  color:#AFC7BC !important;
+}
+
+.how-step{
+  background:transparent !important;
+  color:#fff !important;
+}
+
+/* =========================================================
+   TRANSIÇÕES
+   ========================================================= */
+
+body,
+.site-nav,
+.proto-bar,
+.card,
+.feature-card,
+.hist-stat,
+.profile-card,
+.tip-card,
+.icon-btn,
+.input,
+select,
+textarea,
+.radio-opt,
+.achieve,
+.app-side,
+.hero-stat-card{
+  transition:
+    background-color .3s ease,
+    background .3s ease,
+    border-color .3s ease,
+    color .3s ease,
+    box-shadow .3s ease;
 }
 </style>
 
@@ -1118,7 +1362,7 @@ input,select,textarea,.app-side{
           <label style="display:flex; align-items:center; gap:8px; color:var(--slate);"><input type="checkbox"> Lembrar de mim</label>
           <a href="#">Esqueceu a senha?</a>
         </div>
-        <button class="btn btn-mint btn-block btn-lg" data-goto="page-dashboard">Entrar</button>
+        <button class="btn btn-mint btn-block btn-lg" id="loginBtn">Entrar</button>
         <p class="form-switch">Não tem uma conta? <a data-goto="page-signup">Cadastre-se</a></p>
       </div>
     </div>
@@ -1187,7 +1431,7 @@ input,select,textarea,.app-side{
             <input class="input" id="s-id" placeholder="Ex: joao_silva">
           </div>
         </div>
-        <button class="btn btn-mint btn-block btn-lg" style="margin-top:8px;" data-goto="page-dashboard">Cadastrar</button>
+        <button class="btn btn-mint btn-block btn-lg" id="signupBtn" style="margin-top:8px;">Cadastrar</button>
         <p class="form-switch">Já tem conta? <a data-goto="page-login">Entrar</a></p>
       </div>
     </div>
@@ -1479,79 +1723,872 @@ input,select,textarea,.app-side{
 </div>
  
 <script>
-  // ---- page switching ----
+  // =========================================================
+  // ZERO CARBON - SISTEMA PRINCIPAL
+  // =========================================================
+
+
+  // =========================================================
+  // TROCA DE PÁGINAS
+  // =========================================================
+
   const pages = document.querySelectorAll('.page');
   const protoBtns = document.querySelectorAll('.proto-bar button');
- 
-  function showPage(id){
-    pages.forEach(p => p.classList.toggle('active', p.id === id));
-    protoBtns.forEach(b => b.classList.toggle('active', b.dataset.target === id));
-    window.scrollTo({top:0, behavior:'instant'});
-  }
- 
-  protoBtns.forEach(b => b.addEventListener('click', () => showPage(b.dataset.target)));
- 
-  // ---- theme toggle ----
-  const themeBtn = document.getElementById('themeToggle');
-  function setTheme(mode){
-    document.documentElement.setAttribute('data-theme', mode);
-    if (themeBtn) {
-      themeBtn.textContent = mode === 'dark' ? '☀️ Claro' : '🌙 Escuro';
-      themeBtn.setAttribute('aria-label', mode === 'dark' ? 'Mudar para modo claro' : 'Mudar para modo escuro');
+
+  function showPage(id) {
+
+    // Verifica se é uma página que exige login
+    const paginasProtegidas = [
+      'page-dashboard',
+      'page-calc',
+      'page-history',
+      'page-profile'
+    ];
+
+    const estaLogado = localStorage.getItem('zerocarbon_logado') === 'true';
+
+    if (paginasProtegidas.includes(id) && !estaLogado) {
+      alert('Você precisa fazer login para acessar essa página.');
+      id = 'page-login';
     }
-    try { localStorage.setItem('zerocarbon-theme', mode); } catch(e) {}
+
+    pages.forEach(page => {
+      page.classList.toggle('active', page.id === id);
+    });
+
+    protoBtns.forEach(button => {
+      button.classList.toggle(
+        'active',
+        button.dataset.target === id
+      );
+    });
+
+    window.scrollTo({
+      top: 0,
+      behavior: 'instant'
+    });
   }
+
+
+  // Botões do menu de demonstração
+  protoBtns.forEach(button => {
+
+    button.addEventListener('click', () => {
+
+      const destino = button.dataset.target;
+
+      showPage(destino);
+
+    });
+
+  });
+
+
+  // =========================================================
+  // LINKS COM DATA-GOTO
+  // =========================================================
+
+  document.querySelectorAll('[data-goto]').forEach(element => {
+
+    element.addEventListener('click', function(event) {
+
+      event.preventDefault();
+
+      const destino = this.dataset.goto;
+
+      showPage(destino);
+
+    });
+
+  });
+
+
+  // =========================================================
+  // TEMA CLARO / ESCURO
+  // =========================================================
+
+  const themeBtn = document.getElementById('themeToggle');
+
+  function setTheme(mode) {
+
+    document.documentElement.setAttribute(
+      'data-theme',
+      mode
+    );
+
+    if (themeBtn) {
+
+      themeBtn.textContent =
+        mode === 'dark'
+          ? '☀️ Claro'
+          : '🌙 Escuro';
+
+      themeBtn.setAttribute(
+        'aria-label',
+        mode === 'dark'
+          ? 'Mudar para modo claro'
+          : 'Mudar para modo escuro'
+      );
+
+    }
+
+    try {
+
+      localStorage.setItem(
+        'zerocarbon-theme',
+        mode
+      );
+
+    } catch (error) {
+
+      console.log('Não foi possível salvar o tema.');
+
+    }
+
+  }
+
 
   if (themeBtn) {
+
     themeBtn.addEventListener('click', () => {
-      const current = document.documentElement.getAttribute('data-theme') || 'light';
-      setTheme(current === 'dark' ? 'light' : 'dark');
+
+      const atual =
+        document.documentElement.getAttribute(
+          'data-theme'
+        ) || 'light';
+
+      setTheme(
+        atual === 'dark'
+          ? 'light'
+          : 'dark'
+      );
+
     });
+
   }
 
+
+  // Recupera tema salvo
   try {
-    const savedTheme = localStorage.getItem('zerocarbon-theme');
-    setTheme(savedTheme === 'dark' || savedTheme === 'light' ? savedTheme : 'light');
-  } catch(e) {
-    setTheme(document.documentElement.getAttribute('data-theme') || 'light');
+
+    const temaSalvo =
+      localStorage.getItem('zerocarbon-theme');
+
+    setTheme(
+      temaSalvo === 'dark' || temaSalvo === 'light'
+        ? temaSalvo
+        : 'light'
+    );
+
+  } catch (error) {
+
+    setTheme(
+      document.documentElement.getAttribute(
+        'data-theme'
+      ) || 'light'
+    );
+
   }
-  document.querySelectorAll('[data-goto]').forEach(el => {
-    el.addEventListener('click', (e) => { e.preventDefault(); showPage(el.dataset.goto); });
-  });
- 
-  // ---- fuel radio styling ----
-  document.querySelectorAll('#fuelGroup .radio-opt').forEach(opt => {
-    opt.addEventListener('click', () => {
-      document.querySelectorAll('#fuelGroup .radio-opt').forEach(o => o.classList.remove('checked'));
-      opt.classList.add('checked');
-      runCalc();
+
+
+  // =========================================================
+  // CADASTRO
+  // =========================================================
+
+  const signupBtn =
+    document.getElementById('signupBtn');
+
+
+  if (signupBtn) {
+
+    signupBtn.addEventListener('click', function(event) {
+
+      event.preventDefault();
+
+
+      // Pegando os valores dos campos
+      const nome =
+        document.getElementById('s-nome').value.trim();
+
+      const sobrenome =
+        document.getElementById('s-sobrenome').value.trim();
+
+      const nascimento =
+        document.getElementById('s-nasc').value.trim();
+
+      const estado =
+        document.getElementById('s-estado').value;
+
+      const email =
+        document.getElementById('s-email').value.trim();
+
+      const senha =
+        document.getElementById('s-senha').value;
+
+      const usuario =
+        document.getElementById('s-id').value.trim();
+
+
+      // =====================================================
+      // VALIDAÇÕES
+      // =====================================================
+
+      if (!nome) {
+
+        alert('Digite seu nome.');
+
+        return;
+
+      }
+
+
+      if (!sobrenome) {
+
+        alert('Digite seu sobrenome.');
+
+        return;
+
+      }
+
+
+      if (!nascimento) {
+
+        alert('Digite sua data de nascimento.');
+
+        return;
+
+      }
+
+
+      if (
+        !estado ||
+        estado === 'Selecione seu estado'
+      ) {
+
+        alert('Selecione seu estado.');
+
+        return;
+
+      }
+
+
+      if (!email) {
+
+        alert('Digite seu e-mail.');
+
+        return;
+
+      }
+
+
+      if (!senha) {
+
+        alert('Digite uma senha.');
+
+        return;
+
+      }
+
+
+      if (senha.length < 8) {
+
+        alert(
+          'A senha precisa ter pelo menos 8 caracteres.'
+        );
+
+        return;
+
+      }
+
+
+      if (!usuario) {
+
+        alert(
+          'Digite um ID de usuário.'
+        );
+
+        return;
+
+      }
+
+
+      // =====================================================
+      // VERIFICA SE JÁ EXISTE UMA CONTA
+      // =====================================================
+
+      const contaExistente =
+        localStorage.getItem(
+          'zerocarbon_usuario'
+        );
+
+
+      if (contaExistente) {
+
+        const conta =
+          JSON.parse(contaExistente);
+
+        if (
+          conta.usuario.toLowerCase() ===
+          usuario.toLowerCase()
+        ) {
+
+          alert(
+            'Esse nome de usuário já está cadastrado.'
+          );
+
+          return;
+
+        }
+
+        if (
+          conta.email.toLowerCase() ===
+          email.toLowerCase()
+        ) {
+
+          alert(
+            'Esse e-mail já está cadastrado.'
+          );
+
+          return;
+
+        }
+
+      }
+
+
+      // =====================================================
+      // CRIA A CONTA
+      // =====================================================
+
+      const novaConta = {
+
+        nome: nome,
+
+        sobrenome: sobrenome,
+
+        nascimento: nascimento,
+
+        estado: estado,
+
+        email: email,
+
+        usuario: usuario,
+
+        senha: senha
+
+      };
+
+
+      // Salva a conta no navegador
+      localStorage.setItem(
+        'zerocarbon_usuario',
+        JSON.stringify(novaConta)
+      );
+
+
+      // Garante que começa deslogado
+      localStorage.removeItem(
+        'zerocarbon_logado'
+      );
+
+
+      alert(
+        'Cadastro realizado com sucesso! Agora faça login.'
+      );
+
+
+      // Limpa senha
+      document.getElementById(
+        's-senha'
+      ).value = '';
+
+
+      // Vai para Login
+      showPage('page-login');
+
     });
-  });
- 
-  // ---- live carbon calculator ----
-  function runCalc(){
-    const kwh = parseFloat(document.getElementById('c-kwh').value) || 0;
-    const gas = parseFloat(document.getElementById('c-gas').value) || 0;
-    const km = parseFloat(document.getElementById('c-km').value) || 0;
-    const fuelFactor = parseFloat(document.querySelector('#fuelGroup input:checked').value);
- 
-    const eletKg = kwh * 0.0817;
-    const gasKg = gas * 2.02;
-    const transpKg = km * fuelFactor;
-    const totalT = (eletKg + gasKg + transpKg) / 1000;
- 
-    document.getElementById('calcElet').textContent = (eletKg/1000).toFixed(2) + ' t';
-    document.getElementById('calcGas').textContent = (gasKg/1000).toFixed(2) + ' t';
-    document.getElementById('calcTransp').textContent = (transpKg/1000).toFixed(2) + ' t';
-    document.getElementById('calcTotal').innerHTML = totalT.toFixed(2) + ' <span>tCO₂/mês</span>';
- 
-    const tanks = Math.round((totalT * 12) / 0.65);
-    document.getElementById('calcCompare').textContent =
-      'Isso equivale a cerca de ' + tanks + ' tanques de gás de cozinha por ano.';
+
   }
-  ['c-kwh','c-gas','c-km'].forEach(id => document.getElementById(id).addEventListener('input', runCalc));
+
+
+  // =========================================================
+  // LOGIN
+  // =========================================================
+
+  const loginBtn =
+    document.getElementById('loginBtn');
+
+
+  if (loginBtn) {
+
+    loginBtn.addEventListener('click', function(event) {
+
+      event.preventDefault();
+
+
+      const usuario =
+        document.getElementById('l-user').value.trim();
+
+      const senha =
+        document.getElementById('l-pass').value;
+
+
+      // =====================================================
+      // VALIDA CAMPOS
+      // =====================================================
+
+      if (!usuario) {
+
+        alert(
+          'Digite seu nome de usuário.'
+        );
+
+        return;
+
+      }
+
+
+      if (!senha) {
+
+        alert(
+          'Digite sua senha.'
+        );
+
+        return;
+
+      }
+
+
+      // =====================================================
+      // PROCURA A CONTA
+      // =====================================================
+
+      const dados =
+        localStorage.getItem(
+          'zerocarbon_usuario'
+        );
+
+
+      if (!dados) {
+
+        alert(
+          'Nenhuma conta foi encontrada. Faça seu cadastro primeiro.'
+        );
+
+        return;
+
+      }
+
+
+      const conta =
+        JSON.parse(dados);
+
+
+      // =====================================================
+      // CONFERE USUÁRIO E SENHA
+      // =====================================================
+
+      const usuarioCorreto =
+        usuario.toLowerCase() ===
+        conta.usuario.toLowerCase();
+
+      const senhaCorreta =
+        senha === conta.senha;
+
+
+      if (
+        usuarioCorreto &&
+        senhaCorreta
+      ) {
+
+        // Marca usuário como logado
+        localStorage.setItem(
+          'zerocarbon_logado',
+          'true'
+        );
+
+
+        // Salva usuário atual
+        localStorage.setItem(
+          'zerocarbon_usuario_atual',
+          conta.usuario
+        );
+
+
+        // Limpa campos
+        document.getElementById(
+          'l-user'
+        ).value = '';
+
+        document.getElementById(
+          'l-pass'
+        ).value = '';
+
+
+        alert(
+          'Login realizado com sucesso! Bem-vindo, ' +
+          conta.nome +
+          '!'
+        );
+
+
+        // Atualiza informações do usuário
+        atualizarUsuario();
+
+
+        // Vai para Dashboard
+        showPage('page-dashboard');
+
+
+      } else {
+
+        alert(
+          'Usuário ou senha incorretos.'
+        );
+
+      }
+
+    });
+
+  }
+
+
+  // =========================================================
+  // ATUALIZAR NOME DO USUÁRIO NO SITE
+  // =========================================================
+
+  function atualizarUsuario() {
+
+    const dados =
+      localStorage.getItem(
+        'zerocarbon_usuario'
+      );
+
+
+    if (!dados) return;
+
+
+    const conta =
+      JSON.parse(dados);
+
+
+    // Nome completo
+    const nomeCompleto =
+      conta.nome +
+      ' ' +
+      conta.sobrenome;
+
+
+    // Procura todos os nomes da lateral
+    document.querySelectorAll(
+      '.side-user .who'
+    ).forEach(element => {
+
+      element.textContent =
+        nomeCompleto;
+
+    });
+
+
+    // Procura todos os usernames da lateral
+    document.querySelectorAll(
+      '.side-user .sub'
+    ).forEach(element => {
+
+      element.textContent =
+        conta.usuario;
+
+    });
+
+
+    // Atualiza o "Olá, João"
+    const titulos =
+      document.querySelectorAll(
+        '#page-dashboard .app-topbar h1'
+      );
+
+
+    titulos.forEach(element => {
+
+      element.textContent =
+        'Olá, ' +
+        conta.nome +
+        ' 👋';
+
+    });
+
+
+    // Atualiza nome no perfil
+    const perfilNome =
+      document.querySelector(
+        '#page-profile .profile-card h3'
+      );
+
+
+    if (perfilNome) {
+
+      perfilNome.textContent =
+        nomeCompleto;
+
+    }
+
+
+    // Atualiza informações do perfil
+    const perfilLoc =
+      document.querySelector(
+        '#page-profile .profile-card .loc'
+      );
+
+
+    if (perfilLoc) {
+
+      perfilLoc.textContent =
+        conta.usuario +
+        ' · ' +
+        conta.estado;
+
+    }
+
+
+    // Atualiza e-mail
+    const linhasConta =
+      document.querySelectorAll(
+        '#page-profile .settings-row'
+      );
+
+
+    linhasConta.forEach(linha => {
+
+      const titulo =
+        linha.querySelector('.k');
+
+      const valor =
+        linha.querySelector('.v');
+
+
+      if (!titulo || !valor) return;
+
+
+      if (
+        titulo.textContent.trim() ===
+        'E-mail'
+      ) {
+
+        valor.textContent =
+          conta.email;
+
+      }
+
+
+      if (
+        titulo.textContent.trim() ===
+        'Cidade'
+      ) {
+
+        valor.textContent =
+          conta.estado;
+
+      }
+
+    });
+
+  }
+
+
+  // =========================================================
+  // VERIFICA LOGIN AO CARREGAR A PÁGINA
+  // =========================================================
+
+  document.addEventListener(
+    'DOMContentLoaded',
+    function() {
+
+      atualizarUsuario();
+
+    }
+  );
+
+
+  // =========================================================
+  // RADIO BUTTONS DA CALCULADORA
+  // =========================================================
+
+  document
+    .querySelectorAll(
+      '#fuelGroup .radio-opt'
+    )
+    .forEach(option => {
+
+      option.addEventListener(
+        'click',
+        () => {
+
+          document
+            .querySelectorAll(
+              '#fuelGroup .radio-opt'
+            )
+            .forEach(item => {
+
+              item.classList.remove(
+                'checked'
+              );
+
+            });
+
+
+          option.classList.add(
+            'checked'
+          );
+
+
+          runCalc();
+
+        }
+      );
+
+    });
+
+
+  // =========================================================
+  // CALCULADORA DE CARBONO
+  // =========================================================
+
+  function runCalc() {
+
+    const kwh =
+      parseFloat(
+        document.getElementById(
+          'c-kwh'
+        ).value
+      ) || 0;
+
+
+    const gas =
+      parseFloat(
+        document.getElementById(
+          'c-gas'
+        ).value
+      ) || 0;
+
+
+    const km =
+      parseFloat(
+        document.getElementById(
+          'c-km'
+        ).value
+      ) || 0;
+
+
+    const fuelElement =
+      document.querySelector(
+        '#fuelGroup input:checked'
+      );
+
+
+    if (!fuelElement) return;
+
+
+    const fuelFactor =
+      parseFloat(
+        fuelElement.value
+      );
+
+
+
+    const eletKg =
+      kwh * 0.0817;
+
+
+    const gasKg =
+      gas * 2.02;
+
+
+    const transpKg =
+      km * fuelFactor;
+
+
+    const totalT =
+      (
+        eletKg +
+        gasKg +
+        transpKg
+      ) / 1000;
+
+
+    document.getElementById(
+      'calcElet'
+    ).textContent =
+      (
+        eletKg / 1000
+      ).toFixed(2) + ' t';
+
+
+    document.getElementById(
+      'calcGas'
+    ).textContent =
+      (
+        gasKg / 1000
+      ).toFixed(2) + ' t';
+
+
+    document.getElementById(
+      'calcTransp'
+    ).textContent =
+      (
+        transpKg / 1000
+      ).toFixed(2) + ' t';
+
+
+    document.getElementById(
+      'calcTotal'
+    ).innerHTML =
+      totalT.toFixed(2) +
+      ' <span>tCO₂/mês</span>';
+
+
+    // Comparativo
+    const tanks =
+      Math.round(
+        (totalT * 12) / 0.65
+      );
+
+
+    document.getElementById(
+      'calcCompare'
+    ).textContent =
+      'Isso equivale a cerca de ' +
+      tanks +
+      ' tanques de gás de cozinha por ano.';
+
+  }
+
+
+
+  [
+    'c-kwh',
+    'c-gas',
+    'c-km'
+  ].forEach(id => {
+
+    const campo =
+      document.getElementById(id);
+
+
+    if (campo) {
+
+      campo.addEventListener(
+        'input',
+        runCalc
+      );
+
+    }
+
+  });
+
+
+ 
   runCalc();
+
 </script>
 </body>
 </html>
- 
