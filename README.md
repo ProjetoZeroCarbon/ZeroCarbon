@@ -181,7 +181,7 @@ São apresentados indicadores como:
 * Melhor mês;
 * Meta anual;
 * Registros mensais;
-* Evolução da pegada de carbono.
+* Evolução da pegada de carbono;
 
 ### Perfil
 =======
