@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # 🌱 ZeroCarbon
 
 > Sistema para monitoramento e acompanhamento da pegada de carbono individual.
