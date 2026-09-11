@@ -463,15 +463,10 @@ A estrutura atualmente identificada no repositório é:
 >>>>>>> 0d07dc05688312771a18788bc8be923a80bd2282
 ZeroCarbon/
 │
-├── FrontEnd/
-│   └── index.html
-│
-├── LandingPage/
-│   ├── index.html
-│   └── index.js
-│
-├── ZeroCarbon.html
 ├── index.html
+|___scripts.js
+|___styles.css
+|
 ├── LICENSE
 └── README.md
 <<<<<<< HEAD
