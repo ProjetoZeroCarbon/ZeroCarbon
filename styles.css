@@ -899,3 +899,12 @@ html[data-theme="dark"] .auth-form-wrap{background:rgba(255,255,255,.02)}
   .badge-grid{grid-template-columns:1fr 1fr 1fr}
   .radio-group{flex-direction:column}
 }
+
+.calc-header{
+   width: min(1120px, 100%);
+  margin: 0 auto;
+  padding: 25px 42px 25px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
