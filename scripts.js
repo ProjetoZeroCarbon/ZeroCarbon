@@ -322,6 +322,25 @@ function atualizarUsuario(usuario) {
       `Olá, ${usuario.nome} 👋`;
   }
 
+  const dashboardDate =
+  document.getElementById("dashboardDate");
+
+if (dashboardDate) {
+  const dataAtual = new Date();
+
+  const mes = dataAtual.toLocaleDateString("pt-BR", {
+    month: "long"
+  });
+
+  const ano = dataAtual.getFullYear();
+
+  const mesFormatado =
+    mes.charAt(0).toUpperCase() + mes.slice(1);
+
+  dashboardDate.textContent =
+    `Seu painel ambiental — ${mesFormatado} ${ano}`;
+}
+
   // Nome no perfil
   const profileName =
     document.querySelector("#page-profile .profile-card h3");
