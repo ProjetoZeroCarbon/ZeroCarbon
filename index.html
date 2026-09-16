@@ -235,7 +235,7 @@
           <a href="#">Esqueceu a senha?</a>
         </div>
 
-        <button class="btn btn-mint btn-block btn-lg" data-goto="page-dashboard">Entrar</button>
+        <button class="btn btn-mint btn-block btn-lg" id="loginBtn">Entrar</button>
         <p class="form-switch">Não tem uma conta? <a data-goto="page-signup">Cadastre-se</a></p>
       </div>
     </div>
@@ -324,7 +324,7 @@
           </div>
         </div>
 
-        <button class="btn btn-mint btn-block btn-lg" data-goto="page-dashboard">Cadastrar</button>
+        <button class="btn btn-mint btn-block btn-lg" id="signupBtn">Cadastrar</button>
         <p class="form-switch">Já tem conta? <a data-goto="page-login">Entrar</a></p>
       </div>
     </div>
@@ -457,64 +457,213 @@
      CALCULADORA
      ========================================================= -->
 <section class="page" id="page-calc">
-  <div class="app-shell">
-    <aside class="app-side">
-      <a class="logo" href="#" data-goto="page-landing"><span class="logo-mark">🌱</span>ZeroCarbon</a>
-      <nav class="side-nav">
-        <a class="side-link" data-goto="page-dashboard">⌂ <span>Início</span></a>
-        <a class="side-link active" data-goto="page-calc">▣ <span>Calculadora</span></a>
-        <a class="side-link" data-goto="page-history">◴ <span>Histórico</span></a>
-        <a class="side-link" data-goto="page-profile">♙ <span>Perfil</span></a>
-      </nav>
-      <div class="side-goal"><div class="lbl">Meta mensal</div><div class="val">48% concluído</div><div class="side-bar"><i style="width:48%"></i></div></div>
-      <div class="side-user"><div class="avatar"></div><div><div class="who">João Silva</div><div class="sub">joao_silva</div></div></div>
-    </aside>
+<div class="calc-grid">
 
-    <main class="app-main">
-      <div class="app-topbar">
-        <div><h1>Calculadora de Carbono</h1><div class="sub">Informe seu consumo do mês para estimar sua pegada.</div></div>
-        <button class="theme-toggle" data-theme-button title="Alternar tema"><span class="moon">🌙</span><span class="sun">☀️</span></button>
+  <div class="card">
+
+    <div class="calc-section">
+      <div class="head">
+        <div class="ic" style="background:rgba(240,180,41,.15)">⚡</div>
+        <h4>Energia Elétrica</h4>
       </div>
 
-      <div class="calc-grid">
-        <div class="card">
-          <div class="calc-section">
-            <div class="head"><div class="ic" style="background:rgba(240,180,41,.15)">⚡</div><h4>Energia Elétrica</h4></div>
-            <div class="field"><label for="c-kwh">Consumo mensal (kWh)</label><input class="input" id="c-kwh" type="number" value="250" placeholder="Ex: 250"></div>
-          </div>
+      <div class="field">
+        <label for="c-kwh">Consumo mensal (kWh)</label>
 
-          <div class="calc-section">
-            <div class="head"><div class="ic" style="background:rgba(232,131,58,.15)">🔥</div><h4>Consumo de Gás</h4></div>
-            <div class="field"><label for="c-gas">Consumo mensal (m³)</label><input class="input" id="c-gas" type="number" value="15" placeholder="Ex: 15"></div>
-          </div>
+        <input
+          class="input"
+          id="c-kwh"
+          type="number"
+          min="0"
+          placeholder="Ex: 250"
+        >
+      </div>
+    </div>
 
-          <div class="calc-section">
-            <div class="head"><div class="ic" style="background:rgba(44,136,217,.15)">🚗</div><h4>Transporte</h4></div>
-            <div class="field-note">Tipo de combustível</div>
-            <div class="radio-group" id="fuelGroup">
-              <label class="radio-opt checked"><input type="radio" name="fuel" value="0.192" checked>Gasolina</label>
-              <label class="radio-opt"><input type="radio" name="fuel" value="0.030">Álcool</label>
-              <label class="radio-opt"><input type="radio" name="fuel" value="0.212">Diesel</label>
-            </div>
-            <div class="field"><label for="c-km">km rodados por mês</label><input class="input" id="c-km" type="number" value="800" placeholder="Ex: 800"></div>
-          </div>
 
-          <button class="btn btn-mint btn-block btn-lg" id="calcBtn">Calcular minha pegada</button>
+    <div class="calc-section">
+
+      <div class="head">
+        <div class="ic" style="background:rgba(232,131,58,.15)">🔥</div>
+        <h4>Consumo de Gás</h4>
+      </div>
+
+      <div class="field">
+        <label for="c-gas">Consumo mensal (m³)</label>
+
+        <input
+          class="input"
+          id="c-gas"
+          type="number"
+          min="0"
+          placeholder="Ex: 15"
+        >
+      </div>
+
+    </div>
+
+
+    <div class="calc-section">
+
+      <div class="head">
+        <div class="ic" style="background:rgba(44,136,217,.15)">🚗</div>
+        <h4>Transporte</h4>
+      </div>
+
+      <div class="field-note">Tipo de combustível</div>
+
+      <div class="radio-group" id="fuelGroup">
+
+        <label class="radio-opt checked">
+          <input
+            type="radio"
+            name="fuel"
+            value="0.192"
+            checked
+          >
+          Gasolina
+        </label>
+
+        <label class="radio-opt">
+          <input
+            type="radio"
+            name="fuel"
+            value="0.030"
+          >
+          Álcool
+        </label>
+
+        <label class="radio-opt">
+          <input
+            type="radio"
+            name="fuel"
+            value="0.212"
+          >
+          Diesel
+        </label>
+
+      </div>
+
+
+      <div class="field">
+        <label for="c-km">km rodados por mês</label>
+
+        <input
+          class="input"
+          id="c-km"
+          type="number"
+          min="0"
+          placeholder="Ex: 800"
+        >
+      </div>
+
+    </div>
+
+
+    <button
+      class="btn btn-mint btn-block btn-lg"
+      id="calcBtn"
+      type="button"
+    >
+      Calcular minha pegada
+    </button>
+
+  </div>
+
+
+  <!-- RESULTADO -->
+
+  <div
+    class="card calc-preview"
+    style="display: none;"
+  >
+
+    <div class="card-title">
+      <h3>Sua estimativa</h3>
+      <span class="tag">ESTIMATIVA</span>
+    </div>
+
+
+    <div class="calc-total">
+
+      <div class="num" id="calcTotal">
+        0.00 <span>tCO₂/mês</span>
+      </div>
+
+      <div class="lbl">
+        pegada estimada
+      </div>
+
+    </div>
+
+
+    <div class="calc-breakdown">
+
+      <div class="row">
+        <div class="k">
+          <span
+            class="dot"
+            style="background:var(--yellow)"
+          ></span>
+
+          Energia elétrica
         </div>
 
-        <div class="card calc-preview">
-          <div class="card-title"><h3>Sua estimativa</h3><span class="tag">EM TEMPO REAL</span></div>
-          <div class="calc-total">
-            <div class="num" id="calcTotal">1.3 <span>tCO₂/mês</span></div>
-            <div class="lbl">pegada estimada</div>
-          </div>
-          <div class="calc-breakdown">
-            <div class="row"><div class="k"><span class="dot" style="background:var(--yellow)"></span>Energia elétrica</div><div class="v" id="calcElet">0.02 t</div></div>
-            <div class="row"><div class="k"><span class="dot" style="background:var(--orange)"></span>Gás</div><div class="v" id="calcGas">0.03 t</div></div>
-            <div class="row"><div class="k"><span class="dot" style="background:var(--blue)"></span>Transporte</div><div class="v" id="calcTransp">0.15 t</div></div>
-          </div>
-          <div class="tip-card"><div class="lbl">COMPARATIVO</div><p id="calcCompare"></p></div>
+        <div class="v" id="calcElet">
+          0.00 t
         </div>
+      </div>
+
+
+      <div class="row">
+        <div class="k">
+          <span
+            class="dot"
+            style="background:var(--orange)"
+          ></span>
+
+          Gás
+        </div>
+
+        <div class="v" id="calcGas">
+          0.00 t
+        </div>
+      </div>
+
+
+      <div class="row">
+        <div class="k">
+          <span
+            class="dot"
+            style="background:var(--blue)"
+          ></span>
+
+          Transporte
+        </div>
+
+        <div class="v" id="calcTransp">
+          0.00 t
+        </div>
+      </div>
+
+    </div>
+
+
+    <div class="tip-card">
+
+      <div class="lbl">
+        COMPARATIVO
+      </div>
+
+      <p id="calcCompare"></p>
+
+    </div>
+
+  </div>
+
+</div>
+```
+
       </div>
     </main>
   </div>
@@ -610,7 +759,16 @@
           <div class="avatar-lg"></div>
           <h3>João Silva</h3>
           <div class="loc">joao_silva · São Paulo, SP</div>
-          <button class="btn btn-ghost btn-block">Alterar foto</button>
+          <button class="btn btn-ghost btn-block" id="changePhotoBtn">
+  Alterar foto
+</button>
+
+<input
+  type="file"
+  id="profilePhotoInput"
+  accept="image/*"
+  style="display:none;"
+>
 
           <div class="badge-grid">
             <div class="achieve"><div class="ic">🏆</div><span>Meta batida</span></div>

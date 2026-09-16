@@ -717,8 +717,10 @@ html[data-theme="dark"] .auth-form-wrap{background:rgba(255,255,255,.02)}
 .calc-grid{
   display:grid;
   grid-template-columns:1.15fr .85fr;
-  gap:20px;
+  gap:35px;
   align-items:start;
+  width: 100%;
+  
 }
 .calc-section{margin-bottom:24px}
 .calc-section:last-child{margin-bottom:0}
