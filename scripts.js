@@ -457,3 +457,21 @@ const savedProfilePhoto =
 if (savedProfilePhoto) {
   updateProfilePhoto(savedProfilePhoto);
 }
+
+const nascimentoInput = document.getElementById("s-nasc");
+
+if (nascimentoInput) {
+  nascimentoInput.addEventListener("input", () => {
+    let valor = nascimentoInput.value.replace(/\D/g, "");
+
+    if (valor.length > 2) {
+      valor = valor.slice(0, 2) + "/" + valor.slice(2);
+    }
+
+    if (valor.length > 5) {
+      valor = valor.slice(0, 5) + "/" + valor.slice(5);
+    }
+
+    nascimentoInput.value = valor.slice(0, 10);
+  });
+}
