@@ -184,10 +184,10 @@ if (signupBtn) {
     }
 
     // Validação do estado
-    if (estado === "Selecione seu estado") {
-      alert("Selecione seu estado.");
-      return;
-    }
+    if (estado.length < 2) {
+  alert("Digite seu estado ou cidade.");
+  return;
+}
 
     // Validação do e-mail
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
