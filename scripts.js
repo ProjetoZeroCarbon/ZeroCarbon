@@ -348,6 +348,21 @@ if (dashboardDate) {
       `${usuario.idUsuario} · ${usuario.estado}`;
   }
 
+  const profileRows =
+  document.querySelectorAll("#page-profile .settings-row");
+
+profileRows.forEach(row => {
+  const label = row.querySelector(".k");
+
+  if (label && label.textContent.trim() === "Cidade") {
+    const value = row.querySelector(".v");
+
+    if (value) {
+      value.textContent = usuario.estado;
+    }
+  }
+});
+
   // E-mail no perfil
   const emailRows =
     document.querySelectorAll("#page-profile .settings-row");
