@@ -261,7 +261,6 @@ O arquivo `ZeroCarbon.html` concentra uma implementação de interface que reún
 
 ### Fluxo conceitual
 
-```text
 =======
 🏗️ Arquitetura da Solução
 
@@ -306,7 +305,7 @@ Fluxo conceitual
       │Calculadora│  │ Histórico  │  │  Perfil   │
       └───────────┘  └───────────┘  └───────────┘
 
-```
+
 
 ---
 
@@ -361,9 +360,8 @@ Como a implementação atual é composta por arquivos HTML, CSS e JavaScript, os
 
 Após clonar o projeto, abra o arquivo:
 
-```text
 index.html
-```
+
 =======
 
 ---
@@ -434,7 +432,6 @@ ZeroCarbon/
 ├── LICENSE
 └── README.md
 
-```
 =======
 
 A estrutura acima corresponde aos arquivos e diretórios atualmente disponibilizados no repositório.
@@ -475,7 +472,7 @@ Consumo de gás:     valor informado pelo usuário
 Distância:          valor informado pelo usuário
 Combustível:        opção selecionada
 
-```
+
 
 O sistema calcula a emissão estimada e apresenta:
 
@@ -547,12 +544,17 @@ Não foi identificada uma API externa ou uma API própria implementada na versã
 
 ## 👥 Equipe do Projeto
 
-| Integrante                 | Função                     |
-| -------------------------- | -------------------------- |
-| A ser definido pela equipe | A ser definido pela equipe |
-| A ser definido pela equipe | A ser definido pela equipe |
-| A ser definido pela equipe | A ser definido pela equipe |
-| A ser definido pela equipe | A ser definido pela equipe |
+| Integrante      | Função                 |                   
+| --------------- | --------------------- -|
+| Kauã Nascimento | Scrum Master + Dev    -|
+|- Denzel Luiz    | UI/UX Design + Dev    -|
+|- Maria Eduarda  | UI/UX Design          -|
+|- Ícaro Scárdua  | Dev + Tech Lead       -| 
+|- Daniel Victor  | QA/ Tech Writer       -|
+|- Breno Aguiar   | Tech Writer,Relatório -|
+|- Arhur Luan     | Tech Writer + Readme  -|                      
+|- Rodrigo Alves  |  QA/ Tech Writer      -|
+|- Antônio Souza  |  Tech Lead + Dev      -| 
 
 ---
 
@@ -564,43 +566,30 @@ Não foi identificada uma API externa ou uma API própria implementada na versã
 
 Landing Page
 
-«Inserir aqui uma captura de tela da Landing Page.»
+«Adicionar dados reais após integração backend»
 
 Login
 
-«Inserir aqui uma captura de tela da tela de Login.»
+«Salvar login dos usuários após integração backend»
 
 Cadastro
 
-«Inserir aqui uma captura de tela da tela de Cadastro.»
+«Conectar cadastro ao banco de dados após integração backend»
 
 Dashboard
 
-«Inserir aqui uma captura de tela do Dashboard.»
-
-Calculadora de Carbono
-
-«Inserir aqui uma captura de tela da Calculadora de Carbono.»
+«Implementar Dashboard após integração backend»
 
 Histórico
 
-«Inserir aqui uma captura de tela da tela de Histórico.»
+«Implementar histórico após integração backend»
 
 Perfil
 
-«Inserir aqui uma captura de tela da tela de Perfil.»
+«Salvar informações e garantir personalização única para cada usuário após backend»
 
 ---
 
-👥 Equipe do Projeto
-
-Integrante| Função
-A ser definido pela equipe| A ser definido pela equipe
-A ser definido pela equipe| A ser definido pela equipe
-A ser definido pela equipe| A ser definido pela equipe
-A ser definido pela equipe| A ser definido pela equipe
-
----
 
 🚧 Status do Projeto
 
@@ -646,6 +635,7 @@ O código-fonte do projeto está disponível no GitHub:
 
 Repositório desenvolvido para a disciplina de **Projeto Integrado de Certificação em Governança e Gestão de TI**.
 =======
+
 🔮 Melhorias Futuras
 
 As seguintes melhorias podem ser incorporadas ao projeto conforme a evolução da solução:
