@@ -38,13 +38,12 @@ Orientador| Profº Hudson Neves
 O ZeroCarbon é um projeto desenvolvido com o objetivo de auxiliar usuários no monitoramento de sua pegada de carbono, permitindo compreender melhor o impacto ambiental causado por atividades do cotidiano.
 
 A proposta do sistema é transformar informações relacionadas a consumo de energia elétrica, gás e transporte em estimativas de emissão de CO₂, apresentando os resultados de maneira visual e simplificada.
->>>>>>> 0d07dc05688312771a18788bc8be923a80bd2282
+
 
 O projeto possui uma interface voltada para acompanhamento ambiental, incluindo uma página inicial de apresentação, área de autenticação, dashboard, calculadora de carbono, histórico de registros e perfil do usuário.
 
 ---
 
-<<<<<<< HEAD
 ## 🎯 Objetivos
 
 ### Objetivo Geral
@@ -60,13 +59,11 @@ Objetivo Geral
 Desenvolver uma solução digital capaz de auxiliar usuários a calcular, acompanhar e compreender sua pegada de carbono, incentivando a adoção de hábitos mais sustentáveis.
 
 Problema que o Sistema Resolve
->>>>>>> 0d07dc05688312771a18788bc8be923a80bd2282
 
 A dificuldade de compreender o impacto ambiental causado por atividades comuns do dia a dia, como consumo de energia, utilização de gás e transporte.
 
 O ZeroCarbon busca apresentar essas informações de forma mais acessível, permitindo que o usuário visualize sua estimativa de emissão e acompanhe sua evolução ao longo do tempo.
 
-<<<<<<< HEAD
 ### Público-alvo
 
 Pessoas interessadas em:
@@ -98,13 +95,11 @@ Pessoas interessadas em:
 ⚙️ Funcionalidades
 
 Landing Page
->>>>>>> 0d07dc05688312771a18788bc8be923a80bd2282
 
 A página inicial apresenta a proposta do ZeroCarbon e disponibiliza informações sobre o funcionamento e os recursos da plataforma.
 
 Entre os elementos apresentados estão:
 
-<<<<<<< HEAD
 * Apresentação do ZeroCarbon;
 * Explicação sobre o funcionamento do sistema;
 * Seção de recursos;
@@ -148,13 +143,11 @@ Dashboard
 O painel do sistema apresenta informações relacionadas à pegada de carbono do usuário, permitindo visualizar indicadores e acompanhar seu progresso.
 
 Calculadora de Carbono
->>>>>>> 0d07dc05688312771a18788bc8be923a80bd2282
 
 A calculadora permite informar dados de consumo para estimar a emissão de carbono.
 
 As categorias atualmente representadas são:
 
-<<<<<<< HEAD
 * ⚡ Energia elétrica;
 * 🔥 Consumo de gás;
 * 🚗 Transporte.
@@ -170,13 +163,11 @@ O resultado é apresentado em **tCO₂/mês**, acompanhado de um detalhamento po
 O resultado é apresentado em tCO₂/mês, acompanhado de um detalhamento por categoria e de uma comparação da emissão estimada.
 
 Histórico
->>>>>>> 0d07dc05688312771a18788bc8be923a80bd2282
 
 O sistema possui uma área de histórico destinada ao acompanhamento dos registros mensais.
 
 São apresentados indicadores como:
 
-<<<<<<< HEAD
 * Redução acumulada;
 * Melhor mês;
 * Meta anual;
@@ -192,13 +183,11 @@ São apresentados indicadores como:
 - Evolução da pegada de carbono.
 
 Perfil
->>>>>>> 0d07dc05688312771a18788bc8be923a80bd2282
 
 A área de perfil permite visualizar informações do usuário e indicadores relacionados às suas metas e conquistas.
 
 A interface apresenta:
 
-<<<<<<< HEAD
 * Informações do usuário;
 * Localização;
 * Foto de perfil;
@@ -252,13 +241,11 @@ Com base nos arquivos atualmente presentes no repositório, o projeto utiliza te
 Bibliotecas e Frameworks
 
 A ser definido pela equipe.
->>>>>>> 0d07dc05688312771a18788bc8be923a80bd2282
 
 O repositório analisado não apresenta, atualmente, um framework de desenvolvimento web identificado como dependência do projeto.
 
 ---
 
-<<<<<<< HEAD
 ## 🏗️ Arquitetura da Solução
 
 O projeto atualmente apresenta uma arquitetura baseada em **aplicação web no lado do cliente (frontend)**.
@@ -266,9 +253,9 @@ O projeto atualmente apresenta uma arquitetura baseada em **aplicação web no l
 A estrutura do repositório contém diferentes arquivos e diretórios relacionados às interfaces do sistema, incluindo:
 
 * `FrontEnd/`
-* `LandingPage/`
+* `syles.css`
 * `index.html`
-* `ZeroCarbon.html`
+* `scripts.js`
 
 O arquivo `ZeroCarbon.html` concentra uma implementação de interface que reúne as principais telas do sistema, com navegação entre páginas utilizando JavaScript.
 
@@ -283,15 +270,15 @@ O projeto atualmente apresenta uma arquitetura baseada em aplicação web no lad
 A estrutura do repositório contém diferentes arquivos e diretórios relacionados às interfaces do sistema, incluindo:
 
 - "FrontEnd/"
-- "LandingPage/"
+- "styles.css"
 - "index.html"
-- "ZeroCarbon.html"
+- "scripts.js"
 
 O arquivo "ZeroCarbon.html" concentra uma implementação de interface que reúne as principais telas do sistema, com navegação entre páginas utilizando JavaScript.
 
 Fluxo conceitual
 
->>>>>>> 0d07dc05688312771a18788bc8be923a80bd2282
+
                  ┌───────────────────┐
                  │    Usuário         │
                  └─────────┬─────────┘
@@ -318,7 +305,7 @@ Fluxo conceitual
       ┌───────────┐  ┌───────────┐  ┌───────────┐
       │Calculadora│  │ Histórico  │  │  Perfil   │
       └───────────┘  └───────────┘  └───────────┘
-<<<<<<< HEAD
+
 ```
 
 ---
@@ -429,30 +416,8 @@ Como a implementação atual é composta por arquivos HTML, CSS e JavaScript, os
 Após clonar o projeto, abra o arquivo:
 
 index.html
->>>>>>> 0d07dc05688312771a18788bc8be923a80bd2282
 
 em um navegador web.
-
-Também existe no repositório uma implementação da aplicação em:
-
-<<<<<<< HEAD
-```text
-ZeroCarbon.html
-```
-
-A implementação do `ZeroCarbon.html` contém navegação entre Landing Page, Login, Cadastro, Dashboard, Calculadora, Histórico e Perfil.
-
----
-
-## 📁 Estrutura do Projeto
-
-A estrutura atualmente identificada no repositório é:
-
-```text
-=======
-ZeroCarbon.html
-
-A implementação do "ZeroCarbon.html" contém navegação entre Landing Page, Login, Cadastro, Dashboard, Calculadora, Histórico e Perfil.
 
 ---
 
@@ -460,7 +425,6 @@ A implementação do "ZeroCarbon.html" contém navegação entre Landing Page, L
 
 A estrutura atualmente identificada no repositório é:
 
->>>>>>> 0d07dc05688312771a18788bc8be923a80bd2282
 ZeroCarbon/
 │
 ├── index.html
@@ -469,26 +433,22 @@ ZeroCarbon/
 |
 ├── LICENSE
 └── README.md
-<<<<<<< HEAD
+
 ```
 =======
->>>>>>> 0d07dc05688312771a18788bc8be923a80bd2282
 
 A estrutura acima corresponde aos arquivos e diretórios atualmente disponibilizados no repositório.
 
 ---
 
-<<<<<<< HEAD
 ## 🧮 Funcionamento da Calculadora
 =======
 🧮 Funcionamento da Calculadora
->>>>>>> 0d07dc05688312771a18788bc8be923a80bd2282
 
 A calculadora utiliza os valores informados pelo usuário para realizar uma estimativa de emissão.
 
 Na implementação atual, são utilizados fatores para:
 
-<<<<<<< HEAD
 * Energia elétrica;
 * Gás;
 * Transporte.
@@ -499,7 +459,6 @@ O cálculo é realizado em JavaScript e o resultado é convertido para toneladas
 
 Considerando os dados inseridos pelo usuário:
 
-```text
 =======
 - Energia elétrica;
 - Gás;
@@ -511,17 +470,16 @@ Exemplo
 
 Considerando os dados inseridos pelo usuário:
 
->>>>>>> 0d07dc05688312771a18788bc8be923a80bd2282
 Consumo de energia: 250 kWh
 Consumo de gás:     valor informado pelo usuário
 Distância:          valor informado pelo usuário
 Combustível:        opção selecionada
-<<<<<<< HEAD
+
 ```
 
 O sistema calcula a emissão estimada e apresenta:
 
-```text
+```
 Pegada estimada
 tCO₂/mês
 ```
@@ -531,13 +489,11 @@ O sistema calcula a emissão estimada e apresenta:
 
 Pegada estimada
 tCO₂/mês
->>>>>>> 0d07dc05688312771a18788bc8be923a80bd2282
 
 Além disso, o sistema apresenta um detalhamento das emissões por categoria.
 
 ---
 
-<<<<<<< HEAD
 ## 🔌 API
 
 **A ser definido pela equipe.**
@@ -545,42 +501,47 @@ Além disso, o sistema apresenta um detalhamento das emissões por categoria.
 🔌 API
 
 A ser definido pela equipe.
->>>>>>> 0d07dc05688312771a18788bc8be923a80bd2282
 
 Não foi identificada uma API externa ou uma API própria implementada na versão atual do projeto.
 
 ---
 
-<<<<<<< HEAD
 ## 🖼️ Capturas de Tela
 
 ### Landing Page
 
-> **Inserir aqui uma captura de tela da Landing Page.**
+> <img width="1892" height="1020" alt="image" src="https://github.com/user-attachments/assets/0636e428-0847-4006-9468-48b918850aad" />
+
 
 ### Login
 
-> **Inserir aqui uma captura de tela da tela de Login.**
+> <img width="1870" height="1017" alt="image" src="https://github.com/user-attachments/assets/86e44455-8abd-45e2-979c-65bb7a45cf13" />
+
 
 ### Cadastro
 
-> **Inserir aqui uma captura de tela da tela de Cadastro.**
+> <img width="1872" height="996" alt="image" src="https://github.com/user-attachments/assets/74ab99b2-2afe-4794-b265-b0f0b582fc72" />
+
 
 ### Dashboard
 
-> **Inserir aqui uma captura de tela do Dashboard.**
+> <img width="1385" height="807" alt="image" src="https://github.com/user-attachments/assets/a0e13ca7-4593-49c0-9b6e-7686a80d121f" />
+
 
 ### Calculadora de Carbono
 
-> **Inserir aqui uma captura de tela da Calculadora de Carbono.**
+> <img width="1911" height="1007" alt="image" src="https://github.com/user-attachments/assets/43fbfcf0-8559-4d4c-8046-36e76b794ddb" />
+
 
 ### Histórico
 
-> **Inserir aqui uma captura de tela da tela de Histórico.**
+> <img width="1592" height="1008" alt="image" src="https://github.com/user-attachments/assets/883a4638-f692-40c6-8e05-45b4538553e6" />
+
 
 ### Perfil
 
-> **Inserir aqui uma captura de tela da tela de Perfil.**
+> <img width="1586" height="1007" alt="image" src="https://github.com/user-attachments/assets/8992c2f4-e623-41df-94a3-438697b0a599" />
+
 
 ---
 
@@ -644,13 +605,11 @@ A ser definido pela equipe| A ser definido pela equipe
 🚧 Status do Projeto
 
 Em desenvolvimento.
->>>>>>> 0d07dc05688312771a18788bc8be923a80bd2282
 
 O repositório encontra-se em desenvolvimento e atualmente conta com uma implementação de interface contendo Landing Page, autenticação, dashboard, calculadora, histórico e perfil. O repositório possui atualmente 9 commits e está publicado como projeto público.
 
 ---
 
-<<<<<<< HEAD
 ## 🔮 Melhorias Futuras
 
 As seguintes melhorias podem ser incorporadas ao projeto conforme a evolução da solução:
@@ -722,4 +681,3 @@ O código-fonte do projeto está disponível no GitHub:
 ProjetoZeroCarbon/ZeroCarbon
 
 Repositório desenvolvido para a disciplina de Projeto Integrado de Certificação em Governança e Gestão de TI.
->>>>>>> 0d07dc05688312771a18788bc8be923a80bd2282
