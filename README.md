@@ -253,9 +253,9 @@ O projeto atualmente apresenta uma arquitetura baseada em **aplicação web no l
 A estrutura do repositório contém diferentes arquivos e diretórios relacionados às interfaces do sistema, incluindo:
 
 * `FrontEnd/`
-* `LandingPage/`
+* `syles.css`
 * `index.html`
-* `ZeroCarbon.html`
+* `scripts.js`
 
 O arquivo `ZeroCarbon.html` concentra uma implementação de interface que reúne as principais telas do sistema, com navegação entre páginas utilizando JavaScript.
 
@@ -270,9 +270,9 @@ O projeto atualmente apresenta uma arquitetura baseada em aplicação web no lad
 A estrutura do repositório contém diferentes arquivos e diretórios relacionados às interfaces do sistema, incluindo:
 
 - "FrontEnd/"
-- "LandingPage/"
+- "styles.css"
 - "index.html"
-- "ZeroCarbon.html"
+- "scripts.js"
 
 O arquivo "ZeroCarbon.html" concentra uma implementação de interface que reúne as principais telas do sistema, com navegação entre páginas utilizando JavaScript.
 
@@ -419,22 +419,6 @@ index.html
 
 em um navegador web.
 
-Também existe no repositório uma implementação da aplicação em:
-
-ZeroCarbon.html
-
-A implementação do `ZeroCarbon.html` contém navegação entre Landing Page, Login, Cadastro, Dashboard, Calculadora, Histórico e Perfil.
-
-
-## 📁 Estrutura do Projeto
-
-A estrutura atualmente identificada no repositório é:
-
-=======
-ZeroCarbon.html
-
-A implementação do "ZeroCarbon.html" contém navegação entre Landing Page, Login, Cadastro, Dashboard, Calculadora, Histórico e Perfil.
-
 ---
 
 📁 Estrutura do Projeto
@@ -449,7 +433,7 @@ ZeroCarbon/
 |
 ├── LICENSE
 └── README.md
-<<<<<<< HEAD
+
 ```
 =======
 
@@ -526,31 +510,38 @@ Não foi identificada uma API externa ou uma API própria implementada na versã
 
 ### Landing Page
 
-> **Inserir aqui uma captura de tela da Landing Page.**
+> <img width="1892" height="1020" alt="image" src="https://github.com/user-attachments/assets/0636e428-0847-4006-9468-48b918850aad" />
+
 
 ### Login
 
-> **Inserir aqui uma captura de tela da tela de Login.**
+> <img width="1870" height="1017" alt="image" src="https://github.com/user-attachments/assets/86e44455-8abd-45e2-979c-65bb7a45cf13" />
+
 
 ### Cadastro
 
-> **Inserir aqui uma captura de tela da tela de Cadastro.**
+> <img width="1872" height="996" alt="image" src="https://github.com/user-attachments/assets/74ab99b2-2afe-4794-b265-b0f0b582fc72" />
+
 
 ### Dashboard
 
-> **Inserir aqui uma captura de tela do Dashboard.**
+> <img width="1385" height="807" alt="image" src="https://github.com/user-attachments/assets/a0e13ca7-4593-49c0-9b6e-7686a80d121f" />
+
 
 ### Calculadora de Carbono
 
-> **Inserir aqui uma captura de tela da Calculadora de Carbono.**
+> <img width="1911" height="1007" alt="image" src="https://github.com/user-attachments/assets/43fbfcf0-8559-4d4c-8046-36e76b794ddb" />
+
 
 ### Histórico
 
-> **Inserir aqui uma captura de tela da tela de Histórico.**
+> <img width="1592" height="1008" alt="image" src="https://github.com/user-attachments/assets/883a4638-f692-40c6-8e05-45b4538553e6" />
+
 
 ### Perfil
 
-> **Inserir aqui uma captura de tela da tela de Perfil.**
+> <img width="1586" height="1007" alt="image" src="https://github.com/user-attachments/assets/8992c2f4-e623-41df-94a3-438697b0a599" />
+
 
 ---
 
