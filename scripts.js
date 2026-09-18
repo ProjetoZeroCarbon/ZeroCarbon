@@ -16,9 +16,7 @@ document.querySelectorAll("[data-goto]").forEach(element => {
 });
 
 
-// =========================================================
 // TEMA
-// =========================================================
 
 const root = document.documentElement;
 
@@ -50,9 +48,7 @@ document.querySelectorAll("#themeToggle, [data-theme-button]").forEach(button =>
 });
 
 
-// =========================================================
 // CALCULADORA DE PEGADA DE CARBONO
-// =========================================================
 
 function runCalc() {
   const kwhInput = document.getElementById("c-kwh");
@@ -118,16 +114,12 @@ function runCalc() {
 }
 
 
-// =========================================================
 // BOTÃO CALCULAR
-// =========================================================
 
 document.getElementById("calcBtn").addEventListener("click", runCalc);
 
 
-// =========================================================
-// SELEÇÃO DO COMBUSTÍVEL
-// =========================================================
+//SELEÇÃO DO COMBUSTÍVEL
 
 document.querySelectorAll("#fuelGroup .radio-opt").forEach(option => {
   option.addEventListener("click", () => {
@@ -142,15 +134,13 @@ document.querySelectorAll("#fuelGroup .radio-opt").forEach(option => {
   });
 });
 
-/* =========================================================
-   CADASTRO E LOGIN
-   ========================================================= */
+// CADASTRO E LOGIN
 
 const signupBtn = document.getElementById("signupBtn");
 const loginBtn = document.getElementById("loginBtn");
 
 
-// ---------- CADASTRO ----------
+// CADASTRO
 
 if (signupBtn) {
   signupBtn.addEventListener("click", () => {
@@ -251,7 +241,7 @@ if (signupBtn) {
 }
 
 
-// ---------- LOGIN ----------
+// LOGIN
 
 if (loginBtn) {
   loginBtn.addEventListener("click", () => {
@@ -296,7 +286,7 @@ if (loginBtn) {
 }
 
 
-// ---------- ATUALIZA OS DADOS DO USUÁRIO NO SISTEMA ----------
+// ATUALIZA OS DADOS DO USUÁRIO NO SISTEMA
 
 function atualizarUsuario(usuario) {
 
@@ -378,7 +368,7 @@ if (dashboardDate) {
 }
 
 
-// ---------- CARREGA O USUÁRIO SALVO ----------
+// CARREGA O USUÁRIO SALVO
 
 const usuarioSalvo =
   localStorage.getItem("zerocarbon-user");
@@ -393,9 +383,7 @@ if (usuarioSalvo && usuarioLogado === "true") {
   atualizarUsuario(usuario);
 }
 
-/* =========================================================
-   FOTO DE PERFIL
-   ========================================================= */
+// FOTO DE PERFIL
 
 const changePhotoBtn = document.getElementById("changePhotoBtn");
 const profilePhotoInput = document.getElementById("profilePhotoInput");
@@ -446,7 +434,7 @@ if (changePhotoBtn && profilePhotoInput) {
 }
 
 
-/* ---------- ATUALIZA A FOTO ---------- */
+// ATUALIZA A FOTO
 
 function updateProfilePhoto(photo) {
 
@@ -468,7 +456,7 @@ function updateProfilePhoto(photo) {
 }
 
 
-/* ---------- CARREGA A FOTO SALVA ---------- */
+// CARREGA A FOTO SALVA
 
 const savedProfilePhoto =
   localStorage.getItem("zerocarbon-profile-photo");
