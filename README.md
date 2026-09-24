@@ -545,7 +545,7 @@ Não foi identificada uma API externa ou uma API própria implementada na versã
 ## 👥 Equipe do Projeto
 
 | Integrante | Função |
-|            
+|---|---|
 | Kauã Nascimento | Scrum Master + Dev |
 | Denzel Luiz | UI/UX Design + Dev |
 | Maria Eduarda | UI/UX Design |
@@ -555,7 +555,8 @@ Não foi identificada uma API externa ou uma API própria implementada na versã
 | Arhur Luan | Tech Writer + README |
 | Rodrigo Alves | QA + Tech Writer |
 | Antônio Souza | Tech Lead + Dev |
----
+
+
 
 ## 🚧 Status do Projeto
 
