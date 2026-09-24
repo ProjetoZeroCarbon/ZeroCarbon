@@ -556,38 +556,6 @@ Não foi identificada uma API externa ou uma API própria implementada na versã
 | Rodrigo Alves | QA + Tech Writer |
 | Antônio Souza | Tech Lead + Dev |
 
-
-
-## 🚧 Status do Projeto
-
-**Em desenvolvimento.**
-=======
-🖼️ Capturas de Tela
-
-Landing Page
-
-«Adicionar dados reais após integração backend»
-
-Login
-
-«Salvar login dos usuários após integração backend»
-
-Cadastro
-
-«Conectar cadastro ao banco de dados após integração backend»
-
-Dashboard
-
-«Implementar Dashboard após integração backend»
-
-Histórico
-
-«Implementar histórico após integração backend»
-
-Perfil
-
-«Salvar informações e garantir personalização única para cada usuário após backend»
-
 ---
 
 
