@@ -544,18 +544,17 @@ Não foi identificada uma API externa ou uma API própria implementada na versã
 
 ## 👥 Equipe do Projeto
 
-| Integrante      | Função                 |                   
-| --------------- | --------------------- -|
-| Kauã Nascimento | Scrum Master + Dev    -|
-|- Denzel Luiz    | UI/UX Design + Dev    -|
-|- Maria Eduarda  | UI/UX Design          -|
-|- Ícaro Scárdua  | Dev + Tech Lead       -| 
-|- Daniel Victor  | QA/ Tech Writer       -|
-|- Breno Aguiar   | Tech Writer,Relatório -|
-|- Arhur Luan     | Tech Writer + Readme  -|                      
-|- Rodrigo Alves  |  QA/ Tech Writer      -|
-|- Antônio Souza  |  Tech Lead + Dev      -| 
-
+| Integrante | Função |
+|            
+| Kauã Nascimento | Scrum Master + Dev |
+| Denzel Luiz | UI/UX Design + Dev |
+| Maria Eduarda | UI/UX Design |
+| Ícaro Scárdua | Dev + Tech Lead |
+| Daniel Victor | QA + Tech Writer |
+| Breno Aguiar | Tech Writer + Relatório |
+| Arhur Luan | Tech Writer + README |
+| Rodrigo Alves | QA + Tech Writer |
+| Antônio Souza | Tech Lead + Dev |
 ---
 
 ## 🚧 Status do Projeto
