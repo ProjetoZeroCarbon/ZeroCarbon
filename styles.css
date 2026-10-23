@@ -54,6 +54,9 @@ html[data-theme="dark"]{
   --slate:#9fbeaf;
   --gray:#759486;
 
+  /* Cores de destaque claras para manter contraste no tema escuro */
+  --mint-text:#6FDBC7;
+
   --shadow:0 20px 48px rgba(0,0,0,.34),
            inset 0 1px 0 rgba(255,255,255,.05);
 
@@ -198,6 +201,7 @@ html[data-theme="dark"] .site-header{
   white-space:nowrap;
 }
 html[data-theme="dark"] .logo{color:#eaf7f0}
+html[data-theme="dark"] .nav-links a:hover{color:var(--mint-text)}
 
 .logo-mark{
   width:36px;height:36px;
@@ -983,5 +987,59 @@ html[data-theme="dark"] .auth-form-wrap{background:rgba(255,255,255,.02)}
   align-items: center;
 }
 
+body {
+  transition: background .35s ease, color .35s ease;
+}
 
+body::before {
+  opacity: .30;
+}
+
+html[data-theme="dark"] body::before {
+  opacity: .34;
+}
+
+:root {
+  --card: rgba(255, 255, 255, .84);
+}
+
+html[data-theme="dark"] {
+  --card: rgba(20, 37, 29, .90);
+}
+
+.hero h1 {
+  color: var(--ink);
+  text-shadow: 0 2px 10px rgba(255, 255, 255, .35);
+}
+
+.hero .lead {
+  color: var(--text);
+  text-shadow: 0 1px 5px rgba(255, 255, 255, .20);
+}
+
+html[data-theme="dark"] .hero h1 {
+  color: var(--ink);
+  text-shadow: 0 2px 10px rgba(0, 0, 0, .30);
+}
+
+html[data-theme="dark"] .hero .lead {
+  color: var(--text);
+  text-shadow: none;
+}
+
+.hero {
+  background: rgba(255, 255, 255, .78);
+}
+
+html[data-theme="dark"] .hero {
+  background: rgba(10, 31, 22, .88);
+}
+
+.site-header {
+  background: rgba(255, 255, 255, .76);
+}
+
+html[data-theme="dark"] .site-header {
+  background: rgba(11, 25, 19, .86);
+}
 
