@@ -1,9 +1,20 @@
 /* ============================================================
    ZeroCarbon — auth.js
    Lógica das páginas de login e cadastro.
+   Quem já está logado é enviado direto ao painel.
    ============================================================ */
 
-import { Api, Session } from "./api.js";
+import { Api, Session, Pages } from "./api.js";
+
+function redirectIfLoggedIn() {
+  if (Session.isAuthenticated()) window.location.replace(Pages.dashboard);
+}
+
+// Roda já ao carregar (antes de mostrar o formulário) e ao voltar pelo histórico.
+redirectIfLoggedIn();
+window.addEventListener("pageshow", (event) => {
+  if (event.persisted) redirectIfLoggedIn();
+});
 
 function showError(form, message) {
   const box = form.querySelector(".form-error");
@@ -36,7 +47,7 @@ function initLoginForm() {
     try {
       const { token } = await Api.auth.login(usernameOrEmail, password);
       Session.setToken(token);
-      window.location.href = "dashboard.html";
+      window.location.replace(Pages.dashboard);
     } catch (err) {
       showError(form, err.message);
     }
@@ -73,7 +84,7 @@ function initSignupForm() {
     try {
       const { token } = await Api.auth.register(payload);
       Session.setToken(token);
-      window.location.href = "dashboard.html";
+      window.location.replace(Pages.dashboard);
     } catch (err) {
       showError(form, err.message);
     }

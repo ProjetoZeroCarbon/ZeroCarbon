@@ -9,6 +9,9 @@ export function errorHandler(err, _req, res, _next) {
   if (err instanceof HttpError) {
     return res.status(err.status).json({ message: err.message });
   }
+  if (err.type === "entity.too.large") {
+    return res.status(413).json({ message: "Imagem grande demais." });
+  }
   if (err.type === "entity.parse.failed") {
     return res.status(400).json({ message: "JSON inválido no corpo da requisição." });
   }

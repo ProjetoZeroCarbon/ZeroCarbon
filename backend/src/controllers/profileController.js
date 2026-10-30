@@ -1,5 +1,6 @@
 import { pool } from "../config/db.js";
 import { HttpError } from "../utils/httpError.js";
+import { toDataUrl } from "../utils/image.js";
 import { USER_COLUMNS, serializeUser } from "../utils/user.js";
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -10,8 +11,21 @@ async function findUser(id) {
   return rows[0];
 }
 
+async function findAvatarUrl(userId) {
+  const [rows] = await pool.execute(
+    "SELECT mime_type, data FROM user_avatars WHERE user_id = ?",
+    [userId]
+  );
+  return rows[0] ? toDataUrl(rows[0].mime_type, rows[0].data) : null;
+}
+
+async function buildProfile(userId) {
+  const [row, avatarUrl] = await Promise.all([findUser(userId), findAvatarUrl(userId)]);
+  return { ...serializeUser(row), avatarUrl };
+}
+
 export async function getProfile(req, res) {
-  res.json(serializeUser(await findUser(req.userId)));
+  res.json(await buildProfile(req.userId));
 }
 
 // Campos editáveis (whitelist): coluna no banco <- chave no corpo da requisição
@@ -55,5 +69,5 @@ export async function updateProfile(req, res) {
     }
   }
 
-  res.json(serializeUser(await findUser(req.userId)));
+  res.json(await buildProfile(req.userId));
 }

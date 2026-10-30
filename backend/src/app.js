@@ -20,7 +20,13 @@ app.use(
     },
   })
 );
-app.use(express.json({ limit: "100kb" }));
+
+// Corpo JSON pequeno por padrão; só a rota da foto aceita um corpo maior.
+const smallJson = express.json({ limit: "100kb" });
+const avatarJson = express.json({ limit: "600kb" });
+app.use((req, res, next) =>
+  req.path === "/api/profile/avatar" ? avatarJson(req, res, next) : smallJson(req, res, next)
+);
 
 app.use("/api", routes);
 app.use(notFound);

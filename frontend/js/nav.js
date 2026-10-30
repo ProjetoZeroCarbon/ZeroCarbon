@@ -4,15 +4,14 @@
    marca o link ativo, cuida do botão de logout e protege rotas privadas.
    ============================================================ */
 
-import { Session } from "./api.js";
-
-const PUBLIC_PAGES = ["index.html", "login.html", "signup.html", ""];
+import { Session, Pages } from "./api.js";
 
 export function guardPrivatePage() {
-  const page = window.location.pathname.split("/").pop();
-  if (!PUBLIC_PAGES.includes(page) && !Session.isAuthenticated()) {
-    window.location.href = "login.html";
+  if (!Session.isAuthenticated()) {
+    window.location.replace(Pages.login);
+    return false;
   }
+  return true;
 }
 
 export function initNav() {
@@ -25,12 +24,18 @@ export function initNav() {
   document.querySelectorAll("[data-logout]").forEach((btn) => {
     btn.addEventListener("click", () => {
       Session.clear();
-      window.location.href = "login.html";
+      window.location.replace(Pages.login);
     });
   });
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-  guardPrivatePage();
-  initNav();
+// Este script só é carregado em páginas internas, então todas são privadas.
+guardPrivatePage();
+
+document.addEventListener("DOMContentLoaded", initNav);
+
+// Voltar pelo histórico do navegador após o logout restaura a página do cache:
+// revalida a sessão nesse caso.
+window.addEventListener("pageshow", (event) => {
+  if (event.persisted) guardPrivatePage();
 });

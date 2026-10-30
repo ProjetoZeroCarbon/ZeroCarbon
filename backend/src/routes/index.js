@@ -4,6 +4,7 @@ import { pool } from "../config/db.js";
 import { requireAuth } from "../middleware/auth.js";
 import * as auth from "../controllers/authController.js";
 import * as profile from "../controllers/profileController.js";
+import * as avatar from "../controllers/avatarController.js";
 import * as calculator from "../controllers/calculatorController.js";
 import * as history from "../controllers/historyController.js";
 
@@ -32,6 +33,8 @@ router.post("/auth/login", authLimiter, auth.login);
 
 router.get("/profile", requireAuth, profile.getProfile);
 router.put("/profile", requireAuth, profile.updateProfile);
+router.put("/profile/avatar", requireAuth, avatar.setAvatar);
+router.delete("/profile/avatar", requireAuth, avatar.removeAvatar);
 
 router.post("/calculator", requireAuth, calculator.calculate);
 

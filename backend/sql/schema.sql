@@ -39,3 +39,15 @@ CREATE TABLE IF NOT EXISTS carbon_records (
   CONSTRAINT fk_records_user FOREIGN KEY (user_id)
     REFERENCES users (id) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- Foto de perfil: uma por usuário (substituída a cada novo envio).
+-- O frontend reduz a imagem para 256x256 antes de enviar, então ocupa poucos KB.
+CREATE TABLE IF NOT EXISTS user_avatars (
+  user_id    INT UNSIGNED NOT NULL,
+  mime_type  VARCHAR(20)  NOT NULL,
+  data       MEDIUMBLOB   NOT NULL,
+  updated_at TIMESTAMP    NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (user_id),
+  CONSTRAINT fk_avatar_user FOREIGN KEY (user_id)
+    REFERENCES users (id) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
