@@ -87,3 +87,8 @@
   .calc-header{ padding:20px; }
   .profile-grid{ grid-template-columns:1fr; }
 }
+
+.avatar-lg{ background-size:cover; background-position:center; }
+.avatar-actions{ display:flex; gap:8px; justify-content:center; margin-bottom:6px; }
+.avatar-msg{ min-height:1.2em; font-size:.8rem; color:var(--text-muted); margin:0 0 14px; }
+.avatar-msg.error{ color:#c0392b; }

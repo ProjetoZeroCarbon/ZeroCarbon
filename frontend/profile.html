@@ -33,7 +33,13 @@
 
     <div class="profile-grid">
       <div class="card profile-card">
-        <div class="avatar-lg"></div>
+        <div class="avatar-lg" id="avatarPreview"></div>
+<input type="file" id="avatarInput" accept="image/png,image/jpeg,image/webp" hidden>
+<div class="avatar-actions">
+  <button type="button" class="btn btn-ghost" id="avatarChange">Alterar foto</button>
+  <button type="button" class="btn btn-ghost" id="avatarRemove" style="display:none">Remover</button>
+</div>
+<p class="avatar-msg" id="avatarMsg"></p>
         <h3 data-profile-name>Minha conta</h3>
         <div class="loc" data-profile-location>—</div>
         <div class="badge-grid">
