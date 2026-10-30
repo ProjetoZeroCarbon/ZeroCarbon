@@ -1,0 +1,32 @@
+/* ============================================================
+   ZeroCarbon — auth.css
+   ============================================================ */
+
+.auth-shell{
+  min-height:100vh; display:grid; grid-template-columns:1fr 1fr;
+}
+.auth-brand{
+  position:relative; padding:48px; display:flex; flex-direction:column; justify-content:space-between;
+  color:#fff;
+  background:
+    linear-gradient(180deg, rgba(11,43,32,.35), rgba(9,28,21,.92)),
+    url("https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=1400&q=80") center/cover no-repeat;
+}
+.auth-brand .logo{ color:#fff; }
+.auth-brand .logo-mark{ background:rgba(255,255,255,.15); }
+.auth-brand-mid h2{ color:#fff; max-width:20ch; }
+.auth-brand-mid p{ color:#D8EAE0; max-width:38ch; }
+.auth-quote{
+  border-left:3px solid var(--leaf-400); padding-left:16px; font-size:.9rem; color:#E4F1EA;
+}
+.auth-quote b{ display:block; font-family:var(--font-display); font-weight:500; font-size:1.05rem; margin-bottom:4px; }
+
+.auth-form-wrap{ display:flex; align-items:center; justify-content:center; padding:32px; }
+.auth-form{ width:100%; max-width:400px; }
+.auth-form h2{ margin-bottom:.2em; }
+.auth-form > p{ margin-bottom:26px; }
+
+@media (max-width: 900px){
+  .auth-shell{ grid-template-columns:1fr; }
+  .auth-brand{ display:none; }
+}

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Histórico — ZeroCarbon</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400..600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/components.css">
+<link rel="stylesheet" href="css/app.css">
+</head>
+<body>
+<div class="app-shell">
+  <aside class="app-side">
+    <a class="logo" href="index.html"><span class="logo-mark">🌿</span>ZeroCarbon</a>
+    <nav class="side-nav">
+      <a class="side-link" href="dashboard.html">⌂ <span>Início</span></a>
+      <a class="side-link" href="calculator.html">▣ <span>Calculadora</span></a>
+      <a class="side-link" href="history.html">◴ <span>Histórico</span></a>
+      <a class="side-link" href="profile.html">☺ <span>Perfil</span></a>
+    </nav>
+    <div class="side-goal"><div class="lbl">Meta anual</div><div class="val">55% concluído</div><div class="side-bar"><i style="width:55%"></i></div></div>
+    <div class="side-user"><div class="avatar"></div><div><div class="who" data-profile-name>Minha conta</div></div></div>
+  </aside>
+
+  <main class="app-main">
+    <div class="app-topbar">
+      <div><h1>Histórico</h1><div class="sub">Registros dos últimos meses.</div></div>
+      <button class="theme-toggle" data-theme-toggle title="Alternar tema"><span class="moon">🌙</span><span class="sun">☀️</span></button>
+    </div>
+
+    <div class="hist-stats">
+      <div class="hist-stat"><div class="lbl">Redução acumulada</div><div class="num good">-18%</div></div>
+      <div class="hist-stat"><div class="lbl">Melhor mês</div><div class="num">Ago · 2.2t</div></div>
+      <div class="hist-stat"><div class="lbl">Meta anual</div><div class="num">20 tCO₂</div></div>
+    </div>
+
+    <div class="hist-grid">
+      <div class="card">
+        <div class="card-title"><h3>Registros mensais</h3></div>
+        <div class="hist-list" id="histList">
+          <div class="hist-row"><div class="m"><div class="n">Carregando…</div></div></div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-title"><h3>Gráfico anual</h3></div>
+        <svg class="line-chart" viewBox="0 0 240 160" width="100%">
+          <polyline points="10,60 50,40 90,25 130,35 170,110 210,130" fill="none" stroke="#2F9E67" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="10" cy="60" r="4" fill="#2F9E67"/><circle cx="50" cy="40" r="4" fill="#2F9E67"/>
+          <circle cx="90" cy="25" r="4" fill="#2F9E67"/><circle cx="130" cy="35" r="4" fill="#2F9E67"/>
+          <circle cx="170" cy="110" r="4" fill="#2F9E67"/><circle cx="210" cy="130" r="4" fill="#2F9E67"/>
+        </svg>
+        <div class="tip-card"><div class="lbl">TENDÊNCIA</div><p>Sua pegada vem caindo desde junho — mantendo o ritmo, você bate a meta anual em novembro.</p></div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<script type="module" src="js/theme.js"></script>
+<script type="module" src="js/nav.js"></script>
+<script type="module" src="js/history.js"></script>
+</body>
+</html>

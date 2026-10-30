@@ -1,0 +1,130 @@
+/* ============================================================
+   ZeroCarbon — components.css
+   Componentes reutilizados entre páginas.
+   ============================================================ */
+
+/* --- topo / navegação pública --- */
+.site-header{ padding:22px 0; }
+.site-nav{
+  display:flex; align-items:center; justify-content:space-between; gap:24px;
+}
+.logo{
+  display:flex; align-items:center; gap:10px;
+  font-family:var(--font-display); font-size:1.15rem; font-weight:600;
+  color:var(--text);
+}
+.logo-mark{
+  width:34px; height:34px; border-radius:50%;
+  background:var(--accent); color:#fff;
+  display:flex; align-items:center; justify-content:center;
+  font-size:16px;
+}
+.nav-links{ display:flex; gap:28px; }
+.nav-links a{ color:var(--text-muted); font-size:.95rem; }
+.nav-links a:hover{ color:var(--text); }
+.nav-actions{ display:flex; align-items:center; gap:10px; }
+
+/* --- botões --- */
+.btn{
+  appearance:none; border:1.5px solid transparent; cursor:pointer;
+  border-radius:999px; padding:12px 22px; font-size:.95rem; font-weight:600;
+  display:inline-flex; align-items:center; justify-content:center; gap:8px;
+  transition:transform .15s ease, background .2s ease, border-color .2s ease, box-shadow .2s ease;
+}
+.btn:active{ transform:translateY(1px); }
+.btn-primary{ background:var(--accent-strong); color:#fff; }
+.btn-primary:hover{ background:var(--forest-900); }
+.btn-leaf{ background:var(--accent); color:#fff; box-shadow:var(--shadow-soft); }
+.btn-leaf:hover{ filter:brightness(1.05); }
+.btn-ghost{ background:transparent; border-color:var(--line); color:var(--text); }
+.btn-ghost:hover{ border-color:var(--accent); }
+.btn-lg{ padding:15px 28px; font-size:1rem; }
+.btn-block{ width:100%; }
+
+/* --- toggle de tema --- */
+.theme-toggle{
+  width:40px; height:40px; border-radius:50%; border:1.5px solid var(--line);
+  background:var(--surface); cursor:pointer; display:flex; align-items:center; justify-content:center;
+  font-size:16px;
+}
+.theme-toggle .sun{ display:none; }
+[data-theme="dark"] .theme-toggle .moon{ display:none; }
+[data-theme="dark"] .theme-toggle .sun{ display:inline; }
+
+/* --- cards --- */
+.card{
+  background:var(--surface); border-radius:var(--radius-md);
+  padding:24px; box-shadow:var(--shadow-card); border:1px solid var(--line);
+}
+.card-title{ display:flex; align-items:center; justify-content:space-between; margin-bottom:14px; }
+.card-title h3{ margin:0; }
+.tag{
+  font-size:.68rem; font-weight:700; letter-spacing:.04em; color:var(--accent-strong);
+  background:rgba(47,158,103,.12); padding:5px 10px; border-radius:999px;
+}
+
+/* --- campos de formulário --- */
+.field{ margin-bottom:16px; }
+.field label{ display:block; font-size:.85rem; font-weight:600; margin-bottom:6px; color:var(--text); }
+.field-row{ display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+.input, select.input{
+  width:100%; padding:13px 14px; border-radius:var(--radius-sm);
+  border:1.5px solid var(--line); background:var(--surface); color:var(--text);
+  font-size:.95rem; font-family:inherit;
+}
+.input:focus{ border-color:var(--accent); outline:none; box-shadow:0 0 0 4px rgba(47,158,103,.15); }
+.field-note{ font-size:.8rem; color:var(--text-muted); margin-bottom:8px; }
+.form-meta{ display:flex; justify-content:space-between; align-items:center; font-size:.85rem; margin:14px 0 20px; color:var(--text-muted); }
+.form-switch{ text-align:center; margin-top:18px; font-size:.9rem; color:var(--text-muted); }
+.form-switch a{ color:var(--accent-strong); font-weight:600; }
+.form-error{
+  display:none; background:rgba(201,119,63,.12); color:var(--clay-500);
+  border:1px solid rgba(201,119,63,.35); border-radius:var(--radius-sm);
+  padding:10px 14px; font-size:.85rem; margin-bottom:16px;
+}
+.form-error.visible{ display:block; }
+
+.radio-group{ display:flex; gap:10px; margin-bottom:16px; flex-wrap:wrap; }
+.radio-opt{
+  border:1.5px solid var(--line); border-radius:999px; padding:9px 16px;
+  font-size:.85rem; cursor:pointer; color:var(--text-muted);
+}
+.radio-opt input{ margin-right:6px; }
+.radio-opt.checked, .radio-opt:has(input:checked){
+  border-color:var(--accent); color:var(--accent-strong); background:rgba(47,158,103,.08);
+}
+
+/* --- app shell (dashboard / calc / historico / perfil) --- */
+.app-shell{ display:grid; grid-template-columns:250px 1fr; min-height:100vh; }
+.app-side{
+  background:var(--surface); border-right:1px solid var(--line);
+  padding:26px 20px; display:flex; flex-direction:column; gap:28px;
+}
+.side-nav{ display:flex; flex-direction:column; gap:4px; }
+.side-link{
+  display:flex; align-items:center; gap:10px; padding:11px 12px; border-radius:var(--radius-sm);
+  color:var(--text-muted); font-size:.92rem; font-weight:500;
+}
+.side-link svg{ width:18px; height:18px; }
+.side-link:hover{ background:var(--surface-alt); color:var(--text); }
+.side-link.active{ background:rgba(47,158,103,.12); color:var(--accent-strong); font-weight:700; }
+.side-goal{ margin-top:auto; padding:14px; background:var(--surface-alt); border-radius:var(--radius-sm); }
+.side-goal .lbl{ font-size:.75rem; color:var(--text-muted); }
+.side-goal .val{ font-weight:700; margin:2px 0 8px; }
+.side-bar{ height:6px; border-radius:999px; background:var(--line); overflow:hidden; }
+.side-bar i{ display:block; height:100%; background:var(--accent); border-radius:999px; }
+.side-user{ display:flex; align-items:center; gap:10px; }
+.avatar, .avatar-lg{ border-radius:50%; background:linear-gradient(135deg,var(--leaf-400),var(--water-500)); }
+.avatar{ width:36px; height:36px; }
+.avatar-lg{ width:84px; height:84px; margin:0 auto 12px; }
+.who{ font-weight:700; font-size:.9rem; }
+.sub{ font-size:.78rem; color:var(--text-muted); }
+
+.app-main{ padding:34px 40px; max-width:1080px; }
+.app-topbar{ display:flex; align-items:center; justify-content:space-between; margin-bottom:26px; }
+
+@media (max-width: 880px){
+  .app-shell{ grid-template-columns:1fr; }
+  .app-side{ flex-direction:row; overflow-x:auto; border-right:none; border-bottom:1px solid var(--line); }
+  .app-main{ padding:24px 18px; }
+}

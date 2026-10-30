@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calculadora — ZeroCarbon</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400..600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/components.css">
+<link rel="stylesheet" href="css/app.css">
+</head>
+<body>
+<div class="calc-header">
+  <a class="logo" href="dashboard.html"><span class="logo-mark">🌿</span>ZeroCarbon</a>
+  <a class="btn btn-ghost" href="dashboard.html">← Voltar para o início</a>
+</div>
+
+<div class="calc-grid">
+  <div class="card">
+    <div class="calc-section">
+      <div class="head"><div class="ic" style="background:rgba(240,180,41,.16)">⚡</div><h4>Energia elétrica</h4></div>
+      <div class="field"><label for="c-kwh">Consumo mensal (kWh)</label><input class="input" id="c-kwh" type="number" min="0" placeholder="Ex: 250"></div>
+    </div>
+    <div class="calc-section">
+      <div class="head"><div class="ic" style="background:rgba(91,70,54,.16)">🔥</div><h4>Consumo de gás</h4></div>
+      <div class="field"><label for="c-gas">Consumo mensal (m³)</label><input class="input" id="c-gas" type="number" min="0" placeholder="Ex: 15"></div>
+    </div>
+    <div class="calc-section">
+      <div class="head"><div class="ic" style="background:rgba(58,124,165,.16)">🚗</div><h4>Transporte</h4></div>
+      <div class="field-note">Tipo de combustível</div>
+      <div class="radio-group" id="fuelGroup">
+        <label class="radio-opt checked"><input type="radio" name="fuel" value="0.192" checked> Gasolina</label>
+        <label class="radio-opt"><input type="radio" name="fuel" value="0.030"> Álcool</label>
+        <label class="radio-opt"><input type="radio" name="fuel" value="0.212"> Diesel</label>
+      </div>
+      <div class="field"><label for="c-km">km rodados por mês</label><input class="input" id="c-km" type="number" min="0" placeholder="Ex: 800"></div>
+    </div>
+    <button class="btn btn-leaf btn-block btn-lg" id="calcBtn" type="button">Calcular minha pegada</button>
+  </div>
+
+  <div class="card calc-preview" style="display:none;">
+    <div class="card-title"><h3>Sua estimativa</h3><span class="tag">ESTIMATIVA</span></div>
+    <div class="calc-total"><div class="num" id="calcTotal">0.00 <span>tCO₂/mês</span></div><div class="lbl">pegada estimada</div></div>
+    <div class="calc-breakdown">
+      <div class="row"><div class="k"><span class="dot" style="background:#E0A82E"></span>Energia elétrica</div><div class="v" id="calcElet">0.00 t</div></div>
+      <div class="row"><div class="k"><span class="dot" style="background:var(--bark-700)"></span>Gás</div><div class="v" id="calcGas">0.00 t</div></div>
+      <div class="row"><div class="k"><span class="dot" style="background:var(--water-500)"></span>Transporte</div><div class="v" id="calcTransp">0.00 t</div></div>
+    </div>
+    <div class="tip-card"><div class="lbl">COMPARATIVO</div><p id="calcCompare"></p></div>
+  </div>
+</div>
+
+<script type="module" src="js/theme.js"></script>
+<script type="module" src="js/nav.js"></script>
+<script type="module" src="js/calculator.js"></script>
+</body>
+</html>

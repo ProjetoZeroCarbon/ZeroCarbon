@@ -1,0 +1,89 @@
+/* ============================================================
+   ZeroCarbon — app.css
+   Estilos para dashboard, calculadora, histórico e perfil.
+   ============================================================ */
+
+.dash-grid{ display:grid; grid-template-columns:1.1fr 1fr; gap:20px; margin-bottom:20px; }
+.hero-stat-card{
+  background:linear-gradient(135deg,var(--forest-900),var(--forest-700));
+  color:#fff; border-radius:var(--radius-md); padding:26px;
+  display:flex; align-items:center; gap:22px;
+}
+.mini-ring{ position:relative; width:110px; height:110px; flex-shrink:0; }
+.mini-ring .pct{ position:absolute; inset:0; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:1.1rem; }
+.hero-stat-card .lbl{ font-size:.78rem; color:#B9D6C5; margin-bottom:4px; }
+.hero-stat-card .num{ font-family:var(--font-display); font-size:1.8rem; }
+.hero-stat-card .num span{ font-size:.85rem; color:#B9D6C5; font-family:var(--font-body); }
+.hero-stat-card .delta{ margin-top:6px; font-size:.82rem; color:var(--leaf-400); }
+
+.cat-list{ display:flex; flex-direction:column; gap:14px; }
+.cat-row{ display:flex; align-items:center; gap:12px; }
+.cat-ic{ width:36px; height:36px; border-radius:10px; display:flex; align-items:center; justify-content:center; }
+.cat-row .txt{ flex:1; }
+.cat-row .n{ font-size:.85rem; font-weight:600; margin-bottom:6px; }
+.cat-row .b{ height:6px; border-radius:999px; background:var(--line); overflow:hidden; }
+.cat-row .b i{ display:block; height:100%; border-radius:999px; }
+.cat-row .v{ font-size:.85rem; font-weight:700; }
+
+.bar-chart{ display:flex; align-items:flex-end; gap:14px; height:150px; margin:10px 0 20px; }
+.bar-chart .col{ flex:1; display:flex; flex-direction:column; align-items:center; justify-content:flex-end; height:100%; }
+.bar-chart .b{ width:100%; border-radius:8px 8px 0 0; background:var(--line); }
+.bar-chart .b.now{ background:var(--accent); }
+.bar-chart .m{ margin-top:8px; font-size:.75rem; color:var(--text-muted); }
+
+.tip-card{
+  background:var(--surface-alt); border-radius:var(--radius-sm); padding:16px;
+  border:1px dashed var(--line);
+}
+.tip-card .lbl{ font-size:.7rem; font-weight:700; letter-spacing:.04em; color:var(--accent-strong); margin-bottom:6px; }
+.tip-card p{ margin:0; font-size:.88rem; }
+
+/* calculadora */
+.calc-header{ display:flex; align-items:center; justify-content:space-between; padding:26px 40px; }
+.calc-grid{ display:grid; grid-template-columns:1fr 1fr; gap:22px; padding:0 40px 60px; max-width:1080px; margin:0 auto; }
+.calc-section{ margin-bottom:22px; padding-bottom:22px; border-bottom:1px solid var(--line); }
+.calc-section:last-of-type{ border-bottom:none; }
+.calc-section .head{ display:flex; align-items:center; gap:10px; margin-bottom:14px; }
+.calc-section .ic{ width:34px; height:34px; border-radius:10px; display:flex; align-items:center; justify-content:center; }
+.calc-total{ text-align:center; padding:22px 0; }
+.calc-total .num{ font-family:var(--font-display); font-size:2.4rem; color:var(--accent-strong); }
+.calc-total .num span{ font-size:1rem; color:var(--text-muted); font-family:var(--font-body); }
+.calc-breakdown .row{ display:flex; align-items:center; justify-content:space-between; padding:10px 0; border-bottom:1px solid var(--line); font-size:.88rem; }
+.calc-breakdown .k{ display:flex; align-items:center; gap:8px; color:var(--text-muted); }
+.calc-breakdown .dot{ width:9px; height:9px; border-radius:50%; }
+.calc-preview{ height:fit-content; }
+
+/* histórico */
+.hist-stats{ display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-bottom:20px; }
+.hist-stat{ background:var(--surface); border:1px solid var(--line); border-radius:var(--radius-md); padding:18px; }
+.hist-stat .lbl{ font-size:.78rem; color:var(--text-muted); margin-bottom:6px; }
+.hist-stat .num{ font-family:var(--font-display); font-size:1.4rem; }
+.hist-stat .num.good{ color:var(--accent-strong); }
+.hist-grid{ display:grid; grid-template-columns:1.1fr 1fr; gap:20px; }
+.hist-list{ display:flex; flex-direction:column; gap:2px; }
+.hist-row{ display:flex; align-items:center; justify-content:space-between; padding:12px 0; border-bottom:1px solid var(--line); }
+.hist-row .n{ font-size:.9rem; font-weight:600; }
+.hist-row .d{ font-size:.8rem; color:var(--text-muted); }
+.badge{ font-size:.75rem; font-weight:700; padding:4px 10px; border-radius:999px; }
+.badge.down{ background:rgba(47,158,103,.14); color:var(--accent-strong); }
+.badge.up{ background:rgba(201,119,63,.14); color:var(--clay-500); }
+.line-chart{ width:100%; height:auto; margin-bottom:16px; }
+
+/* perfil */
+.profile-grid{ display:grid; grid-template-columns:280px 1fr; gap:20px; align-items:start; }
+.profile-card{ text-align:center; }
+.profile-card .loc{ font-size:.85rem; color:var(--text-muted); margin-bottom:18px; }
+.badge-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:10px; margin-top:18px; }
+.achieve{ background:var(--surface-alt); border-radius:var(--radius-sm); padding:12px 6px; font-size:.72rem; color:var(--text-muted); }
+.achieve .ic{ font-size:18px; margin-bottom:4px; }
+.goal-row{ display:flex; align-items:center; justify-content:space-between; padding:12px 0; border-bottom:1px solid var(--line); }
+.settings-row{ display:flex; align-items:center; justify-content:space-between; padding:11px 0; border-bottom:1px solid var(--line); font-size:.88rem; }
+.settings-row .k{ color:var(--text-muted); }
+.settings-row-k{ font-size:.85rem; font-weight:600; }
+
+@media (max-width: 880px){
+  .dash-grid, .hist-grid{ grid-template-columns:1fr; }
+  .calc-grid{ grid-template-columns:1fr; padding:0 18px 40px; }
+  .calc-header{ padding:20px; }
+  .profile-grid{ grid-template-columns:1fr; }
+}

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Entrar — ZeroCarbon</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400..600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/components.css">
+<link rel="stylesheet" href="css/auth.css">
+</head>
+<body>
+<div class="auth-shell">
+  <div class="auth-brand">
+    <a class="logo" href="index.html"><span class="logo-mark">🌿</span>ZeroCarbon</a>
+    <div class="auth-brand-mid">
+      <h2>Bem-vindo de volta.</h2>
+      <p>Entre para ver seu painel ambiental, seu histórico mensal e o quanto falta para bater sua meta.</p>
+    </div>
+    <div class="auth-quote">
+      <b>"Reduzi 18% da minha pegada em 4 meses."</b>
+      Usuária ZeroCarbon desde maio de 2025
+    </div>
+  </div>
+
+  <div class="auth-form-wrap">
+    <form class="auth-form" id="loginForm" novalidate>
+      <h2>Entrar</h2>
+      <p>Informe seus dados para acessar sua conta.</p>
+      <div class="form-error" role="alert"></div>
+      <div class="field">
+        <label for="l-user">Usuário ou e-mail</label>
+        <input class="input" id="l-user" name="usernameOrEmail" placeholder="Digite seu usuário" autocomplete="username">
+      </div>
+      <div class="field">
+        <label for="l-pass">Senha</label>
+        <input class="input" id="l-pass" name="password" type="password" placeholder="••••••••" autocomplete="current-password">
+      </div>
+      <div class="form-meta">
+        <label><input type="checkbox"> Lembrar de mim</label>
+        <a href="#">Esqueceu a senha?</a>
+      </div>
+      <button class="btn btn-leaf btn-block btn-lg" type="submit">Entrar</button>
+      <p class="form-switch">Não tem uma conta? <a href="signup.html">Cadastre-se</a></p>
+    </form>
+  </div>
+</div>
+
+<script type="module" src="js/theme.js"></script>
+<script type="module" src="js/auth.js"></script>
+</body>
+</html>

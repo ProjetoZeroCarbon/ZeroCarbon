@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Criar conta — ZeroCarbon</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400..600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/components.css">
+<link rel="stylesheet" href="css/auth.css">
+</head>
+<body>
+<div class="auth-shell">
+  <div class="auth-brand">
+    <a class="logo" href="index.html"><span class="logo-mark">🌿</span>ZeroCarbon</a>
+    <div class="auth-brand-mid">
+      <h2>Monitore e reduza sua pegada de carbono.</h2>
+      <p>Crie sua conta e comece a transformar hábitos do dia a dia em decisões mais conscientes.</p>
+    </div>
+    <div class="auth-quote">
+      <b>Leva menos de 2 minutos</b>
+      Você já pode calcular sua primeira pegada logo em seguida.
+    </div>
+  </div>
+
+  <div class="auth-form-wrap">
+    <form class="auth-form" id="signupForm" novalidate>
+      <h2>Criar conta</h2>
+      <p>Preencha seus dados para começar.</p>
+      <div class="form-error" role="alert"></div>
+
+      <div class="field field-row">
+        <div><label for="s-nome">Nome</label><input class="input" id="s-nome" placeholder="Ex: João"></div>
+        <div><label for="s-sobrenome">Sobrenome</label><input class="input" id="s-sobrenome" placeholder="Ex: Silva"></div>
+      </div>
+      <div class="field field-row">
+        <div><label for="s-nasc">Data de nascimento</label><input class="input" id="s-nasc" placeholder="DD/MM/AAAA" maxlength="10"></div>
+        <div>
+          <label for="s-estado">Estado / Cidade</label>
+          <input class="input" id="s-estado" list="estados-cidades" placeholder="Digite seu estado ou cidade">
+          <datalist id="estados-cidades">
+            <option value="Acre"><option value="Alagoas"><option value="Amapá"><option value="Amazonas">
+            <option value="Bahia"><option value="Ceará"><option value="Distrito Federal"><option value="Espírito Santo">
+            <option value="Goiás"><option value="Maranhão"><option value="Mato Grosso"><option value="Mato Grosso do Sul">
+            <option value="Minas Gerais"><option value="Pará"><option value="Paraíba"><option value="Paraná">
+            <option value="Pernambuco"><option value="Piauí"><option value="Rio de Janeiro"><option value="Rio Grande do Norte">
+            <option value="Rio Grande do Sul"><option value="Rondônia"><option value="Roraima"><option value="Santa Catarina">
+            <option value="São Paulo"><option value="Sergipe"><option value="Tocantins">
+          </datalist>
+        </div>
+      </div>
+      <div class="field">
+        <label for="s-email">E-mail</label>
+        <input class="input" id="s-email" type="email" placeholder="seu@email.com" autocomplete="email">
+      </div>
+      <div class="field field-row">
+        <div><label for="s-senha">Senha</label><input class="input" id="s-senha" type="password" placeholder="Mínimo 8 caracteres" autocomplete="new-password"></div>
+        <div><label for="s-id">ID de usuário</label><input class="input" id="s-id" placeholder="Ex: joao_silva"></div>
+      </div>
+      <button class="btn btn-leaf btn-block btn-lg" type="submit">Cadastrar</button>
+      <p class="form-switch">Já tem conta? <a href="login.html">Entrar</a></p>
+    </form>
+  </div>
+</div>
+
+<script type="module" src="js/theme.js"></script>
+<script type="module" src="js/auth.js"></script>
+</body>
+</html>
