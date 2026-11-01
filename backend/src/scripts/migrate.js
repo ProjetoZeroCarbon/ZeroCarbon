@@ -26,7 +26,25 @@ try {
   );
   await conn.query(`USE \`${dbName}\``);
   await conn.query(await fs.readFile(schemaPath, "utf8"));
-  console.log(`✔ Banco "${dbName}" pronto (tabelas: users, carbon_records).`);
+
+  // Bancos criados na versão antiga tinham UNIQUE(user_id, period_month), que limitava
+  // o histórico a um cálculo por mês. Troca por um índice comum (mantém os dados).
+  const [legacy] = await conn.query(
+    `SELECT 1 FROM information_schema.statistics
+     WHERE table_schema = ? AND table_name = 'carbon_records' AND index_name = 'uq_records_user_period'
+     LIMIT 1`,
+    [dbName]
+  );
+  if (legacy.length) {
+    await conn.query(
+      `ALTER TABLE carbon_records
+         ADD INDEX idx_records_user_period (user_id, period_month),
+         DROP INDEX uq_records_user_period`
+    );
+    console.log("✔ Histórico atualizado: agora cada cálculo é salvo (antes: 1 por mês).");
+  }
+
+  console.log(`✔ Banco "${dbName}" pronto (tabelas: users, carbon_records, user_avatars).`);
 } catch (err) {
   console.error("Falha na migração:", err.message);
   process.exitCode = 1;

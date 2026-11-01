@@ -36,3 +36,15 @@ export function monthLabel(periodMonth) {
   const [year, month] = periodMonth.split("-");
   return `${MONTHS_PT[Number(month) - 1]} ${year}`;
 }
+
+/** Segundos desde 1970 (UNIX_TIMESTAMP do MySQL) -> "30 de outubro de 2026 às 19:37" no fuso informado. */
+export function formatDateTime(unixSeconds, timeZone) {
+  return new Intl.DateTimeFormat("pt-BR", {
+    timeZone,
+    day: "2-digit",
+    month: "long",
+    year: "numeric",
+    hour: "2-digit",
+    minute: "2-digit",
+  }).format(new Date(unixSeconds * 1000));
+}

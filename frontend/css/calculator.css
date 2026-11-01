@@ -1,0 +1,52 @@
+/* ============================================================
+   ZeroCarbon — calculator.css
+   Layout da calculadora. Carregado DEPOIS do app.css, então
+   estas regras substituem as antigas de .calc-header / .calc-grid.
+   ============================================================ */
+
+/* Cabeçalho alinhado à mesma coluna central do conteúdo */
+.calc-header{
+  max-width:1080px; margin:0 auto; padding:26px 40px;
+  display:flex; align-items:center; justify-content:space-between; gap:12px;
+}
+.calc-header-actions{ display:flex; align-items:center; gap:10px; flex-wrap:wrap; justify-content:flex-end; }
+.calc-header-actions .btn{ white-space:nowrap; }
+.lbl-short{ display:none; }
+
+/* Título da página */
+.calc-intro{ max-width:1080px; margin:0 auto; padding:6px 40px 30px; text-align:center; }
+.calc-intro h1{ font-family:var(--font-display); font-size:clamp(1.7rem,3.4vw,2.4rem); margin:0 0 8px; }
+.calc-intro p{ color:var(--text-muted); margin:0 auto; max-width:48ch; }
+
+/* Antes do cálculo: um único cartão centralizado.
+   Depois do cálculo (.has-result): formulário + resultado lado a lado. */
+.calc-grid{
+  display:grid; grid-template-columns:minmax(0,620px); justify-content:center;
+  gap:22px; max-width:1080px; margin:0 auto; padding:0 40px 60px;
+}
+.calc-grid.has-result{ grid-template-columns:repeat(2,minmax(0,1fr)); align-items:start; }
+
+.calc-section .field:last-child{ margin-bottom:0; }
+.calc-section .radio-group .radio-opt{ flex:1 1 0; min-width:84px; justify-content:center; text-align:center; }
+
+/* Cartão de resultado */
+.calc-preview{ position:sticky; top:24px; height:fit-content; animation:calc-in .35s ease both; }
+.calc-saved{ margin:18px 0 12px; font-size:.82rem; color:var(--text-muted); text-align:center; }
+.calc-result-actions{ display:grid; gap:10px; }
+
+@keyframes calc-in{
+  from{ opacity:0; transform:translateY(10px); }
+  to{ opacity:1; transform:none; }
+}
+@media (prefers-reduced-motion: reduce){ .calc-preview{ animation:none; } }
+
+@media (max-width: 880px){
+  .calc-header{ padding:20px 18px 12px; flex-wrap:wrap; }
+  .calc-header-actions{ width:100%; justify-content:space-between; gap:8px; }
+  .calc-header-actions .btn{ padding:10px 14px; font-size:.85rem; }
+  .lbl-full{ display:none; }
+  .lbl-short{ display:inline; }
+  .calc-intro{ padding:4px 18px 22px; }
+  .calc-grid, .calc-grid.has-result{ grid-template-columns:minmax(0,1fr); padding:0 18px 40px; }
+  .calc-preview{ position:static; }
+}

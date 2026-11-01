@@ -1,8 +1,8 @@
 /* ============================================================
    ZeroCarbon — calculator.js
    Lógica da calculadora de pegada de carbono.
-   O cálculo em si agora é feito e persistido pelo backend
-   (ver backend/src/controllers/calculatorController.js),
+   O cálculo em si é feito e persistido pelo backend
+   (ver backend/src/controllers/calculatorController.js);
    este módulo apenas coleta os dados do formulário e exibe o resultado.
    ============================================================ */
 
@@ -22,6 +22,9 @@ function renderResult(result) {
   const preview = document.querySelector(".calc-preview");
   preview.style.display = "block";
 
+  // Passa a grade para duas colunas (formulário + resultado)
+  document.getElementById("calcGrid")?.classList.add("has-result");
+
   document.getElementById("calcTotal").innerHTML =
     `${result.totalTco2.toFixed(2)} <span>tCO₂/mês</span>`;
   document.getElementById("calcElet").textContent = `${result.electricityTco2.toFixed(2)} t`;
@@ -29,6 +32,7 @@ function renderResult(result) {
   document.getElementById("calcTransp").textContent = `${result.transportTco2.toFixed(2)} t`;
   document.getElementById("calcCompare").textContent = result.comparisonText;
 
+  // No celular o resultado fica abaixo do formulário: leva a tela até ele.
   preview.scrollIntoView({ behavior: "smooth", block: "nearest" });
 }
 

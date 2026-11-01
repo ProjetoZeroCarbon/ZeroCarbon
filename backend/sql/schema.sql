@@ -19,7 +19,7 @@ CREATE TABLE IF NOT EXISTS users (
   UNIQUE KEY uq_users_email (email)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Um registro por usuário por mês: recalcular no mesmo mês atualiza o registro.
+-- Um registro por CÁLCULO: cada vez que o usuário usa a calculadora, uma nova linha.
 CREATE TABLE IF NOT EXISTS carbon_records (
   id               INT UNSIGNED  NOT NULL AUTO_INCREMENT,
   user_id          INT UNSIGNED  NOT NULL,
@@ -35,7 +35,7 @@ CREATE TABLE IF NOT EXISTS carbon_records (
   created_at       TIMESTAMP     NOT NULL DEFAULT CURRENT_TIMESTAMP,
   updated_at       TIMESTAMP     NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (id),
-  UNIQUE KEY uq_records_user_period (user_id, period_month),
+  KEY idx_records_user_period (user_id, period_month),
   CONSTRAINT fk_records_user FOREIGN KEY (user_id)
     REFERENCES users (id) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;

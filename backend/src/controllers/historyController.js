@@ -1,28 +1,39 @@
 import { pool } from "../config/db.js";
+import { env } from "../config/env.js";
 import { HttpError } from "../utils/httpError.js";
-import { monthLabel } from "../utils/dates.js";
+import { formatDateTime, monthLabel } from "../utils/dates.js";
+
+const MAX_ITEMS = 100;
 
 const deltaPct = (current, previous) =>
   previous > 0 ? Math.round(((current - previous) / previous) * 100) : 0;
 
-/** GET /history — mais recente primeiro; delta é relativo ao registro anterior. */
+/**
+ * GET /history — um item por cálculo, do mais recente para o mais antigo.
+ * O delta compara cada cálculo com o cálculo imediatamente anterior.
+ * (O campo se chama monthLabel por compatibilidade com o history.js; agora traz data e hora.)
+ */
 export async function list(req, res) {
   const [rows] = await pool.execute(
-    `SELECT period_month, total_tco2 FROM carbon_records
-     WHERE user_id = ? ORDER BY period_month ASC`,
+    `SELECT id, total_tco2, UNIX_TIMESTAMP(created_at) AS ts
+     FROM carbon_records WHERE user_id = ? ORDER BY id ASC`,
     [req.userId]
   );
 
   const records = rows.map((row, i) => ({
-    monthLabel: monthLabel(row.period_month),
+    id: row.id,
+    monthLabel: formatDateTime(row.ts, env.timezone),
     totalTco2: row.total_tco2,
     deltaPct: i === 0 ? 0 : deltaPct(row.total_tco2, rows[i - 1].total_tco2),
   }));
 
-  res.json(records.reverse());
+  res.json(records.reverse().slice(0, MAX_ITEMS));
 }
 
-/** GET /history/summary — dados do dashboard. */
+/**
+ * GET /history/summary — dados do dashboard.
+ * "Atual" = último cálculo; "anterior" = último cálculo de um mês anterior.
+ */
 export async function summary(req, res) {
   const [users] = await pool.execute(
     "SELECT first_name, monthly_goal_tco2 FROM users WHERE id = ?",
@@ -30,12 +41,22 @@ export async function summary(req, res) {
   );
   if (!users[0]) throw new HttpError(404, "Usuário não encontrado.");
 
-  const [rows] = await pool.execute(
+  const [latestRows] = await pool.execute(
     `SELECT period_month, total_tco2, electricity_tco2, gas_tco2, transport_tco2
-     FROM carbon_records WHERE user_id = ? ORDER BY period_month DESC LIMIT 2`,
+     FROM carbon_records WHERE user_id = ? ORDER BY id DESC LIMIT 1`,
     [req.userId]
   );
-  const [latest, previous] = rows;
+  const latest = latestRows[0];
+
+  let previous = null;
+  if (latest) {
+    const [prevRows] = await pool.execute(
+      `SELECT total_tco2 FROM carbon_records
+       WHERE user_id = ? AND period_month < ? ORDER BY id DESC LIMIT 1`,
+      [req.userId, latest.period_month]
+    );
+    previous = prevRows[0] ?? null;
+  }
 
   const goal = users[0].monthly_goal_tco2;
   const current = latest?.total_tco2 ?? 0;

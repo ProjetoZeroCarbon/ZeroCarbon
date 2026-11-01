@@ -7,17 +7,12 @@ export async function calculate(req, res) {
   const result = calculateFootprint(req.body ?? {});
   const { kwh, gas, km, factor } = result.inputs;
 
-  // Um registro por mês: recalcular no mesmo mês substitui o anterior.
+  // Cada cálculo vira uma nova linha no histórico.
   await pool.execute(
     `INSERT INTO carbon_records
        (user_id, period_month, electricity_kwh, gas_m3, distance_km, fuel_factor,
         electricity_tco2, gas_tco2, transport_tco2, total_tco2)
-     VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-     ON DUPLICATE KEY UPDATE
-       electricity_kwh = VALUES(electricity_kwh), gas_m3 = VALUES(gas_m3),
-       distance_km = VALUES(distance_km), fuel_factor = VALUES(fuel_factor),
-       electricity_tco2 = VALUES(electricity_tco2), gas_tco2 = VALUES(gas_tco2),
-       transport_tco2 = VALUES(transport_tco2), total_tco2 = VALUES(total_tco2)`,
+     VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
     [
       req.userId, currentPeriodMonth(env.timezone), kwh, gas, km, factor,
       result.electricityTco2, result.gasTco2, result.transportTco2, result.totalTco2,
