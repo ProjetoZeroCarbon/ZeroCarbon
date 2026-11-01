@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <title>ZeroCarbon</title>
+  <circle cx="32" cy="32" r="32" fill="#2F9E67"/>
+  <g transform="translate(32 32) scale(1.14) translate(-32 -32)">
+    <!-- folha -->
+    <path d="M17 47C14 30 25 15 49 14C51 36 38 49 17 47Z" fill="#fff"/>
+    <!-- nervura central e cabinho -->
+    <path d="M15.5 49.5L41 24" stroke="#2F9E67" stroke-width="3" stroke-linecap="round" fill="none"/>
+  </g>
+</svg>
