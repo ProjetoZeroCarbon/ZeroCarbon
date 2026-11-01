@@ -7,6 +7,8 @@
 const API_BASE_URL = window.ZEROCARBON_API_URL || "http://localhost:3000/api";
 
 const TOKEN_KEY = "zerocarbon_token";
+/** Cópia local do nome/foto mostrados na barra lateral (ver sidebar-user.js). */
+export const SIDEBAR_CACHE_KEY = "zerocarbon_sidebar_user";
 
 /** URLs das páginas, calculadas a partir deste arquivo (funcionam em qualquer pasta/base do site). */
 export const Pages = {
@@ -31,7 +33,10 @@ export const Session = {
   },
   setToken(token) { localStorage.setItem(TOKEN_KEY, token); },
   clear() {
-    try { localStorage.removeItem(TOKEN_KEY); } catch { /* ignora */ }
+    try {
+      localStorage.removeItem(TOKEN_KEY);
+      localStorage.removeItem(SIDEBAR_CACHE_KEY); // não deixa a foto de quem saiu no navegador
+    } catch { /* ignora */ }
   },
   /** true só se existe token E ele ainda não expirou (token expirado é descartado). */
   isAuthenticated() {

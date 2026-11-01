@@ -5,6 +5,7 @@
    ============================================================ */
 
 import { Api } from "./api.js";
+import { syncSidebarUser, updateSidebarAvatar } from "./sidebar-user.js";
 
 const AVATAR_SIZE = 256;            // a foto é recortada em quadrado e reduzida a 256x256
 const MAX_FILE_BYTES = 8 * 1024 * 1024;
@@ -36,6 +37,7 @@ function renderProfile(user) {
   if (locationInput) locationInput.value = user.location || "";
 
   renderAvatar(user.avatarUrl);
+  syncSidebarUser(user); // guarda nome/foto para a barra lateral das outras páginas
 }
 
 async function loadProfile() {
@@ -143,6 +145,7 @@ function initAvatar() {
       const dataUrl = await fileToAvatarDataUrl(file);
       const { avatarUrl } = await Api.profile.setAvatar(dataUrl);
       renderAvatar(avatarUrl);
+      updateSidebarAvatar(avatarUrl);
       setAvatarMessage("Foto atualizada.");
     } catch (err) {
       setAvatarMessage(err.message, true);
@@ -155,6 +158,7 @@ function initAvatar() {
     try {
       await Api.profile.removeAvatar();
       renderAvatar(null);
+      updateSidebarAvatar(null);
       setAvatarMessage("Foto removida.");
     } catch (err) {
       setAvatarMessage(err.message, true);

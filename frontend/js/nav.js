@@ -5,6 +5,7 @@
    ============================================================ */
 
 import { Session, Pages } from "./api.js";
+import { initSidebarUser } from "./sidebar-user.js";
 
 export function guardPrivatePage() {
   if (!Session.isAuthenticated()) {
@@ -32,7 +33,10 @@ export function initNav() {
 // Este script só é carregado em páginas internas, então todas são privadas.
 guardPrivatePage();
 
-document.addEventListener("DOMContentLoaded", initNav);
+document.addEventListener("DOMContentLoaded", () => {
+  initNav();
+  initSidebarUser(); // nome + foto no bloco "Minha conta" (só age se a página tiver esse bloco)
+});
 
 // Voltar pelo histórico do navegador após o logout restaura a página do cache:
 // revalida a sessão nesse caso.
