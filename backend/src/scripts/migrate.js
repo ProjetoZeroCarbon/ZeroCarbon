@@ -18,12 +18,19 @@ const conn = await mysql.createConnection({
   user: process.env.DB_USER || "root",
   password: process.env.DB_PASSWORD || "",
   multipleStatements: true,
+  ssl: process.env.DB_SSL === "true" ? { rejectUnauthorized: false } : undefined,
 });
 
 try {
-  await conn.query(
-    `CREATE DATABASE IF NOT EXISTS \`${dbName}\` CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci`
-  );
+  // Em bancos hospedados o banco já existe e o usuário pode não ter permissão
+  // de CREATE DATABASE: nesse caso seguimos em frente e usamos o banco existente.
+  try {
+    await conn.query(
+      `CREATE DATABASE IF NOT EXISTS \`${dbName}\` CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci`
+    );
+  } catch (err) {
+    console.warn(`Aviso: não foi possível criar o banco (${err.message}). Usando o banco existente "${dbName}".`);
+  }
   await conn.query(`USE \`${dbName}\``);
   await conn.query(await fs.readFile(schemaPath, "utf8"));
 

@@ -14,6 +14,8 @@ export const env = {
     user: process.env.DB_USER || "root",
     password: process.env.DB_PASSWORD || "",
     name: process.env.DB_NAME || "zerocarbon",
+    // Bancos hospedados (Aiven, Railway etc.) normalmente exigem SSL: DB_SSL=true
+    ssl: process.env.DB_SSL === "true",
   },
   jwtSecret: required("JWT_SECRET"),
   jwtExpiresIn: process.env.JWT_EXPIRES_IN || "7d",

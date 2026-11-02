@@ -4,7 +4,12 @@
    e controle da sessão (token JWT guardado no navegador).
    ============================================================ */
 
-const API_BASE_URL = window.ZEROCARBON_API_URL || "http://localhost:3000/api";
+// Local (localhost/127.0.0.1) usa a API local; publicado usa a API na Vercel.
+// TROQUE a URL abaixo pelo endereço da sua API na Vercel (termina em /api).
+const PRODUCTION_API_URL = "https://SUA-API.vercel.app/api";
+const IS_LOCAL = ["localhost", "127.0.0.1"].includes(window.location.hostname);
+const API_BASE_URL =
+  window.ZEROCARBON_API_URL || (IS_LOCAL ? "http://localhost:3000/api" : PRODUCTION_API_URL);
 
 const TOKEN_KEY = "zerocarbon_token";
 /** Cópia local do nome/foto mostrados na barra lateral (ver sidebar-user.js). */

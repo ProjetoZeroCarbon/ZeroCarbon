@@ -9,7 +9,9 @@ export const pool = mysql.createPool({
   database: env.db.name,
   charset: "utf8mb4",
   waitForConnections: true,
-  connectionLimit: 10,
+  // Em serverless cada instância abre seu próprio pool: mantenha pequeno.
+  connectionLimit: 5,
   decimalNumbers: true, // DECIMAL volta como number (o frontend usa .toFixed)
   dateStrings: true,    // DATE volta como "YYYY-MM-DD", sem deslocamento de fuso
+  ssl: env.db.ssl ? { rejectUnauthorized: false } : undefined,
 });
