@@ -1,0 +1,6 @@
+{
+  "name": "zerocarbon-site",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Frontend estático do ZeroCarbon (o backend fica na pasta backend, em outro projeto)"
+}
