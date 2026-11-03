@@ -6,7 +6,7 @@
 
 // Local (localhost/127.0.0.1) usa a API local; publicado usa a API na Vercel.
 // TROQUE a URL abaixo pelo endereço da sua API na Vercel (termina em /api).
-const PRODUCTION_API_URL = "https://zero-carbon-2.vercel.app/api";
+const PRODUCTION_API_URL = "https://zero-carbon-final.vercel.app/api";
 const IS_LOCAL = ["localhost", "127.0.0.1"].includes(window.location.hostname);
 const API_BASE_URL =
   window.ZEROCARBON_API_URL || (IS_LOCAL ? "http://localhost:3000/api" : PRODUCTION_API_URL);
