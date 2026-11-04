@@ -1,0 +1,99 @@
+# ZeroCarbon — Documentação do Protótipo no Figma
+
+## 1. Apresentação
+
+O **ZeroCarbon** é um projeto acadêmico desenvolvido com a proposta de oferecer uma plataforma digital para o monitoramento ambiental pessoal, permitindo que os usuários compreendam melhor seus impactos sobre o meio ambiente por meio do cálculo e acompanhamento da pegada de carbono.
+
+Este documento apresenta o protótipo de redesign da interface do ZeroCarbon, desenvolvido utilizando a ferramenta Figma. O protótipo tem como finalidade demonstrar a organização visual, a estrutura das telas e a experiência de navegação planejada para a plataforma.
+
+## 2. Objetivo do Protótipo
+
+O protótipo foi desenvolvido com o objetivo de aprimorar a apresentação visual e a experiência de utilização do ZeroCarbon, proporcionando uma interface mais intuitiva, organizada e acessível.
+
+A proposta busca facilitar a compreensão das informações ambientais apresentadas ao usuário, tornando o acompanhamento de sua pegada de carbono mais simples e compreensível.
+
+Além disso, o protótipo serve como referência visual para orientar as etapas de desenvolvimento e implementação da interface do sistema.
+
+## 3. Identidade Visual e Design
+
+O redesign do ZeroCarbon busca transmitir uma identidade visual relacionada à sustentabilidade, à tecnologia e à preservação ambiental.
+
+A composição visual utiliza elementos que procuram proporcionar uma experiência agradável e facilitar a identificação das diferentes áreas da plataforma.
+
+Entre os aspectos considerados no desenvolvimento da interface estão:
+
+- **Paleta de cores:** utilização de tonalidades associadas à natureza e à sustentabilidade.
+- **Tipografia:** escolha de fontes que favorecem a legibilidade e a organização das informações.
+- **Organização visual:** distribuição dos elementos de maneira estruturada, facilitando a navegação.
+- **Elementos gráficos:** utilização de indicadores, cartões e componentes visuais para apresentar informações ambientais.
+- **Acessibilidade:** preocupação com a visibilidade dos textos, contraste e compreensão dos elementos da interface.
+
+## 4. Estrutura e Funcionalidades Representadas
+
+O protótipo apresenta a proposta de organização das principais áreas da plataforma, contemplando os seguintes aspectos:
+
+### 4.1. Interface inicial
+
+Apresentação da plataforma e de sua proposta de monitoramento ambiental, permitindo que o usuário compreenda a finalidade do ZeroCarbon.
+
+### 4.2. Autenticação de usuários
+
+Representação das interfaces destinadas ao acesso e à criação de contas, possibilitando a identificação dos usuários e o acesso às funcionalidades da plataforma.
+
+### 4.3. Painel principal (Dashboard)
+
+Área destinada à apresentação das informações ambientais do usuário, com indicadores visuais e elementos que facilitam a compreensão de sua pegada de carbono.
+
+### 4.4. Monitoramento da pegada de carbono
+
+Representação dos recursos destinados ao acompanhamento do impacto ambiental individual, permitindo visualizar os resultados do cálculo e compreender melhor os dados apresentados.
+
+### 4.5. Histórico e acompanhamento
+
+Proposta de apresentação dos registros e resultados anteriores, permitindo acompanhar a evolução da pegada de carbono ao longo do tempo.
+
+### 4.6. Personalização da interface
+
+Representação das alternativas de apresentação visual, incluindo os temas claro e escuro, buscando oferecer maior conforto durante a utilização da plataforma.
+
+## 5. Navegação e Experiência do Usuário
+
+A navegação foi planejada para proporcionar uma experiência intuitiva, com organização dos componentes e identificação clara das diferentes áreas do sistema.
+
+A estrutura visual busca reduzir a complexidade durante a utilização da plataforma, facilitando o acesso às informações e aos recursos disponíveis.
+
+O protótipo também permite visualizar a relação entre as diferentes telas e compreender o fluxo de utilização planejado para o sistema.
+
+## 6. Ferramentas Utilizadas
+
+**Figma:** ferramenta utilizada para a elaboração do protótipo de interface, organização dos componentes visuais e representação da navegação entre as telas.
+
+O Figma permite visualizar antecipadamente a proposta de interface antes de sua implementação, contribuindo para o planejamento e a padronização visual do projeto.
+
+## 7. Importância para o Desenvolvimento do Projeto
+
+O protótipo desempenha um papel importante no desenvolvimento do ZeroCarbon, pois estabelece uma referência visual para a implementação das interfaces e auxilia na identificação de possíveis melhorias antes da etapa de desenvolvimento.
+
+Sua utilização contribui para:
+
+- Planejar a estrutura visual da aplicação.
+- Padronizar os componentes da interface.
+- Melhorar a experiência de utilização.
+- Facilitar a comunicação entre os integrantes da equipe.
+- Orientar a implementação das telas no desenvolvimento do sistema.
+
+## 8. Considerações Finais
+
+O redesign do ZeroCarbon representa uma etapa importante na evolução visual e estrutural do projeto. Por meio do protótipo desenvolvido no Figma, foi possível organizar a proposta de interface e estabelecer uma referência para o desenvolvimento da plataforma.
+
+Dessa forma, o protótipo contribui para aproximar o planejamento visual da implementação prática, buscando oferecer uma aplicação mais organizada, intuitiva e alinhada à proposta de monitoramento ambiental pessoal.
+
+---
+
+**Protótipo no Figma:**
+
+[ZeroCarbon — Redesign](https://www.figma.com/proto/J2yVv9mabCttqfopJ7g53C/ZeroCarbon-%E2%80%94-Redesign?node-id=0-1&t=RnVegsKfcwJ6Wm1K-1)
+
+**Projeto:** ZeroCarbon — Monitoramento Ambiental Pessoal.
+
+**Finalidade:** Documentação acadêmica do protótipo de interface.
