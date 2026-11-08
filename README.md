@@ -1,6 +1,6 @@
 # 🌱 ZeroCarbon
 
-> Sistema para monitoramento e acompanhamento da pegada de carbono individual.
+> Sistema web para monitoramento e acompanhamento da pegada de carbono individual.
 
 ## Identificação Acadêmica
 
@@ -15,32 +15,11 @@
 
 ## 📋 Descrição
 
-O **ZeroCarbon** é um projeto desenvolvido com o objetivo de auxiliar usuários no **monitoramento de sua pegada de carbono**, permitindo compreender melhor o impacto ambiental causado por atividades do cotidiano.
+O **ZeroCarbon** auxilia usuários no **monitoramento de sua pegada de carbono**, permitindo compreender melhor o impacto ambiental causado por atividades do cotidiano.
 
-A proposta do sistema é transformar informações relacionadas a **consumo de energia elétrica, gás e transporte** em estimativas de emissão de CO₂, apresentando os resultados de maneira visual e simplificada.
-=======
-🌱 ZeroCarbon
+O sistema transforma informações de **consumo de energia elétrica, gás e transporte** em estimativas de emissão de CO₂ (em tCO₂/mês), guarda cada cálculo no histórico do usuário e apresenta os resultados de forma visual e simplificada.
 
-«Sistema para monitoramento e acompanhamento da pegada de carbono individual.»
-
-Identificação Acadêmica
-
-Informação| Detalhes
-Instituição de Ensino| UNICEPLAC
-Curso| Engenharia de Software
-Disciplina| Projeto Integrado de Certificação em Governança e Gestão de TI
-Orientador| Profº Hudson Neves
-
----
-
-📋 Descrição
-
-O ZeroCarbon é um projeto desenvolvido com o objetivo de auxiliar usuários no monitoramento de sua pegada de carbono, permitindo compreender melhor o impacto ambiental causado por atividades do cotidiano.
-
-A proposta do sistema é transformar informações relacionadas a consumo de energia elétrica, gás e transporte em estimativas de emissão de CO₂, apresentando os resultados de maneira visual e simplificada.
-
-
-O projeto possui uma interface voltada para acompanhamento ambiental, incluindo uma página inicial de apresentação, área de autenticação, dashboard, calculadora de carbono, histórico de registros e perfil do usuário.
+A aplicação é composta por um **frontend estático** (HTML, CSS e JavaScript), uma **API REST** em Node.js e um **banco de dados MySQL compatível** (TiDB Cloud), com contas de usuário e autenticação por token JWT.
 
 ---
 
@@ -51,36 +30,12 @@ O projeto possui uma interface voltada para acompanhamento ambiental, incluindo 
 Desenvolver uma solução digital capaz de auxiliar usuários a **calcular, acompanhar e compreender sua pegada de carbono**, incentivando a adoção de hábitos mais sustentáveis.
 
 ### Problema que o Sistema Resolve
-=======
-🎯 Objetivos
 
-Objetivo Geral
+A dificuldade de compreender o impacto ambiental causado por atividades comuns do dia a dia, como consumo de energia, uso de gás e transporte.
 
-Desenvolver uma solução digital capaz de auxiliar usuários a calcular, acompanhar e compreender sua pegada de carbono, incentivando a adoção de hábitos mais sustentáveis.
-
-Problema que o Sistema Resolve
-
-A dificuldade de compreender o impacto ambiental causado por atividades comuns do dia a dia, como consumo de energia, utilização de gás e transporte.
-
-O ZeroCarbon busca apresentar essas informações de forma mais acessível, permitindo que o usuário visualize sua estimativa de emissão e acompanhe sua evolução ao longo do tempo.
+O ZeroCarbon apresenta essas informações de forma acessível, permitindo que o usuário visualize sua estimativa de emissão e acompanhe sua evolução ao longo do tempo.
 
 ### Público-alvo
-
-Pessoas interessadas em:
-
-* Monitorar seu impacto ambiental;
-* Conhecer sua pegada de carbono;
-* Acompanhar sua evolução ao longo dos meses;
-* Estabelecer metas de redução de emissões;
-* Adotar hábitos mais sustentáveis.
-
----
-
-## ⚙️ Funcionalidades
-
-### Landing Page
-=======
-Público-alvo
 
 Pessoas interessadas em:
 
@@ -92,498 +47,348 @@ Pessoas interessadas em:
 
 ---
 
-⚙️ Funcionalidades
+## ⚙️ Funcionalidades
 
-Landing Page
+### ✅ Disponíveis
 
-A página inicial apresenta a proposta do ZeroCarbon e disponibiliza informações sobre o funcionamento e os recursos da plataforma.
+**Landing Page**
+Apresentação do ZeroCarbon, explicação do funcionamento, seção de recursos, seção "Sobre" e acesso ao login e ao cadastro.
 
-Entre os elementos apresentados estão:
+**Cadastro e Login**
+Criação de conta (nome, sobrenome, data de nascimento, estado/cidade, e-mail, senha e ID de usuário) e login por usuário ou e-mail. A senha é armazenada com hash (bcrypt) e a sessão usa token JWT. As rotas de autenticação têm limite de tentativas.
 
-* Apresentação do ZeroCarbon;
-* Explicação sobre o funcionamento do sistema;
-* Seção de recursos;
-* Seção "Sobre";
-* Acesso à área de login;
-* Acesso à criação de conta.
+**Calculadora de Carbono**
+Estima a emissão a partir de três categorias:
 
-### Cadastro e Login
+- ⚡ Energia elétrica (kWh);
+- 🔥 Gás (m³);
+- 🚗 Transporte (km e tipo de combustível: gasolina, álcool ou diesel).
 
-O projeto apresenta interfaces destinadas à autenticação dos usuários, incluindo:
+O resultado é exibido em **tCO₂/mês**, com detalhamento por categoria e uma comparação da emissão estimada. Cada cálculo é salvo no histórico do usuário.
 
-* Login;
-* Cadastro;
-* Campos para informações do usuário;
-* Navegação entre cadastro e login.
+**Dashboard**
+Mostra o total do mês, a variação em relação ao mês anterior e o progresso da meta mensal do usuário.
 
-### Dashboard
+**Histórico**
+Lista os cálculos do usuário, do mais recente para o mais antigo, com a variação percentual em relação ao cálculo anterior.
 
-O painel do sistema apresenta informações relacionadas à pegada de carbono do usuário, permitindo visualizar indicadores e acompanhar seu progresso.
+**Perfil**
+Visualização e edição de nome, sobrenome, localização e e-mail, além de envio e remoção da foto de perfil.
 
-### Calculadora de Carbono
-=======
-- Apresentação do ZeroCarbon;
-- Explicação sobre o funcionamento do sistema;
-- Seção de recursos;
-- Seção "Sobre";
-- Acesso à área de login;
-- Acesso à criação de conta.
+**Tema da Interface**
+Alternância entre os temas **claro e escuro**.
 
-Cadastro e Login
+### 🚧 Em desenvolvimento
 
-O projeto apresenta interfaces destinadas à autenticação dos usuários, incluindo:
-
-- Login;
-- Cadastro;
-- Campos para informações do usuário;
-- Navegação entre cadastro e login.
-
-Dashboard
-
-O painel do sistema apresenta informações relacionadas à pegada de carbono do usuário, permitindo visualizar indicadores e acompanhar seu progresso.
-
-Calculadora de Carbono
-
-A calculadora permite informar dados de consumo para estimar a emissão de carbono.
-
-As categorias atualmente representadas são:
-
-* ⚡ Energia elétrica;
-* 🔥 Consumo de gás;
-* 🚗 Transporte.
-
-O resultado é apresentado em **tCO₂/mês**, acompanhado de um detalhamento por categoria e de uma comparação da emissão estimada.
-
-### Histórico
-=======
-- ⚡ Energia elétrica;
-- 🔥 Consumo de gás;
-- 🚗 Transporte.
-
-O resultado é apresentado em tCO₂/mês, acompanhado de um detalhamento por categoria e de uma comparação da emissão estimada.
-
-Histórico
-
-O sistema possui uma área de histórico destinada ao acompanhamento dos registros mensais.
-
-São apresentados indicadores como:
-
-* Redução acumulada;
-* Melhor mês;
-* Meta anual;
-* Registros mensais;
-* Evolução da pegada de carbono;
-
-### Perfil
-=======
-- Redução acumulada;
-- Melhor mês;
-- Meta anual;
-- Registros mensais;
-- Evolução da pegada de carbono.
-
-Perfil
-
-A área de perfil permite visualizar informações do usuário e indicadores relacionados às suas metas e conquistas.
-
-A interface apresenta:
-
-* Informações do usuário;
-* Localização;
-* Foto de perfil;
-* Conquistas;
-* Meta anual;
-* Informações da conta;
-* Configurações de notificações.
-
-### Tema da Interface
-
-A aplicação também possui suporte à alternância entre os temas **claro e escuro**.
+- Meta mensal editável pelo usuário (o campo já existe no banco);
+- Dashboard com dados 100% reais (alguns blocos ainda são fixos na interface: impacto por categoria, gráfico de evolução mensal e dica do mês);
+- Conquistas e configurações de notificações no perfil (hoje apenas na interface);
+- Recuperação de senha e função "Lembrar de mim" (presentes na interface, ainda sem funcionamento).
 
 ---
 
 ## 💻 Tecnologias Utilizadas
 
-Com base nos arquivos atualmente presentes no repositório, o projeto utiliza tecnologias voltadas ao desenvolvimento web:
+### Frontend
 
-* **HTML5** — estrutura das páginas;
-* **CSS3** — estilização e responsividade;
-* **JavaScript** — interatividade e lógica da aplicação;
-* **Google Fonts** — utilização das fontes Poppins, Inter, Space Grotesk e IBM Plex Mono.
+- **HTML5**: estrutura das páginas;
+- **CSS3**: estilização, responsividade e tema claro/escuro;
+- **JavaScript (ES Modules)**: lógica da aplicação e comunicação com a API;
+- **Google Fonts**: Poppins, Inter, Space Grotesk e IBM Plex Mono.
 
-### Bibliotecas e Frameworks
+### Backend
 
-**A ser definido pela equipe.**
-=======
-- Informações do usuário;
-- Localização;
-- Foto de perfil;
-- Conquistas;
-- Meta anual;
-- Informações da conta;
-- Configurações de notificações.
+- **Node.js** (≥ 18) e **Express 5**: API REST;
+- **mysql2**: acesso ao banco de dados;
+- **jsonwebtoken** e **bcryptjs**: autenticação e hash de senhas;
+- **helmet**, **cors** e **express-rate-limit**: segurança, CORS e limite de requisições;
+- **dotenv**: variáveis de ambiente.
 
-Tema da Interface
+### Infraestrutura
 
-A aplicação também possui suporte à alternância entre os temas claro e escuro.
-
----
-
-💻 Tecnologias Utilizadas
-
-Com base nos arquivos atualmente presentes no repositório, o projeto utiliza tecnologias voltadas ao desenvolvimento web:
-
-- HTML5 — estrutura das páginas;
-- CSS3 — estilização e responsividade;
-- JavaScript — interatividade e lógica da aplicação;
-- Google Fonts — utilização das fontes Poppins, Inter, Space Grotesk e IBM Plex Mono.
-
-Bibliotecas e Frameworks
-
-A ser definido pela equipe.
-
-O repositório analisado não apresenta, atualmente, um framework de desenvolvimento web identificado como dependência do projeto.
+- **TiDB Cloud (Starter)**: banco MySQL compatível;
+- **Vercel**: hospedagem da API e do frontend.
 
 ---
 
 ## 🏗️ Arquitetura da Solução
 
-O projeto atualmente apresenta uma arquitetura baseada em **aplicação web no lado do cliente (frontend)**.
+O projeto segue uma arquitetura em três camadas:
 
-A estrutura do repositório contém diferentes arquivos e diretórios relacionados às interfaces do sistema, incluindo:
+```
+        ┌──────────────────────────┐
+        │   Frontend (estático)    │   HTML + CSS + JavaScript
+        └────────────┬─────────────┘
+                     │  HTTPS / JSON  (token JWT)
+                     ▼
+        ┌──────────────────────────┐
+        │   API REST (Express)     │   /api/*  (Vercel)
+        └────────────┬─────────────┘
+                     │  MySQL (SSL)
+                     ▼
+        ┌──────────────────────────┐
+        │  Banco de dados (TiDB)   │   users · carbon_records · user_avatars
+        └──────────────────────────┘
+```
 
-* `FrontEnd/`
-* `syles.css`
-* `index.html`
-* `scripts.js`
+### Fluxo de navegação
 
-O arquivo `ZeroCarbon.html` concentra uma implementação de interface que reúne as principais telas do sistema, com navegação entre páginas utilizando JavaScript.
-
-### Fluxo conceitual
-
-=======
-🏗️ Arquitetura da Solução
-
-O projeto atualmente apresenta uma arquitetura baseada em aplicação web no lado do cliente (frontend).
-
-A estrutura do repositório contém diferentes arquivos e diretórios relacionados às interfaces do sistema, incluindo:
-
-- "FrontEnd/"
-- "styles.css"
-- "index.html"
-- "scripts.js"
-
-O arquivo "ZeroCarbon.html" concentra uma implementação de interface que reúne as principais telas do sistema, com navegação entre páginas utilizando JavaScript.
-
-Fluxo conceitual
-
-
+```
                  ┌───────────────────┐
-                 │    Usuário         │
+                 │      Usuário      │
                  └─────────┬─────────┘
-                           │
                            ▼
                  ┌───────────────────┐
                  │   Landing Page    │
                  └─────────┬─────────┘
-                           │
                 ┌──────────┴──────────┐
                 ▼                     ▼
           ┌───────────┐         ┌───────────┐
           │   Login   │         │  Cadastro │
           └─────┬─────┘         └─────┬─────┘
-                │                     │
                 └──────────┬──────────┘
                            ▼
                  ┌───────────────────┐
                  │     Dashboard     │
                  └─────────┬─────────┘
-                           │
             ┌──────────────┼──────────────┐
             ▼              ▼              ▼
       ┌───────────┐  ┌───────────┐  ┌───────────┐
-      │Calculadora│  │ Histórico  │  │  Perfil   │
+      │Calculadora│  │ Histórico │  │  Perfil   │
       └───────────┘  └───────────┘  └───────────┘
-
-
+```
 
 ---
 
 ## 🗄️ Modelagem do Banco de Dados
 
-### Banco de Dados
-
-**A ser definido pela equipe.**
-
-Na versão atualmente presente no repositório, não foi identificado um banco de dados ou uma camada de persistência de dados implementada.
-
-### Modelo de Dados
-
-**A ser definido pela equipe.**
-
----
-
-## 📦 Pré-requisitos
-
-Para executar a versão atual do projeto, são necessários:
-
-* Navegador web moderno;
-* Acesso aos arquivos do projeto.
-
-**A ser definido pela equipe:** requisitos adicionais para futuras versões do sistema.
-
----
-
-## 🔧 Instalação
-
-### 1. Clonar o repositório
-
-```bash
-git clone https://github.com/ProjetoZeroCarbon/ZeroCarbon.git
-```
-
-### 2. Acessar o diretório
-
-```bash
-cd ZeroCarbon
-```
-
-### 3. Executar a aplicação
-
-Como a implementação atual é composta por arquivos HTML, CSS e JavaScript, os arquivos podem ser abertos diretamente em um navegador.
-
-> **Observação:** a configuração de um servidor local ou processo de build será definida pela equipe caso seja adotada uma arquitetura diferente nas próximas versões.
-
----
-
-## ▶️ Como Executar
-
-Após clonar o projeto, abra o arquivo:
-
-index.html
-
-=======
-
----
-
-🗄️ Modelagem do Banco de Dados
-
-Banco de Dados
-
-A ser definido pela equipe.
-
-Na versão atualmente presente no repositório, não foi identificado um banco de dados ou uma camada de persistência de dados implementada.
-
-Modelo de Dados
-
-A ser definido pela equipe.
-
----
-
-📦 Pré-requisitos
-
-Para executar a versão atual do projeto, são necessários:
-
-- Navegador web moderno;
-- Acesso aos arquivos do projeto.
-
-A ser definido pela equipe: requisitos adicionais para futuras versões do sistema.
-
----
-
-🔧 Instalação
-
-1. Clonar o repositório
-
-git clone https://github.com/ProjetoZeroCarbon/ZeroCarbon.git
-
-2. Acessar o diretório
-
-cd ZeroCarbon
-
-3. Executar a aplicação
-
-Como a implementação atual é composta por arquivos HTML, CSS e JavaScript, os arquivos podem ser abertos diretamente em um navegador.
-
-«Observação: a configuração de um servidor local ou processo de build será definida pela equipe caso seja adotada uma arquitetura diferente nas próximas versões.»
-
----
-
-▶️ Como Executar
-
-Após clonar o projeto, abra o arquivo:
-
-index.html
-
-em um navegador web.
-
----
-
-📁 Estrutura do Projeto
-
-A estrutura atualmente identificada no repositório é:
-
-ZeroCarbon/
-│
-├── index.html
-|___scripts.js
-|___styles.css
-|
-├── LICENSE
-└── README.md
-
-=======
-
-A estrutura acima corresponde aos arquivos e diretórios atualmente disponibilizados no repositório.
-
----
-
-## 🧮 Funcionamento da Calculadora
-=======
-🧮 Funcionamento da Calculadora
-
-A calculadora utiliza os valores informados pelo usuário para realizar uma estimativa de emissão.
-
-Na implementação atual, são utilizados fatores para:
-
-* Energia elétrica;
-* Gás;
-* Transporte.
-
-O cálculo é realizado em JavaScript e o resultado é convertido para toneladas de CO₂ por mês.
-
-### Exemplo
-
-Considerando os dados inseridos pelo usuário:
-
-=======
-- Energia elétrica;
-- Gás;
-- Transporte.
-
-O cálculo é realizado em JavaScript e o resultado é convertido para toneladas de CO₂ por mês.
-
-Exemplo
-
-Considerando os dados inseridos pelo usuário:
-
-Consumo de energia: 250 kWh
-Consumo de gás:     valor informado pelo usuário
-Distância:          valor informado pelo usuário
-Combustível:        opção selecionada
-
-
-
-O sistema calcula a emissão estimada e apresenta:
-
-```
-Pegada estimada
-tCO₂/mês
-```
-=======
-
-O sistema calcula a emissão estimada e apresenta:
-
-Pegada estimada
-tCO₂/mês
-
-Além disso, o sistema apresenta um detalhamento das emissões por categoria.
+Banco **MySQL** (compatível com TiDB Cloud). O script completo está em [`backend/sql/schema.sql`](./backend/sql/schema.sql).
+
+| Tabela           | Descrição                                                                                           |
+| ---------------- | --------------------------------------------------------------------------------------------------- |
+| `users`          | Dados da conta: usuário, e-mail, hash da senha, nome, data de nascimento, localização e meta mensal |
+| `carbon_records` | Um registro por cálculo: consumo informado e emissões (energia, gás, transporte e total, em tCO₂)   |
+| `user_avatars`   | Foto de perfil (uma por usuário, reduzida para 256×256 antes do envio)                              |
+
+**Relacionamentos:** `carbon_records.user_id` e `user_avatars.user_id` referenciam `users.id` com exclusão em cascata.
 
 ---
 
 ## 🔌 API
 
-**A ser definido pela equipe.**
-=======
-🔌 API
+A API fica sob o prefixo `/api`. As rotas marcadas com 🔒 exigem o cabeçalho `Authorization: Bearer <token>`.
 
-A ser definido pela equipe.
-
-Não foi identificada uma API externa ou uma API própria implementada na versão atual do projeto.
+| Método | Rota                | Descrição                                      |
+| ------ | ------------------- | ---------------------------------------------- |
+| GET    | `/health`           | Verifica se a API e o banco estão no ar        |
+| POST   | `/auth/register`    | Cria uma conta                                 |
+| POST   | `/auth/login`       | Autentica e devolve o token JWT                |
+| GET    | `/profile` 🔒       | Dados do usuário logado                        |
+| PUT    | `/profile` 🔒       | Atualiza nome, sobrenome, localização e e-mail |
+| PUT    | `/profile/avatar` 🔒    | Envia ou substitui a foto de perfil        |
+| DELETE | `/profile/avatar` 🔒    | Remove a foto de perfil                    |
+| POST   | `/calculator` 🔒    | Calcula a emissão e salva no histórico         |
+| GET    | `/history` 🔒       | Lista os cálculos do usuário                   |
+| GET    | `/history/summary` 🔒 | Resumo usado no dashboard                    |
 
 ---
 
-## 🖼️ Capturas de Tela
+## 🧮 Funcionamento da Calculadora
 
-### Landing Page
+O cálculo é feito **no backend** (`backend/src/utils/emissions.js`), que valida os valores recebidos e grava o resultado.
 
-> <img width="1892" height="1020" alt="image" src="https://github.com/user-attachments/assets/0636e428-0847-4006-9468-48b918850aad" />
+| Categoria        | Fator de emissão                                               |
+| ---------------- | -------------------------------------------------------------- |
+| Energia elétrica | 0,0817 kg CO₂ por kWh                                          |
+| Gás              | 2,02 kg CO₂ por m³                                             |
+| Transporte       | 0,192 (gasolina), 0,030 (álcool) ou 0,212 (diesel) kg CO₂ por km |
 
+O resultado é convertido para toneladas (tCO₂) e arredondado em 4 casas decimais.
 
-### Login
+### Exemplo
 
-> <img width="1870" height="1017" alt="image" src="https://github.com/user-attachments/assets/86e44455-8abd-45e2-979c-65bb7a45cf13" />
+```
+Energia elétrica:  250 kWh   → 250 × 0,0817 / 1000 = 0,0204 tCO₂
+Gás:               10 m³     → 10  × 2,02   / 1000 = 0,0202 tCO₂
+Transporte:        100 km (gasolina) → 100 × 0,192 / 1000 = 0,0192 tCO₂
+────────────────────────────────────────────────────────────
+Pegada estimada:   0,0598 tCO₂/mês
+```
 
+---
 
-### Cadastro
+## 📦 Pré-requisitos
 
-> <img width="1872" height="996" alt="image" src="https://github.com/user-attachments/assets/74ab99b2-2afe-4794-b265-b0f0b582fc72" />
+- **Node.js 18 ou superior** e npm;
+- Um banco **MySQL** (local) ou um cluster no **TiDB Cloud**;
+- Navegador web moderno;
+- (Opcional) conta na **Vercel** para publicar.
 
+---
 
-### Dashboard
+## 🔧 Instalação e Execução Local
 
-> <img width="1385" height="807" alt="image" src="https://github.com/user-attachments/assets/a0e13ca7-4593-49c0-9b6e-7686a80d121f" />
+### 1. Clonar o repositório
 
+```bash
+git clone https://github.com/ProjetoZeroCarbon/ZeroCarbon.git
+cd ZeroCarbon
+```
 
-### Calculadora de Carbono
+### 2. Configurar o backend
 
-> <img width="1911" height="1007" alt="image" src="https://github.com/user-attachments/assets/43fbfcf0-8559-4d4c-8046-36e76b794ddb" />
+```bash
+cd backend
+cp .env.example .env
+```
 
+Preencha o arquivo **`backend/.env`** (na pasta `backend`, ao lado do `package.json`, e não dentro de `src`):
 
-### Histórico
+| Variável         | Descrição                                                           |
+| ---------------- | ------------------------------------------------------------------- |
+| `PORT`           | Porta da API (padrão `3000`)                                        |
+| `DB_HOST`        | Endereço do banco                                                   |
+| `DB_PORT`        | Porta do banco (`3306` no MySQL, `4000` no TiDB Cloud)              |
+| `DB_USER`        | Usuário do banco                                                    |
+| `DB_PASSWORD`    | Senha do banco                                                      |
+| `DB_NAME`        | Nome do banco (por exemplo, `zerocarbon`; evite bancos de sistema)  |
+| `DB_SSL`         | `true` em bancos hospedados, como o TiDB Cloud                      |
+| `JWT_SECRET`     | Segredo longo e aleatório (obrigatório)                             |
+| `JWT_EXPIRES_IN` | Validade do token (padrão `7d`)                                     |
+| `CORS_ORIGINS`   | Endereços do frontend, separados por vírgula, sem barra no final    |
+| `APP_TIMEZONE`   | Fuso usado para decidir o mês atual (padrão `America/Sao_Paulo`)    |
 
-> <img width="1592" height="1008" alt="image" src="https://github.com/user-attachments/assets/883a4638-f692-40c6-8e05-45b4538553e6" />
+Para gerar um `JWT_SECRET`:
 
+```bash
+node -e "console.log(require('crypto').randomBytes(48).toString('hex'))"
+```
 
-### Perfil
+### 3. Criar as tabelas e iniciar a API
 
-> <img width="1586" height="1007" alt="image" src="https://github.com/user-attachments/assets/8992c2f4-e623-41df-94a3-438697b0a599" />
+```bash
+npm install
+npm run db:migrate   # cria o banco (se não existir) e as tabelas
+npm run dev          # inicia a API em http://localhost:3000
+```
 
+Teste em `http://localhost:3000/api/health`. O esperado é `{"status":"ok","database":"up"}`.
+
+### 4. Abrir o frontend
+
+Sirva a raiz do projeto com um servidor estático (por exemplo, a extensão Live Server do VS Code, na porta 5500) e abra `index.html`. Em `localhost`, o frontend usa automaticamente a API em `http://localhost:3000/api`.
+
+---
+
+## ☁️ Deploy
+
+O projeto é publicado em dois projetos na **Vercel**, usando o mesmo repositório, com o banco no **TiDB Cloud**:
+
+| Projeto  | Root Directory | Observações                                                                              |
+| -------- | -------------- | ---------------------------------------------------------------------------------------- |
+| Backend  | `backend`      | Variáveis de ambiente cadastradas na Vercel; a função serverless está em `api/index.js`  |
+| Frontend | raiz           | Em `frontend/js/api.js`, `PRODUCTION_API_URL` aponta para a API e termina em `/api`      |
+
+O passo a passo completo está em [`DEPLOY.md`](./DEPLOY.md). Pontos que mais causam erro:
+
+- A URL da API em `api.js` termina em `/api`, com **uma barra só** (`.../api`, e não `...//api`);
+- `CORS_ORIGINS` na API precisa conter o endereço exato do frontend, e a API precisa de novo deploy depois de mudar variáveis;
+- `DB_NAME` na Vercel deve ser o mesmo banco onde `npm run db:migrate` criou as tabelas.
+
+### 🔐 Segurança
+
+- **Nunca** envie o `backend/.env` ao Git (ele já está no `.gitignore`);
+- Use senha de banco e `JWT_SECRET` próprios e troque-os se algum dia forem expostos;
+- Senhas dos usuários são armazenadas apenas como hash.
+
+---
+
+## 📁 Estrutura do Projeto
+
+```
+ZeroCarbon/
+│
+├── index.html                # Landing page
+├── vercel.json               # Configuração do frontend na Vercel
+├── package.json
+├── DEPLOY.md                 # Guia de publicação
+├── LICENSE
+├── README.md
+│
+├── frontend/
+│   ├── login.html · signup.html · dashboard.html
+│   ├── calculator.html · history.html · profile.html
+│   ├── css/
+│   ├── assets/
+│   └── js/                   # api.js, auth.js, calculator.js, dashboard.js,
+│                             # history.js, profile.js, nav.js, theme.js, ...
+│
+├── backend/
+│   ├── api/index.js          # Entrada serverless (Vercel)
+│   ├── vercel.json
+│   ├── package.json
+│   ├── sql/schema.sql        # Estrutura do banco
+│   └── src/
+│       ├── app.js · server.js
+│       ├── config/           # env.js, db.js
+│       ├── controllers/      # auth, calculator, history, profile, avatar
+│       ├── middleware/       # autenticação, erros
+│       ├── routes/
+│       ├── scripts/migrate.js
+│       └── utils/            # emissions.js, dates.js, ...
+│
+├── Docs/                     # Relatório parcial, casos de uso e cronograma
+└── Certificados SCRUM/
+```
+
+---
+
+## 📚 Documentação
+
+Os documentos acadêmicos do projeto ficam na pasta [`Docs/`](./Docs):
+
+- Relatório parcial atualizado (Calculadora & Hub de Pegada de Carbono);
+- Casos de uso;
+- Cronograma.
 
 ---
 
 ## 👥 Equipe do Projeto
 
-| Integrante | Função |
-|---|---|
-| Kauã Nascimento | Scrum Master + Dev |
-| Denzel Luiz | UI/UX Design + Dev |
-| Maria Eduarda | UI/UX Design |
-| Ícaro Scárdua | Dev + Tech Lead |
-| Daniel Victor | QA + Tech Writer |
-| Breno Aguiar | Tech Writer + Relatório |
-| Arhur Luan | Tech Writer + README |
-| Rodrigo Alves | QA + Tech Writer |
-| Antônio Souza | Tech Lead + Dev |
+| Integrante      | Função                |
+| --------------- | --------------------- |
+| Kauã Nascimento | Scrum Master + Dev    |
+| Denzel Luiz     | UI/UX Design + Dev    |
+| Maria Eduarda   | UI/UX Design          |
+| Ícaro Scárdua   | Dev + Tech Lead       |
+| Daniel Victor   | QA + Tech Writer      |
+| Breno Aguiar    | Tech Writer + Relatório |
+| Arhur Luan      | Tech Writer + README  |
+| Rodrigo Alves   | QA + Tech Writer      |
+| Antônio Souza   | Tech Lead + Dev       |
 
 ---
 
+## 🚧 Status do Projeto
 
-🚧 Status do Projeto
+**Em desenvolvimento.**
 
-Em desenvolvimento.
-
-O repositório encontra-se em desenvolvimento e atualmente conta com uma implementação de interface contendo Landing Page, autenticação, dashboard, calculadora, histórico e perfil. O repositório possui atualmente 9 commits e está publicado como projeto público.
+O sistema já está publicado e funcional, com cadastro e login reais, calculadora com persistência, histórico por usuário, perfil com foto e dashboard conectado ao banco de dados. As próximas entregas estão listadas abaixo.
 
 ---
 
 ## 🔮 Melhorias Futuras
 
-As seguintes melhorias podem ser incorporadas ao projeto conforme a evolução da solução:
-
-* Implementação de persistência dos dados dos usuários;
-* Implementação de banco de dados;
-* Implementação efetiva do sistema de autenticação;
-* Armazenamento dos cálculos realizados;
-* Integração entre frontend e backend;
-* Desenvolvimento de uma API;
-* Implementação de histórico real por usuário;
-* Implementação de metas personalizadas;
-* Implementação de notificações;
-* Aprimoramento dos gráficos de acompanhamento;
-* Expansão das categorias utilizadas no cálculo da pegada de carbono;
-* Implementação de recomendações personalizadas para redução das emissões;
-* Melhorias de acessibilidade e experiência do usuário.
+- Meta mensal e anual editáveis pelo usuário;
+- Dashboard totalmente alimentado por dados reais (categorias, evolução mensal e dicas);
+- Conquistas e preferências de notificação salvas por usuário;
+- Recuperação de senha e opção "Lembrar de mim";
+- Edição e exclusão de registros do histórico;
+- Exportação do histórico (CSV/PDF);
+- Expansão das categorias do cálculo (alimentação, resíduos e água);
+- Recomendações personalizadas para redução das emissões;
+- Testes automatizados e integração contínua (CI);
+- Melhorias de acessibilidade e experiência do usuário.
 
 ---
 
@@ -591,51 +396,12 @@ As seguintes melhorias podem ser incorporadas ao projeto conforme a evolução d
 
 Este projeto está disponibilizado sob a licença **MIT**.
 
-Consulte o arquivo [`LICENSE`](./LICENSE) para obter os termos completos da licença.
+Consulte o arquivo [`LICENSE`](./LICENSE) para obter os termos completos.
 
 ---
 
 ## 📚 Repositório
 
-O código-fonte do projeto está disponível no GitHub:
-
-**ProjetoZeroCarbon/ZeroCarbon**
+O código-fonte está disponível no GitHub: **ProjetoZeroCarbon/ZeroCarbon**
 
 Repositório desenvolvido para a disciplina de **Projeto Integrado de Certificação em Governança e Gestão de TI**.
-=======
-
-🔮 Melhorias Futuras
-
-As seguintes melhorias podem ser incorporadas ao projeto conforme a evolução da solução:
-
-- Implementação de persistência dos dados dos usuários;
-- Implementação de banco de dados;
-- Implementação efetiva do sistema de autenticação;
-- Armazenamento dos cálculos realizados;
-- Integração entre frontend e backend;
-- Desenvolvimento de uma API;
-- Implementação de histórico real por usuário;
-- Implementação de metas personalizadas;
-- Implementação de notificações;
-- Aprimoramento dos gráficos de acompanhamento;
-- Expansão das categorias utilizadas no cálculo da pegada de carbono;
-- Implementação de recomendações personalizadas para redução das emissões;
-- Melhorias de acessibilidade e experiência do usuário.
-
----
-
-📄 Licença
-
-Este projeto está disponibilizado sob a licença MIT.
-
-Consulte o arquivo ""LICENSE"" (./LICENSE) para obter os termos completos da licença.
-
----
-
-📚 Repositório
-
-O código-fonte do projeto está disponível no GitHub:
-
-ProjetoZeroCarbon/ZeroCarbon
-
-Repositório desenvolvido para a disciplina de Projeto Integrado de Certificação em Governança e Gestão de TI.
